@@ -24,3 +24,9 @@ Thumbs.db
 tmp/
 .temp/
 *.tmp
+logs/
+*.jsonl
+active/state/
+node_modules/
+.env
+.env.*
