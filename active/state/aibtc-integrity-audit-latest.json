@@ -1,0 +1,15 @@
+﻿{
+    "checkedAtUtc":  "2026-03-17T14:15:12.1497966Z",
+    "ok":  true,
+    "summary":  "estado local coerente",
+    "findings":  [
+
+                 ],
+    "snapshot":  {
+                     "heartbeatInStatus":  true,
+                     "heartbeatInLog":  true,
+                     "reportAvailable":  true,
+                     "backupMetadataAvailable":  true,
+                     "registrySnapshotAvailable":  true
+                 }
+}

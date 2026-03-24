@@ -1,0 +1,3407 @@
+{
+  "generated_at": "2026-03-20T17:33:32.334Z",
+  "total_cycles_requested": 100,
+  "interval_ms": 2000,
+  "cycles": [
+    {
+      "timestamp": "2026-03-20T17:33:33.926Z",
+      "cycle_index": 1,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:33:39.359Z",
+      "cycle_index": 2,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:33:42.838Z",
+      "cycle_index": 3,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:33:48.686Z",
+      "cycle_index": 4,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:33:52.185Z",
+      "cycle_index": 5,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:33:55.643Z",
+      "cycle_index": 6,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:00.970Z",
+      "cycle_index": 7,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:06.321Z",
+      "cycle_index": 8,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:14.374Z",
+      "cycle_index": 9,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:20.317Z",
+      "cycle_index": 10,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:29.777Z",
+      "cycle_index": 11,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:36.906Z",
+      "cycle_index": 12,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:41.284Z",
+      "cycle_index": 13,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:47.035Z",
+      "cycle_index": 14,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:34:56.052Z",
+      "cycle_index": 15,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:00.988Z",
+      "cycle_index": 16,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:04.812Z",
+      "cycle_index": 17,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:17.422Z",
+      "cycle_index": 18,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:22.511Z",
+      "cycle_index": 19,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:30.654Z",
+      "cycle_index": 20,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:37.849Z",
+      "cycle_index": 21,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:43.324Z",
+      "cycle_index": 22,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:51.847Z",
+      "cycle_index": 23,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:35:56.478Z",
+      "cycle_index": 24,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:04.083Z",
+      "cycle_index": 25,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:11.644Z",
+      "cycle_index": 26,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:20.359Z",
+      "cycle_index": 27,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:25.296Z",
+      "cycle_index": 28,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:31.438Z",
+      "cycle_index": 29,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:36.730Z",
+      "cycle_index": 30,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:42.544Z",
+      "cycle_index": 31,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:47.158Z",
+      "cycle_index": 32,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:52.045Z",
+      "cycle_index": 33,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:36:58.356Z",
+      "cycle_index": 34,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:02.587Z",
+      "cycle_index": 35,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:13.442Z",
+      "cycle_index": 36,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:18.049Z",
+      "cycle_index": 37,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:23.347Z",
+      "cycle_index": 38,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:30.991Z",
+      "cycle_index": 39,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:34.841Z",
+      "cycle_index": 40,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:40.002Z",
+      "cycle_index": 41,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:44.251Z",
+      "cycle_index": 42,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:47.930Z",
+      "cycle_index": 43,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:52.756Z",
+      "cycle_index": 44,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:37:58.195Z",
+      "cycle_index": 45,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:02.384Z",
+      "cycle_index": 46,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:07.951Z",
+      "cycle_index": 47,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:20.637Z",
+      "cycle_index": 48,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:26.170Z",
+      "cycle_index": 49,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:32.124Z",
+      "cycle_index": 50,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:37.937Z",
+      "cycle_index": 51,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:43.362Z",
+      "cycle_index": 52,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:51.352Z",
+      "cycle_index": 53,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:38:57.511Z",
+      "cycle_index": 54,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:03.600Z",
+      "cycle_index": 55,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:09.746Z",
+      "cycle_index": 56,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:13.882Z",
+      "cycle_index": 57,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:18.502Z",
+      "cycle_index": 58,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:25.958Z",
+      "cycle_index": 59,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:30.039Z",
+      "cycle_index": 60,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:35.425Z",
+      "cycle_index": 61,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:42.187Z",
+      "cycle_index": 62,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:46.073Z",
+      "cycle_index": 63,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:49.459Z",
+      "cycle_index": 64,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:39:53.862Z",
+      "cycle_index": 65,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:00.908Z",
+      "cycle_index": 66,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:05.242Z",
+      "cycle_index": 67,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:13.453Z",
+      "cycle_index": 68,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:17.312Z",
+      "cycle_index": 69,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:21.494Z",
+      "cycle_index": 70,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:28.852Z",
+      "cycle_index": 71,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:35.262Z",
+      "cycle_index": 72,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:41.576Z",
+      "cycle_index": 73,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:48.860Z",
+      "cycle_index": 74,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:53.165Z",
+      "cycle_index": 75,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:40:59.355Z",
+      "cycle_index": 76,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:41:05.482Z",
+      "cycle_index": 77,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:41:18.232Z",
+      "cycle_index": 78,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:41:25.524Z",
+      "cycle_index": 79,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:41:34.352Z",
+      "cycle_index": 80,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:41:39.510Z",
+      "cycle_index": 81,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:41:46.026Z",
+      "cycle_index": 82,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:41:51.253Z",
+      "cycle_index": 83,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:41:57.732Z",
+      "cycle_index": 84,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:02.071Z",
+      "cycle_index": 85,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:10.443Z",
+      "cycle_index": 86,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:14.389Z",
+      "cycle_index": 87,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:20.256Z",
+      "cycle_index": 88,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:29.943Z",
+      "cycle_index": 89,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:36.572Z",
+      "cycle_index": 90,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:42.544Z",
+      "cycle_index": 91,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:46.026Z",
+      "cycle_index": 92,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:51.219Z",
+      "cycle_index": 93,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:42:59.135Z",
+      "cycle_index": 94,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:43:05.645Z",
+      "cycle_index": 95,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:43:17.892Z",
+      "cycle_index": 96,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:43:22.128Z",
+      "cycle_index": 97,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:43:28.675Z",
+      "cycle_index": 98,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:43:36.352Z",
+      "cycle_index": 99,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    },
+    {
+      "timestamp": "2026-03-20T17:43:42.404Z",
+      "cycle_index": 100,
+      "market_state": "VOLATILE",
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "action": "WATCH",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "stability_score": 0
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "action": "EXIT_LP",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ],
+      "signals": {
+        "enter_lp_signal_count": 0,
+        "exit_lp_signal_count": 1,
+        "watch_count": 1,
+        "hold_defensive_count": 0
+      }
+    }
+  ]
+}

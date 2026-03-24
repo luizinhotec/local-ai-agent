@@ -1,0 +1,155 @@
+{
+  "generated_at": "2026-03-20T17:22:26.082Z",
+  "cycles_requested": 4,
+  "interval_ms": 1500,
+  "cycles": [
+    {
+      "cycle": 1,
+      "timestamp": "2026-03-20T17:22:05.667Z",
+      "market_state": "VOLATILE",
+      "candidate_pools_count": 1,
+      "active_position_count": 1,
+      "entry_signal": false,
+      "exit_signal": true,
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "enter_lp_signal_count": 0,
+      "exit_lp_signal_count": 1,
+      "watch_count": 1,
+      "hold_defensive_count": 0,
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "market_state": "VOLATILE",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "action": "WATCH"
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "market_state": "VOLATILE",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "action": "EXIT_LP",
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ]
+    },
+    {
+      "cycle": 2,
+      "timestamp": "2026-03-20T17:22:18.587Z",
+      "market_state": "VOLATILE",
+      "candidate_pools_count": 1,
+      "active_position_count": 1,
+      "entry_signal": false,
+      "exit_signal": true,
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "enter_lp_signal_count": 0,
+      "exit_lp_signal_count": 1,
+      "watch_count": 1,
+      "hold_defensive_count": 0,
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "market_state": "VOLATILE",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "action": "WATCH"
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "market_state": "VOLATILE",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "action": "EXIT_LP",
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ]
+    },
+    {
+      "cycle": 3,
+      "timestamp": "2026-03-20T17:22:22.571Z",
+      "market_state": "VOLATILE",
+      "candidate_pools_count": 1,
+      "active_position_count": 1,
+      "entry_signal": false,
+      "exit_signal": true,
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "enter_lp_signal_count": 0,
+      "exit_lp_signal_count": 1,
+      "watch_count": 1,
+      "hold_defensive_count": 0,
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "market_state": "VOLATILE",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "action": "WATCH"
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "market_state": "VOLATILE",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "action": "EXIT_LP",
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ]
+    },
+    {
+      "cycle": 4,
+      "timestamp": "2026-03-20T17:22:26.082Z",
+      "market_state": "VOLATILE",
+      "candidate_pools_count": 1,
+      "active_position_count": 1,
+      "entry_signal": false,
+      "exit_signal": true,
+      "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+      "enter_lp_signal_count": 0,
+      "exit_lp_signal_count": 1,
+      "watch_count": 1,
+      "hold_defensive_count": 0,
+      "candidate_pools": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+          "symbol": "STX-USDCx",
+          "market_state": "VOLATILE",
+          "avg_price_impact_percent": 3.044565,
+          "avg_break_even_gap": 31.628979,
+          "action": "WATCH"
+        }
+      ],
+      "active_positions": [
+        {
+          "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+          "symbol": "sBTC-USDCx",
+          "market_state": "VOLATILE",
+          "estimated_pnl": -0.598848,
+          "estimated_il_pct": -0.023492,
+          "action": "EXIT_LP",
+          "risk_flags": [
+            "MARKET_VOLATILE"
+          ]
+        }
+      ]
+    }
+  ]
+}

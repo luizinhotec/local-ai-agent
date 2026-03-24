@@ -1,0 +1,7 @@
+interface:
+  display_name: "Bitflow Liquidity Strategy Manager"
+  short_description: "Manage Bitflow LP strategy shapes"
+  default_prompt: "Use $bitflow-liquidity-strategy-manager to inspect, compare, and maintain Bitflow HODLMM LP positions across spot, curve, and bid_ask shapes."
+
+policy:
+  allow_implicit_invocation: true

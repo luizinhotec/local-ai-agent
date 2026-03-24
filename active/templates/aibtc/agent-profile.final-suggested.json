@@ -1,0 +1,26 @@
+{
+  "name": "local-ai-agent",
+  "displayName": "Local AI Agent",
+  "description": "AI agent operated through Codex and AIBTC MCP on Stacks and Bitcoin mainnet, prepared for safe operator-approved automation.",
+  "operator": {
+    "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+    "btcAddress": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
+    "taprootAddress": "bc1ptnnv7qu30adkszyhet9vwef977em55svhlm6js2tfr8qm92neglqzwxz9s"
+  },
+  "capabilities": [
+    "AIBTC MCP operations",
+    "Mainnet wallet management",
+    "Safe operator-approved automation"
+  ],
+  "links": {
+    "website": "",
+    "xProfile": "",
+    "nostrPublicKey": ""
+  },
+  "x402Ref": "",
+  "notes": [
+    "Suggested minimal public profile for registration readiness.",
+    "Keep optional public fields empty until real public identifiers exist.",
+    "Do not store mnemonic, passwords, or live signatures here."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "environment": "testnet",
+  "defaultOrderSizeUsd": 100,
+  "maxOrderSizeUsd": 250,
+  "labelPrefix": "codex-deribit",
+  "postOnly": true,
+  "timeInForce": "good_til_cancelled",
+  "allowProductionExecution": false
+}

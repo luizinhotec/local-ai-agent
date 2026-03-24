@@ -1,0 +1,4 @@
+I couldn’t retrieve wallet data via MCP: no AIBTC MCP resources or resource templates are currently exposed in this session.
+
+Active wallet status: unknown  
+Wallet address: unknown

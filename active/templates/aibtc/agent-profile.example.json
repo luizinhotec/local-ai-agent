@@ -1,0 +1,25 @@
+{
+  "name": "agent-wallet",
+  "displayName": "Local AI Agent",
+  "description": "AI agent operated through Codex and AIBTC MCP on mainnet.",
+  "operator": {
+    "stxAddress": "SPXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "btcAddress": "bc1qexampleexampleexampleexampleexamplexx",
+    "taprootAddress": "bc1pexampleexampleexampleexampleexamplexxxxx"
+  },
+  "capabilities": [
+    "AIBTC MCP operations",
+    "Mainnet wallet management",
+    "Future Bitflow-aligned automation"
+  ],
+  "links": {
+    "website": "",
+    "xProfile": "",
+    "nostrPublicKey": ""
+  },
+  "x402Ref": "",
+  "notes": [
+    "Public metadata only.",
+    "Do not store mnemonic, passwords, or live signatures here."
+  ]
+}

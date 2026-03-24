@@ -1,0 +1,1 @@
+Este arquivo existe para testar a tool de leitura local do agente.

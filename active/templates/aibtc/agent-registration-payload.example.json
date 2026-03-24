@@ -1,0 +1,26 @@
+{
+  "agentIdentity": {
+    "name": "agent-wallet",
+    "stxAddress": "SPXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "btcAddress": "bc1qexampleexampleexampleexampleexamplexx",
+    "taprootAddress": "bc1pexampleexampleexampleexampleexamplexxxxx"
+  },
+  "platformRegistrationPayload": {
+    "stacksSignature": "<local-only>",
+    "bitcoinSignature": "<local-only>",
+    "description": "Short public description of the agent.",
+    "taprootAddress": "bc1pexampleexampleexampleexampleexamplexxxxx",
+    "taprootSignature": "<local-only>",
+    "nostrPublicKey": "",
+    "x402Ref": ""
+  },
+  "onchainIdentityPreparation": {
+    "metadataUri": "https://aibtc.com/api/agents/SPXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "status": "blocked_until_mainnet_registry_exists"
+  },
+  "notes": [
+    "Do not store real signatures in this file.",
+    "Do not store mnemonic or wallet password in this repository.",
+    "Keep any filled version of this template outside version control."
+  ]
+}

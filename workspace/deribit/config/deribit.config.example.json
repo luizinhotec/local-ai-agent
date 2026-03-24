@@ -1,0 +1,6 @@
+{
+  "environment": "testnet",
+  "currency": "BTC",
+  "instrument": "BTC-PERPETUAL",
+  "logIntervalMs": 5000
+}

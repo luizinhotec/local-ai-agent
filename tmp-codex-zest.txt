@@ -1,0 +1,3 @@
+I can’t query it from this session: no AIBTC MCP resources or templates are currently exposed, so I don’t have a callable Zest position endpoint for the active wallet.
+
+If you want, I can retry once the AIBTC MCP server/tools are available in this session.

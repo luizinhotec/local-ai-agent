@@ -1,0 +1,45 @@
+{
+  "displayName": "Speedy Indra",
+  "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+  "expectedPositionActive": false,
+  "expectedBorrowed": 0,
+  "sbtcReserveMinSats": 5000,
+  "stxReserveMinMicroStx": 5000000,
+  "policy": {
+    "objective": "maximizar retorno ajustado por risco em btc-equivalente",
+    "executionMode": "semiautomatico_com_troca_autorizada",
+    "reviewCadenceHours": 24,
+    "confirmationMaxAgeHours": 24,
+    "minExpectedGainToFeeRatio": 2,
+    "allowLeverage": false,
+    "allowLp": false,
+    "allowBorrow": false,
+    "approvalRequired": false,
+    "allowedProtocols": [
+      "Zest",
+      "StackingDAO",
+      "Hermetica"
+    ]
+  },
+  "baseline": {
+    "suppliedShares": 0,
+    "activeStrategy": "Hermetica hBTC",
+    "activeProtocol": "Hermetica",
+    "positionKind": "yield_btc_denom",
+    "liquidSbtcReserveSats": 5000,
+    "deployedSbtcSats": 102511,
+    "receivedHbtcUnits": 101949,
+    "entryTxid": "9fd152c65774b0e83f5359a4488814a0928ffe192943d6bd0df6d6b1b95e83ae"
+  },
+  "lastConfirmedPosition": {
+    "checkedAtUtc": "2026-03-17T15:40:25Z",
+    "suppliedShares": 0,
+    "borrowed": 0,
+    "healthFactor": "100000000",
+    "activeProtocol": "Hermetica",
+    "deployedSbtcSats": 102511,
+    "liquidSbtcSats": 5000,
+    "hbtcUnits": 101949,
+    "entryTxid": "9fd152c65774b0e83f5359a4488814a0928ffe192943d6bd0df6d6b1b95e83ae"
+  }
+}

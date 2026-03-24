@@ -1,0 +1,29 @@
+﻿{
+    "checkedAtUtc":  "2026-03-16T03:54:48.8047524Z",
+    "track":  "DOG MM Agent",
+    "stage":  "wallet_created",
+    "wallet":  {
+                   "created":  true,
+                   "validated":  false,
+                   "funded":  false,
+                   "name":  "dog-mm-mainnet",
+                   "stxAddress":  "",
+                   "btcAddress":  "",
+                   "taprootAddress":  ""
+               },
+    "phase0":  {
+                   "selectedPool":  "sBTC-USDCx",
+                   "binStep":  1,
+                   "firstCycleExecuted":  false
+               },
+    "phase1":  {
+                   "selectedPool":  "sBTC-DOG",
+                   "assetBase":  "sBTC",
+                   "firstManualTradeExecuted":  false
+               },
+    "notes":  [
+                  "Separate state for DOG MM Agent only.",
+                  "Do not mix with Speedy Indra operational state."
+              ]
+}
+

@@ -1,0 +1,44 @@
+{
+  "generatedAtUtc": "2026-03-19T21:21:18.532Z",
+  "scenarioCount": 2,
+  "results": [
+    {
+      "scenario": {
+        "amountIn": "12000",
+        "ammStrategy": "best"
+      },
+      "ok": true,
+      "quoteAmountOut": "8442656",
+      "minAmountOut": "8189376",
+      "routeHops": 1,
+      "fee": "4238949",
+      "feePerByte": 6903.825732899023,
+      "executionPathLength": 1,
+      "netProfitUsd": -1.041917635138,
+      "worstCaseNetProfitUsd": -1.2951976351380001,
+      "netProfitBps": -1233.4707011426487,
+      "profitComplete": true,
+      "stateFile": "C:\\dev\\local-ai-agent\\active\\state\\dog-mm\\study\\scenario-1.json",
+      "summaryFile": "C:\\dev\\local-ai-agent\\active\\state\\dog-mm\\study\\scenario-1.md"
+    },
+    {
+      "scenario": {
+        "amountIn": "13479",
+        "ammStrategy": "best"
+      },
+      "ok": true,
+      "quoteAmountOut": "9483522",
+      "minAmountOut": "9199016",
+      "routeHops": 1,
+      "fee": "2196934",
+      "feePerByte": 3578.0684039087946,
+      "executionPathLength": 1,
+      "netProfitUsd": -0.5423416397079989,
+      "worstCaseNetProfitUsd": -0.8268476397079992,
+      "netProfitBps": -571.5996731910818,
+      "profitComplete": true,
+      "stateFile": "C:\\dev\\local-ai-agent\\active\\state\\dog-mm\\study\\scenario-2.json",
+      "summaryFile": "C:\\dev\\local-ai-agent\\active\\state\\dog-mm\\study\\scenario-2.md"
+    }
+  ]
+}

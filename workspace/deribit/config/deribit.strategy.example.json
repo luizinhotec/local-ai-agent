@@ -1,0 +1,17 @@
+{
+  "objective": "accumulate_sats",
+  "allowLong": true,
+  "allowShort": true,
+  "makerOnlyEntry": true,
+  "manageOpenPosition": true,
+  "reduceOnAdverseFunding": true,
+  "takeProfitBtc": 0.000005,
+  "stopLossBtc": 0.00001,
+  "maxPositionHoldMs": 300000,
+  "maxSpreadForEntryUsd": 1.5,
+  "maxMarkIndexGapForEntryUsd": 10,
+  "maxFundingAbsForEntry": 0.0002,
+  "entryConfidenceThreshold": 0.55,
+  "preferHoldWhenUnauthenticated": true,
+  "maxPositionUsd": 1000
+}

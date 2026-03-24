@@ -1,0 +1,47 @@
+﻿{
+    "checkedAtUtc":  "2026-03-17T14:56:39.9603725Z",
+    "hodlmmDogPoolAvailable":  false,
+    "dogPoolCount":  0,
+    "dogPools":  [
+
+                 ],
+    "recommendedTrainingPools":  [
+                                     {
+                                         "pool_id":  "dlmm_2",
+                                         "pool_name":  "sBTC-USDCx-LP",
+                                         "pool_symbol":  "sBTC-USDCx",
+                                         "bin_step":  1.0,
+                                         "active":  true,
+                                         "pool_status":  true,
+                                         "pool_token":  "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1"
+                                     },
+                                     {
+                                         "pool_id":  "dlmm_5",
+                                         "pool_name":  "STX-USDCx-LP",
+                                         "pool_symbol":  "STX-USDCx",
+                                         "bin_step":  1.0,
+                                         "active":  true,
+                                         "pool_status":  true,
+                                         "pool_token":  "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-1"
+                                     },
+                                     {
+                                         "pool_id":  "dlmm_4",
+                                         "pool_name":  "STX-USDCx-LP",
+                                         "pool_symbol":  "STX-USDCx",
+                                         "bin_step":  4.0,
+                                         "active":  true,
+                                         "pool_status":  true,
+                                         "pool_token":  "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-4"
+                                     },
+                                     {
+                                         "pool_id":  "dlmm_7",
+                                         "pool_name":  "aeUSDC-USDCx-LP",
+                                         "pool_symbol":  "aeUSDC-USDCx",
+                                         "bin_step":  1.0,
+                                         "active":  true,
+                                         "pool_status":  true,
+                                         "pool_token":  "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1"
+                                     }
+                                 ],
+    "snapshotSource":  "https://bff.bitflowapis.finance/api/quotes/v1/pools"
+}

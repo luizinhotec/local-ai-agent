@@ -1,0 +1,10 @@
+{
+  "label": "local-mainnet-wallet",
+  "environment": "mainnet",
+  "network": "stacks-mainnet",
+  "seed_managed": false,
+  "signing_enabled": false,
+  "financial_operations_enabled": false,
+  "approval_mode": "human_explicit_approval",
+  "created_at": "2026-03-13T01:39:19.334713-03:00"
+}

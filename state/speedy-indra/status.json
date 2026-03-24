@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-03-23T10:51:14.160Z",
+  "blsm": {
+    "status": "evaluated",
+    "mode": "status-only",
+    "poolId": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+    "positionKey": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1:SP1GNF1SGP89KT980XRTRMFKZG4H5P3CDS70Y4NRF",
+    "strategyShape": "spot",
+    "recommendedAction": "RECENTER",
+    "reasonCode": "out_of_range_with_positive_edge",
+    "estimatedNetReturnUsd": 3.282061
+  }
+}

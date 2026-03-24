@@ -1,0 +1,9 @@
+{
+  "stacksSignature": "<external-signature-required>",
+  "bitcoinSignature": "<external-signature-required>",
+  "description": "AI agent operated through Codex and AIBTC MCP on Stacks and Bitcoin mainnet, prepared for safe operator-approved automation.",
+  "taprootAddress": "bc1ptnnv7qu30adkszyhet9vwef977em55svhlm6js2tfr8qm92neglqzwxz9s",
+  "taprootSignature": "",
+  "nostrPublicKey": "",
+  "x402Ref": ""
+}

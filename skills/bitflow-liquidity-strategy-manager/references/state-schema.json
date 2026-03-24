@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "pool_id": "string",
+  "position_id": "string",
+  "wallet_address": "string",
+  "strategy_shape": "spot | curve | bid_ask",
+  "status": {
+    "is_in_range": true,
+    "in_range_ratio": 0.0,
+    "active_liquidity_ratio": 0.0,
+    "recommended_action": "HOLD | WATCH | RECENTER | BLOCK",
+    "reason_code": "string"
+  },
+  "pricing": {
+    "current_price": 0.0,
+    "reference_price": 0.0,
+    "deviation_pct": 0.0
+  },
+  "economics": {
+    "estimated_fee_capture_usd": 0.0,
+    "estimated_recenter_cost_usd": 0.0,
+    "estimated_net_return_usd": 0.0
+  },
+  "operations": {
+    "rebalance_count": 0,
+    "daily_rebalance_count": 0,
+    "last_rebalance_at": "ISO-8601",
+    "cooldown_until": "ISO-8601"
+  },
+  "limits": {
+    "min_net_benefit_usd": 0.0,
+    "max_daily_rebalances": 0,
+    "min_price_move_pct": 0.0
+  },
+  "telemetry": {
+    "shape_history": [],
+    "action_history": [],
+    "simulation_history": []
+  }
+}

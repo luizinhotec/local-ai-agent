@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-03-20T15:46:55.107Z",
+  "source": "C:\\dev\\local-ai-agent\\active\\state\\dog-mm\\dog-mm-dlmm-near-breakeven-analysis.json",
+  "toxic_pools": [
+    "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-usdh-usdcx-v-1-bps-1",
+    "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
+    "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1"
+  ],
+  "toxic_pool_metadata": [
+    {
+      "pool_identifier": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-usdh-usdcx-v-1-bps-1",
+      "avg_break_even_gap": 153.595,
+      "avg_price_impact_percent": 20.55125,
+      "forced_inclusion": false
+    },
+    {
+      "pool_identifier": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
+      "avg_break_even_gap": 111.957708,
+      "avg_price_impact_percent": 13.839551,
+      "forced_inclusion": false
+    },
+    {
+      "pool_identifier": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1",
+      "avg_break_even_gap": 57.876325,
+      "avg_price_impact_percent": 6.511458,
+      "forced_inclusion": false
+    }
+  ]
+}

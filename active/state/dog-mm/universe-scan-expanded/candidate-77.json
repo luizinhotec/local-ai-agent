@@ -1,0 +1,294 @@
+{
+  "generatedAtUtc": "2026-03-22T23:48:30.173Z",
+  "broadcast": false,
+  "wallet": {
+    "id": "c904721f-b3c4-4056-9f67-3f806ab380b4",
+    "name": "dog-mm-mainnet",
+    "address": "SP1GNF1SGP89KT980XRTRMFKZG4H5P3CDS70Y4NRF",
+    "btcAddress": "bc1qyqdgy5zd4narvjkvdr3pdz55as448k6ahdf8xy",
+    "taprootAddress": "bc1pl3zmeju6xj4z6936qyyun77vr066xhkkd87zawecjg9mt8e7dkkqp5wctq"
+  },
+  "inputToken": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+  "outputToken": "SP3Y2ZSH8P7D50B0VBTSX11S7XSG24M1VB9YFQA4K.token-aeusdc",
+  "amountIn": "949919046",
+  "ammStrategy": "best",
+  "slippageTolerance": 3,
+  "quote": {
+    "amountOut": "949383913",
+    "minAmountOut": "920902396",
+    "totalHops": 1,
+    "routePath": [
+      "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+      "SP3Y2ZSH8P7D50B0VBTSX11S7XSG24M1VB9YFQA4K.token-aeusdc"
+    ],
+    "executionPath": [
+      {
+        "pool_trait": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1",
+        "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1",
+        "x_token_trait": "SP3Y2ZSH8P7D50B0VBTSX11S7XSG24M1VB9YFQA4K.token-aeusdc",
+        "y_token_trait": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+        "expected_bin_id": 0,
+        "function_name": "swap-y-for-x",
+        "x_in": "0",
+        "y_in": "418662208",
+        "x_out": "418452877",
+        "y_out": "0",
+        "is_empty_swap": false
+      },
+      {
+        "pool_trait": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1",
+        "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1",
+        "x_token_trait": "SP3Y2ZSH8P7D50B0VBTSX11S7XSG24M1VB9YFQA4K.token-aeusdc",
+        "y_token_trait": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+        "expected_bin_id": 1,
+        "function_name": "swap-y-for-x",
+        "x_in": "0",
+        "y_in": "460406034",
+        "x_out": "460129818",
+        "y_out": "0",
+        "is_empty_swap": false
+      },
+      {
+        "pool_trait": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1",
+        "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1",
+        "x_token_trait": "SP3Y2ZSH8P7D50B0VBTSX11S7XSG24M1VB9YFQA4K.token-aeusdc",
+        "y_token_trait": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+        "expected_bin_id": 2,
+        "function_name": "swap-y-for-x",
+        "x_in": "0",
+        "y_in": "70850804",
+        "x_out": "70801218",
+        "y_out": "0",
+        "is_empty_swap": false
+      }
+    ],
+    "executionDetails": {
+      "amm_type": "dlmm",
+      "strategy": "multi_bin",
+      "pool_id": "dlmm_7",
+      "active_bin": 0,
+      "traversal_direction": "right",
+      "bins_traversed": 3,
+      "total_bins_available": 20,
+      "fee_rate": "0.0005",
+      "fee_amount": "474959",
+      "price_impact_bps": 0,
+      "price_impact_tokens": "60173.4770",
+      "execution_path": [
+        {
+          "pool_id": "dlmm_7",
+          "bin_id": 0,
+          "function_name": "swap-y-for-x",
+          "x_in": "0",
+          "y_in": "418662208",
+          "x_out": "418452877",
+          "y_out": "0"
+        },
+        {
+          "pool_id": "dlmm_7",
+          "bin_id": 1,
+          "function_name": "swap-y-for-x",
+          "x_in": "0",
+          "y_in": "460406034",
+          "x_out": "460129818",
+          "y_out": "0"
+        },
+        {
+          "pool_id": "dlmm_7",
+          "bin_id": 2,
+          "function_name": "swap-y-for-x",
+          "x_in": "0",
+          "y_in": "70850804",
+          "x_out": "70801218",
+          "y_out": "0"
+        }
+      ],
+      "max_bins_reached": false,
+      "note": "DLMM pricing - single-pass traversal complete",
+      "hop_details": [
+        {
+          "amm_type": "dlmm",
+          "strategy": "multi_bin",
+          "pool_id": "dlmm_7",
+          "active_bin": 0,
+          "traversal_direction": "right",
+          "bins_traversed": 3,
+          "total_bins_available": 20,
+          "fee_rate": "0.0005",
+          "fee_amount": "474959",
+          "price_impact_bps": -5,
+          "price_impact_tokens": "535133",
+          "execution_path": [
+            {
+              "pool_id": "dlmm_7",
+              "bin_id": 0,
+              "function_name": "swap-y-for-x",
+              "x_in": "0",
+              "y_in": "418662208",
+              "x_out": "418452877",
+              "y_out": "0"
+            },
+            {
+              "pool_id": "dlmm_7",
+              "bin_id": 1,
+              "function_name": "swap-y-for-x",
+              "x_in": "0",
+              "y_in": "460406034",
+              "x_out": "460129818",
+              "y_out": "0"
+            },
+            {
+              "pool_id": "dlmm_7",
+              "bin_id": 2,
+              "function_name": "swap-y-for-x",
+              "x_in": "0",
+              "y_in": "70850804",
+              "x_out": "70801218",
+              "y_out": "0"
+            }
+          ],
+          "max_bins_reached": false,
+          "note": "DLMM pricing - single-pass traversal complete"
+        }
+      ]
+    }
+  },
+  "swap": {
+    "contract": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-swap-router-v-1-1",
+    "functionName": "swap-simple-multi",
+    "typedParameters": [
+      {
+        "type": "tuple",
+        "value": {
+          "pool-trait": {
+            "type": "contract",
+            "value": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1"
+          },
+          "x-token-trait": {
+            "type": "contract",
+            "value": "SP3Y2ZSH8P7D50B0VBTSX11S7XSG24M1VB9YFQA4K.token-aeusdc"
+          },
+          "y-token-trait": {
+            "type": "contract",
+            "value": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx"
+          },
+          "amount": {
+            "type": "uint",
+            "value": "949919046"
+          },
+          "min-received": {
+            "type": "uint",
+            "value": "920902395"
+          },
+          "x-for-y": {
+            "type": "false",
+            "value": "false"
+          },
+          "max-steps": {
+            "type": "uint",
+            "value": "3"
+          }
+        }
+      }
+    ],
+    "postConditions": [
+      {
+        "amount": "949919046",
+        "sender_address": "tx-sender",
+        "condition_code": "less_than_or_equal_to",
+        "token_contract": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+        "token_decimals": 6,
+        "token_asset_name": "usdcx-token",
+        "post_condition_type": "standard_fungible"
+      },
+      {
+        "amount": "920902395",
+        "sender_address": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-aeusdc-usdcx-v-1-bps-1",
+        "condition_code": "greater_than_or_equal_to",
+        "token_contract": "SP3Y2ZSH8P7D50B0VBTSX11S7XSG24M1VB9YFQA4K.token-aeusdc",
+        "token_decimals": 6,
+        "token_asset_name": "aeUSDC",
+        "post_condition_type": "contract_fungible"
+      }
+    ]
+  },
+  "transaction": {
+    "nonce": "2",
+    "fee": "258408",
+    "txid": "fbfaedd832ca2a0b5881d4e629d3b0dc87caaed97387769f6da8c581780a0095",
+    "hex": "0000000001040061578730b2133d2500ee358a3e7f81225b0d8dc90000000000000002000000000003f1680000621204cc6beb3b6d1d2d4a6f4cd3382dc1ab129e4bfb702705f7826d7596cc1a0c3a9c19927ce60b656843cf12c7df378110b8b3c468bf8efeae4f908f7bb70403020000000201021661578730b2133d2500ee358a3e7f81225b0d8dc916440caf0bbc800a33993ea85c2392aeb53696608b0575736463780b75736463782d746f6b656e0500000000389e9d460103145f3ec2bf9733ae379dbfe5579d65d6cbf588659620646c6d6d2d706f6f6c2d6165757364632d75736463782d762d312d6270732d3116fc2fe628b1da502c1b5eb3d08727ee6022503b5a0c746f6b656e2d61657573646306616555534443030000000036e3dafb02145f3ec2bf9733ae379dbfe5579d65d6cbf588659616646c6d6d2d737761702d726f757465722d762d312d3111737761702d73696d706c652d6d756c7469000000010b000000010c0000000706616d6f756e7401000000000000000000000000389e9d46096d61782d737465707301000000000000000000000000000000030c6d696e2d72656365697665640100000000000000000000000036e3dafb0a706f6f6c2d747261697406145f3ec2bf9733ae379dbfe5579d65d6cbf588659620646c6d6d2d706f6f6c2d6165757364632d75736463782d762d312d6270732d3107782d666f722d79040d782d746f6b656e2d74726169740616fc2fe628b1da502c1b5eb3d08727ee6022503b5a0c746f6b656e2d6165757364630d792d746f6b656e2d74726169740616440caf0bbc800a33993ea85c2392aeb53696608b057573646378"
+  },
+  "feeDiagnostics": {
+    "txBytes": 616,
+    "txHexLength": 1232,
+    "feeMicroStx": 258408,
+    "feeStx": 0.258408,
+    "feePerByte": 419.4935064935065,
+    "routeHops": 1,
+    "routePathLength": 2,
+    "executionPathLength": 3,
+    "postConditionCount": 2,
+    "typedParameterCount": 1
+  },
+  "profitDiagnostics": {
+    "complete": true,
+    "missingFields": [],
+    "inputTokenDecimals": 6,
+    "outputTokenDecimals": 6,
+    "inputTokenUsd": 1,
+    "outputTokenUsd": 0.999998,
+    "stxUsd": 0.231289,
+    "inputAmountHuman": 949.919046,
+    "expectedOutputHuman": 949.383913,
+    "minOutputHuman": 920.902396,
+    "inputUsd": 949.919046,
+    "expectedOutputUsd": 949.382014232174,
+    "minOutputUsd": 920.900554195208,
+    "networkFeeMicroStx": 258408,
+    "networkFeeStx": 0.258408,
+    "networkFeeUsd": 0.05976692791200001,
+    "grossProfitUsd": -0.5370317678259653,
+    "worstCaseProfitUsd": -29.018491804792006,
+    "netProfitUsd": -0.5967986957379653,
+    "worstCaseNetProfitUsd": -29.078258732704008,
+    "netProfitBps": -6.282626906482358,
+    "worstCaseNetProfitBps": -306.1130193688527,
+    "feeAsPercentOfInput": 0.0062917917230601575,
+    "feeAsPercentOfExpectedOutput": 0.006295350766712949,
+    "feeAsPercentOfGrossProfit": 11.129123357813823,
+    "corePriceFeed": {
+      "complete": true,
+      "btcUsd": 68097,
+      "stxUsd": 0.231289,
+      "fetchedAtUtc": "2026-03-22T23:48:15.129Z",
+      "sources": {
+        "btcUsd": "cache"
+      },
+      "warnings": [
+        "core price fetch failed: HTTP 429"
+      ]
+    }
+  },
+  "paperMode": true,
+  "wouldBroadcast": false,
+  "decision": "INCONCLUSIVE",
+  "decisionReason": "validation_failed",
+  "decisionThresholds": {
+    "minExpectedNetUsd": 0.1,
+    "minWorstCaseNetUsd": 0,
+    "policyMinOutputRatio": 0.9699,
+    "policyMaxFeePerByte": 1000,
+    "policyMaxRouteHops": 2
+  },
+  "decisionMetrics": {
+    "profitComplete": true,
+    "validationPassed": false,
+    "netProfitUsd": -0.5967986957379653,
+    "worstCaseNetProfitUsd": -29.078258732704008,
+    "outputRatio": 0.9700000004107927,
+    "feePerByte": 419.4935064935065,
+    "routeHops": 1
+  },
+  "minExpectedNetUsd": 0.1,
+  "minWorstCaseNetUsd": 0
+}

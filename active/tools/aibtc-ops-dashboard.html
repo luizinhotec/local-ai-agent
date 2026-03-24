@@ -1,0 +1,1346 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIBTC Ops Dashboard</title>
+  <style>
+    :root {
+      --bg: #efe4d4;
+      --panel: rgba(255, 249, 240, 0.92);
+      --ink: #201915;
+      --muted: #6e6359;
+      --accent: #9d4f22;
+      --accent-2: #254e58;
+      --border: #d9c7b3;
+      --ok: #1d6b3a;
+      --warn: #8b5a00;
+      --err: #9a2a2a;
+      --code: #211b18;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top right, rgba(157,79,34,.15), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(37,78,88,.12), transparent 35%),
+        linear-gradient(180deg, #f5ebde 0%, var(--bg) 100%);
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 48px;
+    }
+    .hero {
+      padding: 24px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      box-shadow: 0 18px 42px rgba(55, 36, 24, 0.08);
+      margin-bottom: 20px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 10px;
+      letter-spacing: .02em;
+    }
+    p, label, input, textarea, button, pre, li, table {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+    .badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #f2ddc7;
+      color: var(--accent);
+      font-weight: 700;
+      margin-right: 8px;
+      margin-top: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      box-shadow: 0 12px 28px rgba(55, 36, 24, 0.06);
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button.secondary { background: var(--accent-2); }
+    button.ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+    .status {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #ece6de;
+      color: var(--muted);
+    }
+    .status.ok { background: #eaf4ee; color: var(--ok); }
+    .status.warn { background: #fff4db; color: var(--warn); }
+    .status.err { background: #fde9e9; color: var(--err); }
+    .summary {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #f6eee4;
+      border: 1px solid var(--border);
+    }
+    .summary strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+    .event-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--ink);
+    }
+    .event-list li {
+      margin-bottom: 8px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: var(--code);
+      color: #fff0df;
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 140px;
+      overflow: auto;
+    }
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: white;
+      color: var(--ink);
+    }
+    textarea { min-height: 96px; resize: vertical; }
+    .small { color: var(--muted); font-size: .95rem; }
+    .mono { font-family: Consolas, monospace; }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 760px) {
+      .split { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>AIBTC Ops Dashboard</h1>
+      <p>Painel local para operar o agente `Speedy Indra` com foco em status, heartbeat, claim viral e monitoramento do registry on-chain.</p>
+      <span class="badge">Level 2 - Genesis</span>
+      <span class="badge">Wallet BTC: bc1q7m...h6tc9</span>
+      <span id="heartbeat-window-badge" class="badge">Heartbeat: aguardando consulta</span>
+      <span id="heartbeat-source-badge" class="badge">Origem da janela: desconhecida</span>
+      <span id="registry-badge" class="badge">Registry on-chain: sem consulta</span>
+      <span id="health-badge" class="badge">Saude: aguardando atualizacao</span>
+      <span id="alerts-badge" class="badge">Alertas: aguardando atualizacao</span>
+      <div class="actions">
+        <button id="btn-refresh-all" type="button">Atualizar estado local</button>
+        <button id="btn-auto-refresh" class="ghost" type="button">Auto-refresh: desligado</button>
+      </div>
+      <div class="summary">
+        <strong>Resumo consolidado</strong>
+        <div id="top-summary-line">Nenhum resumo consolidado ainda.</div>
+      </div>
+      <div id="top-primary-action" class="small">Proxima acao recomendada: aguardando atualizacao.</div>
+      <div id="panel-last-updated" class="small">Ultima atualizacao do painel: ainda nao executada.</div>
+      <div id="panel-auto-refresh" class="small">Atualizacao automatica: desativada.</div>
+      <div id="global-status" class="status warn">Aguardando carregamento do dashboard.</div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Status Operacional</h2>
+        <p class="small">Mostra o estado local do agente e a janela estimada do heartbeat. Leituras publicas bloqueadas pela borda da AIBTC nao aparecem como erro principal aqui.</p>
+        <div class="actions">
+          <button id="btn-heartbeat-status" class="ghost" type="button">Ver heartbeat</button>
+          <button id="btn-identity" type="button">Ver identidade</button>
+          <button id="btn-verify" class="secondary" type="button">Ver verify</button>
+          <button id="btn-toggle-agent-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div class="summary">
+          <strong>Resumo operacional</strong>
+          <div id="agent-summary-line">Nenhum resumo operacional calculado ainda.</div>
+        </div>
+        <pre id="agent-status-output" hidden>Nenhuma consulta executada ainda.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Heartbeat</h2>
+        <p class="small">Executa um ciclo completo com assinatura BTC via Leather e envio do check-in para a AIBTC.</p>
+        <div class="actions">
+          <button id="btn-heartbeat-run" type="button">Rodar heartbeat</button>
+          <button id="btn-heartbeat-message" class="ghost" type="button">Gerar mensagem</button>
+          <button id="btn-toggle-heartbeat-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div id="heartbeat-summary" class="summary">
+          <strong>Janela do heartbeat</strong>
+          <div id="heartbeat-summary-line">Nenhuma janela calculada ainda.</div>
+          <div id="heartbeat-last-success" class="small" style="margin-top:8px;">Ultima batida bem-sucedida: ainda nao registrada localmente.</div>
+        </div>
+        <pre id="heartbeat-output" hidden>Nenhum heartbeat executado ainda.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Claim Viral</h2>
+        <p class="small">Submete a URL do tweet para confirmar o claim de Genesis. Campo util para retry ou nova URL.</p>
+        <label for="tweet-url">Tweet URL</label>
+        <input id="tweet-url" value="https://x.com/LuizQuiroz7/status/2032671845023879462">
+        <div class="actions">
+          <button id="btn-viral-submit" type="button">Enviar claim viral</button>
+          <button id="btn-toggle-viral-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div class="summary">
+          <strong>Status do claim viral</strong>
+          <div id="viral-summary-line">Nenhum claim viral executado nesta sessao.</div>
+        </div>
+        <pre id="viral-output" hidden>Nenhum claim enviado ainda.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Registry On-Chain</h2>
+        <p class="small">Consulta diretamente o endpoint publico do registry e mostra se `mainnet` continua indisponivel.</p>
+        <div class="actions">
+          <button id="btn-registry" type="button">Ver snapshot local</button>
+          <button id="btn-registry-live" class="secondary" type="button">Consultar ao vivo</button>
+          <button id="btn-toggle-registry-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div class="summary">
+          <strong>Status do registry</strong>
+          <div id="registry-summary-line">Nenhuma consulta ao registry nesta sessao.</div>
+        </div>
+        <pre id="registry-output" hidden>Nenhuma consulta ao registry ainda.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Historico Local</h2>
+        <p class="small">Mostra os eventos locais gravados pelo helper, sem depender da leitura publica da AIBTC.</p>
+        <div class="actions">
+          <button id="btn-logs-refresh" type="button">Atualizar historico</button>
+          <button id="btn-toggle-logs-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div id="logs-summary" class="summary">
+          <strong>Resumo recente</strong>
+          <ul id="logs-summary-list" class="event-list">
+            <li>Nenhum evento local carregado ainda.</li>
+          </ul>
+        </div>
+        <pre id="logs-output" hidden>Nenhum evento local carregado ainda.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Relatorio Local</h2>
+        <p class="small">Mostra o ultimo retrato operacional exportado localmente e permite gerar um novo sem sair do painel.</p>
+        <div class="actions">
+          <button id="btn-report-refresh" type="button">Ver ultimo relatorio</button>
+          <button id="btn-report-export" class="secondary" type="button">Exportar agora</button>
+          <button id="btn-toggle-report-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div class="summary">
+          <strong>Status do relatorio</strong>
+          <div id="report-summary-line">Nenhum relatorio local carregado ainda.</div>
+        </div>
+        <pre id="report-output" hidden>Nenhum relatorio local carregado ainda.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Manutencao Local</h2>
+        <p class="small">Executa reparo, backup, restauracao e retencao do estado local sem sair do painel.</p>
+        <div class="actions">
+          <button id="btn-maint-cycle" type="button">Rodar ciclo completo</button>
+          <button id="btn-maint-repair" type="button">Reconstruir estado</button>
+          <button id="btn-maint-backup" class="secondary" type="button">Gerar backup</button>
+          <button id="btn-maint-restore" class="secondary" type="button">Restaurar ultimo backup</button>
+          <button id="btn-maint-prune" class="secondary" type="button">Aplicar retencao</button>
+          <button id="btn-toggle-maint-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div class="summary">
+          <strong>Status da manutencao</strong>
+          <div id="maintenance-summary-line">Nenhuma manutencao local executada nesta sessao.</div>
+          <div id="maintenance-cycle-summary-line" class="small" style="margin-top:8px;">Nenhum ciclo de manutencao conhecido ainda.</div>
+          <div id="backup-summary-line" class="small" style="margin-top:8px;">Nenhum backup local conhecido ainda.</div>
+        </div>
+        <pre id="maintenance-output" hidden>Nenhuma manutencao local executada nesta sessao.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Rotina Diaria</h2>
+        <p class="small">Executa o checklist diario local: bootstrap, snapshot do registry, exportacao de relatorio, auditoria de integridade e, se configurado, retencao.</p>
+        <div class="actions">
+          <button id="btn-daily-check" type="button">Rodar daily check</button>
+          <button id="btn-toggle-daily-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div class="summary">
+          <strong>Status da rotina diaria</strong>
+          <div id="daily-summary-line">Nenhum daily check executado nesta sessao.</div>
+        </div>
+        <pre id="daily-output" hidden>Nenhum daily check executado nesta sessao.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Auditoria de Integridade</h2>
+        <p class="small">Verifica coerencia entre helper, log, heartbeat, relatorio, backup e snapshot local.</p>
+        <div class="actions">
+          <button id="btn-integrity-audit" type="button">Rodar auditoria</button>
+          <button id="btn-toggle-integrity-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div class="summary">
+          <strong>Status da auditoria</strong>
+          <div id="integrity-summary-line">Nenhuma auditoria executada nesta sessao.</div>
+        </div>
+        <pre id="integrity-output" hidden>Nenhuma auditoria executada nesta sessao.</pre>
+      </article>
+
+      <article class="card">
+        <h2>Alertas Operacionais</h2>
+        <p class="small">Resume alertas ativos do estado consolidado local para destacar apenas o que realmente exige acao.</p>
+        <div class="actions">
+          <button id="btn-alerts-refresh" type="button">Atualizar alertas</button>
+          <button id="btn-toggle-alerts-details" class="ghost" type="button">Ver detalhes</button>
+        </div>
+        <div class="summary">
+          <strong>Status dos alertas</strong>
+          <div id="alerts-summary-line">Nenhum alerta carregado ainda.</div>
+          <ul id="alerts-summary-list" class="event-list">
+            <li>Nenhum alerta carregado ainda.</li>
+          </ul>
+        </div>
+        <pre id="alerts-output" hidden>Nenhum alerta carregado ainda.</pre>
+      </article>
+    </section>
+  </main>
+
+  <script src="./aibtc-agent-console-snippets.js"></script>
+  <script>
+    const els = {
+      globalStatus: document.getElementById("global-status"),
+      heartbeatWindowBadge: document.getElementById("heartbeat-window-badge"),
+      heartbeatSourceBadge: document.getElementById("heartbeat-source-badge"),
+      registryBadge: document.getElementById("registry-badge"),
+      healthBadge: document.getElementById("health-badge"),
+      topSummaryLine: document.getElementById("top-summary-line"),
+      topPrimaryAction: document.getElementById("top-primary-action"),
+      panelLastUpdated: document.getElementById("panel-last-updated"),
+      panelAutoRefresh: document.getElementById("panel-auto-refresh"),
+      alertsBadge: document.getElementById("alerts-badge"),
+      agentStatusOutput: document.getElementById("agent-status-output"),
+      agentSummaryLine: document.getElementById("agent-summary-line"),
+      heartbeatOutput: document.getElementById("heartbeat-output"),
+      heartbeatSummaryLine: document.getElementById("heartbeat-summary-line"),
+      heartbeatLastSuccess: document.getElementById("heartbeat-last-success"),
+      viralSummaryLine: document.getElementById("viral-summary-line"),
+      viralOutput: document.getElementById("viral-output"),
+      registrySummaryLine: document.getElementById("registry-summary-line"),
+      registryOutput: document.getElementById("registry-output"),
+      logsSummaryList: document.getElementById("logs-summary-list"),
+      logsOutput: document.getElementById("logs-output"),
+      reportSummaryLine: document.getElementById("report-summary-line"),
+      reportOutput: document.getElementById("report-output"),
+      maintenanceSummaryLine: document.getElementById("maintenance-summary-line"),
+      maintenanceCycleSummaryLine: document.getElementById("maintenance-cycle-summary-line"),
+      backupSummaryLine: document.getElementById("backup-summary-line"),
+      maintenanceOutput: document.getElementById("maintenance-output"),
+      dailySummaryLine: document.getElementById("daily-summary-line"),
+      dailyOutput: document.getElementById("daily-output"),
+      integritySummaryLine: document.getElementById("integrity-summary-line"),
+      integrityOutput: document.getElementById("integrity-output"),
+      alertsSummaryLine: document.getElementById("alerts-summary-line"),
+      alertsSummaryList: document.getElementById("alerts-summary-list"),
+      alertsOutput: document.getElementById("alerts-output"),
+      tweetUrl: document.getElementById("tweet-url")
+    };
+
+    const autoRefreshState = {
+      timerId: null,
+      intervalMs: 30000
+    };
+    const AUTO_REFRESH_STORAGE_KEY = "aibtc-dashboard-auto-refresh";
+
+    function setGlobalStatus(text, kind = "warn") {
+      els.globalStatus.textContent = text;
+      els.globalStatus.className = `status ${kind}`;
+    }
+
+    function isGenericFetchError(error) {
+      const message = error?.message || String(error);
+      return /Failed to fetch/i.test(message);
+    }
+
+    function getFriendlyFetchWarning(prefix = "Atualizacao parcial concluida.") {
+      return `${prefix} Uma leitura auxiliar falhou, mas o estado principal do painel foi preservado.`;
+    }
+
+    function getActionOutcome(result, successText) {
+      if (result?.warnings?.length) {
+        const described = describeWarnings(result.warnings);
+        return {
+          text: `${successText} Avisos: ${described}`,
+          kind: "warn"
+        };
+      }
+      if (result?.heartbeat?.postResult?.status === 200) {
+        return {
+          text: successText,
+          kind: "ok"
+        };
+      }
+      return {
+        text: successText,
+        kind: "ok"
+      };
+    }
+
+    function dump(target, value) {
+      target.textContent = JSON.stringify(value, null, 2);
+    }
+
+    function updatePanelLastUpdated() {
+      const now = new Date();
+      els.panelLastUpdated.textContent = `Ultima atualizacao do painel: ${AIBTC_AGENT.formatIsoForTimezone(now.toISOString(), AIBTC_AGENT.timezone)}.`;
+    }
+
+    function updateAutoRefreshUi(enabled) {
+      els.panelAutoRefresh.textContent = enabled
+        ? `Atualizacao automatica: ativa a cada ${Math.round(autoRefreshState.intervalMs / 1000)}s.`
+        : "Atualizacao automatica: desativada.";
+      document.getElementById("btn-auto-refresh").textContent = enabled
+        ? "Auto-refresh: ligado"
+        : "Auto-refresh: desligado";
+    }
+
+    function describeWarnings(warnings = []) {
+      const labels = {
+        "ops-status": "estado consolidado local",
+        "ops-summary": "resumo persistido",
+        "historico local": "historico local",
+        "registry": "registry"
+      };
+      return warnings.map((warning) => {
+        const [stage, detail] = String(warning).split(/:\s+(.+)/, 2);
+        const prefix = labels[stage] || stage || "etapa auxiliar";
+        return detail ? `${prefix}: ${detail}` : prefix;
+      }).join(" | ");
+    }
+
+    function eventLabel(type) {
+      const labels = {
+        heartbeat_success: "Heartbeat ok",
+        heartbeat_attempt: "Heartbeat tentativa",
+        viral_claim_success: "Claim viral ok",
+        viral_claim_attempt: "Claim viral tentativa",
+        registry_check: "Consulta registry",
+        ops_report_export: "Exportacao de relatorio",
+        local_state_repair: "Reconstrucao local",
+        local_state_prune: "Retencao local",
+        local_state_backup: "Backup local",
+        daily_check_run: "Daily check",
+        maintenance_cycle_run: "Ciclo manutencao",
+        system_validation: "Validacao local"
+      };
+      return labels[type] || type || "evento";
+    }
+
+    function updateLogsSummary(events = []) {
+      els.logsSummaryList.innerHTML = "";
+      if (!events.length) {
+        const li = document.createElement("li");
+        li.textContent = "Nenhum evento local carregado ainda.";
+        els.logsSummaryList.appendChild(li);
+        return;
+      }
+
+      const latest = [...events].slice(-5).reverse();
+      for (const event of latest) {
+        const li = document.createElement("li");
+        const loggedAt = event?.loggedAt
+          ? AIBTC_AGENT.formatIsoForTimezone(event.loggedAt, AIBTC_AGENT.timezone)
+          : "horario desconhecido";
+        li.textContent = `${eventLabel(event?.type)} em ${loggedAt}`;
+        els.logsSummaryList.appendChild(li);
+      }
+    }
+
+    function updateViralSummaryFromOpsStatus(viralClaim) {
+      if (!viralClaim) {
+        return;
+      }
+      els.viralSummaryLine.textContent = viralClaim.summary || "Nenhum claim viral executado nesta sessao.";
+    }
+
+    function applyReportState(reportResult) {
+      const body = reportResult?.body || {};
+      const lastHeartbeat = body?.heartbeat?.latestSuccess?.timestampIso || body?.heartbeat?.latestSuccess?.loggedAt || null;
+      const heartbeatLocal = lastHeartbeat
+        ? AIBTC_AGENT.formatIsoForTimezone(lastHeartbeat, AIBTC_AGENT.timezone)
+        : "nenhum";
+      els.reportSummaryLine.textContent = `Ultimo relatorio: heartbeat ok em ${heartbeatLocal}; registry: ${body?.registry?.summary || "desconhecido"}.`;
+      dump(els.reportOutput, reportResult);
+      return reportResult;
+    }
+
+    function applyReportSummaryFromOpsStatus(report) {
+      if (!report) {
+        return;
+      }
+      const generatedLocal = report.generatedAtUtc
+        ? AIBTC_AGENT.formatIsoForTimezone(report.generatedAtUtc, AIBTC_AGENT.timezone)
+        : "desconhecida";
+      const exportLocal = report.latestExport?.loggedAt
+        ? AIBTC_AGENT.formatIsoForTimezone(report.latestExport.loggedAt, AIBTC_AGENT.timezone)
+        : null;
+      const heartbeatLocal = report.lastHeartbeatOkUtc
+        ? AIBTC_AGENT.formatIsoForTimezone(report.lastHeartbeatOkUtc, AIBTC_AGENT.timezone)
+        : "nenhum";
+      els.reportSummaryLine.textContent = report.available
+        ? `Ultimo relatorio em ${generatedLocal}; heartbeat ok em ${heartbeatLocal}; ultima exportacao ${exportLocal || "desconhecida"}.`
+        : "Nenhum relatorio local carregado ainda.";
+    }
+
+    function applyMaintenanceState(result, actionLabel) {
+      const ok = result?.status === 200 && result?.body?.ok !== false;
+      els.maintenanceSummaryLine.textContent = ok
+        ? `${actionLabel} concluido com sucesso.`
+        : `${actionLabel} retornou aviso ou falha.`;
+      dump(els.maintenanceOutput, result);
+      return result;
+    }
+
+    function applyMaintenanceSummaryFromOpsStatus(maintenance) {
+      if (!maintenance) {
+        return;
+      }
+      els.maintenanceSummaryLine.textContent = maintenance.summary || "Nenhuma manutencao local registrada.";
+    }
+
+    function applyMaintenanceCycleSummaryFromOpsStatus(maintenanceCycle) {
+      if (!maintenanceCycle) {
+        return;
+      }
+      els.maintenanceCycleSummaryLine.textContent = maintenanceCycle.summary || "Nenhum ciclo de manutencao registrado.";
+    }
+
+    function applyBackupSummaryFromOpsStatus(backup) {
+      if (!backup) {
+        return;
+      }
+      els.backupSummaryLine.textContent = backup.summary || "Nenhum backup local conhecido.";
+    }
+
+    function applyDailySummaryFromOpsStatus(dailyCheck) {
+      if (!dailyCheck) {
+        return;
+      }
+      els.dailySummaryLine.textContent = dailyCheck.summary || "Nenhum daily check registrado.";
+    }
+
+    function applyIntegritySummaryFromOpsStatus(integrityAudit) {
+      if (!integrityAudit) {
+        return;
+      }
+      els.integritySummaryLine.textContent = integrityAudit.summary || "Nenhuma auditoria registrada.";
+      dump(els.integrityOutput, integrityAudit);
+    }
+
+    function updateAlertsBadge(alerts = []) {
+      const total = Array.isArray(alerts) ? alerts.length : 0;
+      els.alertsBadge.textContent = total > 0
+        ? `Alertas: ${total} ativo(s)`
+        : "Alertas: nenhum";
+    }
+
+    function updateAlertsSummary(alerts = []) {
+      if (!Array.isArray(alerts) || alerts.length === 0) {
+        els.alertsSummaryLine.textContent = "Nenhum alerta ativo no estado consolidado local.";
+        els.alertsSummaryList.innerHTML = "<li>Nenhum alerta ativo.</li>";
+        dump(els.alertsOutput, { total: 0, alerts: [] });
+        return;
+      }
+      els.alertsSummaryLine.textContent = `${alerts.length} alerta(s) ativo(s) exigem revisao.`;
+      els.alertsSummaryList.innerHTML = alerts
+        .map((alert) => `<li>[${alert.level || "warn"}] ${alert.summary || "alerta sem resumo"}</li>`)
+        .join("");
+      dump(els.alertsOutput, { total: alerts.length, alerts });
+    }
+
+    function updatePrimaryAction(action = null) {
+      els.topPrimaryAction.textContent = action?.summary
+        ? `Proxima acao recomendada: ${action.summary}.`
+        : "Proxima acao recomendada: aguardando atualizacao.";
+    }
+
+    function formatHeartbeatWindow(windowInfo) {
+      if (!windowInfo || !windowInfo.lastCheckInAtIso) {
+        if (windowInfo && windowInfo.nextCheckInAtIso) {
+          if (windowInfo.readyNow) {
+            return `Heartbeat: liberado desde ${windowInfo.nextCheckInLocal || windowInfo.nextCheckInAtIso}`;
+          }
+          return `Heartbeat: aguarde ${windowInfo.waitSeconds}s ate ${windowInfo.nextCheckInLocal || windowInfo.nextCheckInAtIso}`;
+        }
+        return "Heartbeat: pronto para consultar";
+      }
+      if (windowInfo.readyNow) {
+        return `Heartbeat: liberado desde ${windowInfo.nextCheckInLocal || windowInfo.nextCheckInAtIso}`;
+      }
+      return `Heartbeat: aguarde ${windowInfo.waitSeconds}s ate ${windowInfo.nextCheckInLocal || windowInfo.nextCheckInAtIso}`;
+    }
+
+    function updateHeartbeatBadge(windowInfo) {
+      els.heartbeatWindowBadge.textContent = formatHeartbeatWindow(windowInfo);
+    }
+
+    function updateHeartbeatSourceBadge(source = "unknown") {
+      const labels = {
+        remote: "Origem da janela: AIBTC",
+        local_log: "Origem da janela: log local",
+        none: "Origem da janela: sem historico",
+        unknown: "Origem da janela: desconhecida"
+      };
+      els.heartbeatSourceBadge.textContent = labels[source] || `Origem da janela: ${source}`;
+    }
+
+    function updateHeartbeatSummary(windowInfo, source = "unknown", latestSuccess = null) {
+      if (!windowInfo || !windowInfo.nextCheckInAtIso) {
+        els.heartbeatSummaryLine.textContent = "Sem ultimo heartbeat confiavel no estado atual.";
+        els.heartbeatLastSuccess.textContent = "Ultima batida bem-sucedida: ainda nao registrada localmente.";
+        return;
+      }
+      if (windowInfo.readyNow) {
+        els.heartbeatSummaryLine.textContent = `Liberado agora. Proxima referencia: ${windowInfo.nextCheckInLocal || windowInfo.nextCheckInAtIso} (${source}).`;
+      } else {
+        els.heartbeatSummaryLine.textContent = `Aguarde ${windowInfo.waitSeconds}s. Proxima janela: ${windowInfo.nextCheckInLocal || windowInfo.nextCheckInAtIso} (${source}).`;
+      }
+      const successTs = latestSuccess?.details?.timestampIso || null;
+      const successLocal = successTs ? AIBTC_AGENT.formatIsoForTimezone(successTs, AIBTC_AGENT.timezone) : null;
+      els.heartbeatLastSuccess.textContent = successLocal
+        ? `Ultima batida bem-sucedida: ${successLocal}.`
+        : "Ultima batida bem-sucedida: ainda nao registrada localmente.";
+    }
+
+    function updateHeartbeatDiagnostics(summaryResult) {
+      const diagnostics = summaryResult?.body?.heartbeatDiagnostics || null;
+      if (!diagnostics) {
+        return;
+      }
+      if (diagnostics.postOk) {
+        const extra = diagnostics.warnings?.length
+          ? ` Diagnostico: ${diagnostics.warnings.join(" | ")}.`
+          : "";
+        els.heartbeatSummaryLine.textContent = `Heartbeat aceito pela AIBTC.${extra}`;
+        return;
+      }
+      const reasons = [
+        diagnostics.postStatus ? `post=${diagnostics.postStatus}` : null,
+        diagnostics.statusError ? `status=${diagnostics.statusError}` : null,
+        diagnostics.logError ? `log=${diagnostics.logError}` : null
+      ].filter(Boolean);
+      if (reasons.length) {
+        els.heartbeatSummaryLine.textContent = `Diagnostico do ultimo heartbeat: ${reasons.join(" | ")}.`;
+      }
+    }
+
+    function applyOpsStatus(opsStatusResult) {
+      const body = opsStatusResult?.body || {};
+      const heartbeat = body.heartbeat || {};
+      const registry = body.registry || {};
+      const latestEvent = body.latestEvent || null;
+      const recentEvents = body.recentEvents || [];
+      const viralClaim = body.viralClaim || null;
+      const report = body.report || null;
+      const maintenance = body.maintenance || null;
+      const maintenanceCycle = body.maintenanceCycle || null;
+      const backup = body.backup || null;
+      const dailyCheck = body.dailyCheck || null;
+      const integrityAudit = body.integrityAudit || null;
+      const alerts = body.alerts || [];
+      const primaryAction = body.primaryAction || null;
+
+      const heartbeatWindow = heartbeat.nextCheckInUtc
+        ? AIBTC_AGENT.getNextHeartbeatInfoFromNextIso(heartbeat.nextCheckInUtc)
+        : AIBTC_AGENT.getNextHeartbeatInfo(null);
+
+      updateHeartbeatBadge(heartbeatWindow);
+      updateHeartbeatSourceBadge(heartbeat.latestSuccess ? "local_log" : "none");
+
+      const latestSuccess = heartbeat.latestSuccess?.timestampIso
+        ? { details: { timestampIso: heartbeat.latestSuccess.timestampIso } }
+        : null;
+
+      updateHeartbeatSummary(
+        heartbeatWindow,
+        heartbeat.latestSuccess ? "local_log" : "none",
+        latestSuccess
+      );
+      updateHeartbeatDiagnostics({
+        body: {
+          heartbeatDiagnostics: heartbeat.diagnostics || null
+        }
+      });
+
+      updateRegistryBadge({
+        mainnetAvailable: Boolean(registry.mainnetPublished),
+        stale: Boolean(registry.stale)
+      });
+      els.registrySummaryLine.textContent = registry.stale
+        ? `${registry.summary || "Registry sem resumo."} Snapshot local antigo.`
+        : (registry.summary || "Registry sem resumo.");
+      updateViralSummaryFromOpsStatus(viralClaim);
+      applyReportSummaryFromOpsStatus(report);
+      applyMaintenanceSummaryFromOpsStatus(maintenance);
+      applyMaintenanceCycleSummaryFromOpsStatus(maintenanceCycle);
+      applyBackupSummaryFromOpsStatus(backup);
+      applyDailySummaryFromOpsStatus(dailyCheck);
+      applyIntegritySummaryFromOpsStatus(integrityAudit);
+      updateAlertsBadge(alerts);
+      updateAlertsSummary(alerts);
+      updatePrimaryAction(primaryAction);
+      updateLogsSummary(recentEvents);
+      dump(els.logsOutput, {
+        status: 200,
+        total: recentEvents.length,
+        events: recentEvents
+      });
+
+      updateHealthBadge({
+        heartbeatWindow,
+        stale: Boolean(heartbeat.stale)
+      }, {
+        mainnetAvailable: Boolean(registry.mainnetPublished),
+        stale: Boolean(registry.stale)
+      });
+
+      updateTopSummaryWithAlerts({
+        heartbeatWindow,
+        stale: Boolean(heartbeat.stale)
+      }, {
+        mainnetAvailable: Boolean(registry.mainnetPublished),
+        stale: Boolean(registry.stale)
+      }, latestEvent?.type || "nenhum", alerts);
+
+      els.agentSummaryLine.textContent = `Agente Speedy Indra em Level 2 - Genesis. Janela do heartbeat via estado consolidado local: ${heartbeatWindow.nextCheckInLocal || heartbeatWindow.nextCheckInAtIso || "desconhecida"}.`;
+      dump(els.agentStatusOutput, body);
+
+      return {
+        heartbeatWindow,
+        latestEventType: latestEvent?.type || "nenhum",
+        registry,
+        viralClaim,
+        report,
+        maintenance,
+        maintenanceCycle,
+        backup,
+        dailyCheck,
+        alerts,
+        primaryAction,
+        recentEvents
+      };
+    }
+
+    function updateRegistryBadge(registryInfo) {
+      if (!registryInfo) {
+        els.registryBadge.textContent = "Registry on-chain: sem consulta";
+        els.registrySummaryLine.textContent = "Nenhuma consulta ao registry nesta sessao.";
+        return;
+      }
+      if (registryInfo.stale) {
+        els.registryBadge.textContent = registryInfo.mainnetAvailable
+          ? "Registry on-chain: snapshot antigo"
+          : "Registry on-chain: snapshot antigo";
+        return;
+      }
+      els.registryBadge.textContent = registryInfo.mainnetAvailable
+        ? "Registry on-chain: mainnet publicado"
+        : "Registry on-chain: mainnet indisponivel";
+      els.registrySummaryLine.textContent = registryInfo.mainnetAvailable
+        ? "Registry on-chain publicado em mainnet. Revisar imediatamente o contrato."
+        : "Registry on-chain ainda indisponivel em mainnet.";
+    }
+
+    function updateHealthBadge(state = null, registryInfo = null) {
+      if (!state) {
+        els.healthBadge.textContent = "Saude: aguardando atualizacao";
+        return;
+      }
+      const heartbeatReady = Boolean(state?.heartbeatWindow?.readyNow);
+      const heartbeatStale = Boolean(state?.stale);
+      const registryPublished = Boolean(registryInfo?.mainnetAvailable);
+      const registryStale = Boolean(registryInfo?.stale);
+      if (heartbeatStale || registryStale) {
+        els.healthBadge.textContent = "Saude: revisar frescor do estado local";
+        return;
+      }
+      if (registryPublished) {
+        els.healthBadge.textContent = heartbeatReady
+          ? "Saude: heartbeat liberado e registry publicado"
+          : "Saude: heartbeat ok, registry publicado";
+        return;
+      }
+      els.healthBadge.textContent = heartbeatReady
+        ? "Saude: wallet ok, heartbeat liberado"
+        : "Saude: wallet ok, heartbeat aguardando";
+    }
+
+    function updateTopSummary(state = null, registryInfo = null, latestEventType = "nenhum") {
+      if (!state) {
+        els.topSummaryLine.textContent = "Nenhum resumo consolidado ainda.";
+        return;
+      }
+      const heartbeatSummary = state?.stale
+        ? "heartbeat com estado antigo"
+        : state?.heartbeatWindow?.readyNow
+        ? "heartbeat liberado"
+        : "heartbeat aguardando";
+      const registrySummary = registryInfo?.stale
+        ? "snapshot do registry antigo"
+        : registryInfo?.mainnetAvailable
+        ? "registry publicado"
+        : "registry indisponivel";
+      els.topSummaryLine.textContent = `Speedy Indra: ${heartbeatSummary}, ${registrySummary}, ultimo evento local: ${latestEventType}.`;
+    }
+
+    function updateTopSummaryWithAlerts(state = null, registryInfo = null, latestEventType = "nenhum", alerts = []) {
+      if (!state) {
+        els.topSummaryLine.textContent = "Nenhum resumo consolidado ainda.";
+        return;
+      }
+      const heartbeatSummary = state?.stale
+        ? "heartbeat com estado antigo"
+        : state?.heartbeatWindow?.readyNow
+        ? "heartbeat liberado"
+        : "heartbeat aguardando";
+      const registrySummary = registryInfo?.stale
+        ? "snapshot do registry antigo"
+        : registryInfo?.mainnetAvailable
+        ? "registry publicado"
+        : "registry indisponivel";
+      const alertSummary = Array.isArray(alerts) && alerts.length > 0
+        ? `${alerts.length} alerta(s) ativo(s)`
+        : "sem alertas";
+      els.topSummaryLine.textContent = `Speedy Indra: ${heartbeatSummary}, ${registrySummary}, ${alertSummary}, ultimo evento local: ${latestEventType}.`;
+    }
+
+    function updateAgentSummary(result) {
+      if (!result) {
+        els.agentSummaryLine.textContent = "Nenhum resumo operacional calculado ainda.";
+        return;
+      }
+      const nextWindow = result?.heartbeatWindow?.nextCheckInLocal || result?.heartbeatWindow?.nextCheckInAtIso || "desconhecida";
+      els.agentSummaryLine.textContent = `Agente ${result.displayName} em Level 2 - Genesis. Janela do heartbeat via ${result.heartbeatWindowSource}: ${nextWindow}.`;
+    }
+
+    function applyRegistryState(registry) {
+      const normalized = {
+        status: registry?.status ?? 0,
+        mainnetAvailable: Boolean(registry?.body?.mainnet || registry?.body?.networks?.mainnet),
+        body: registry?.body || {}
+      };
+      updateRegistryBadge(normalized);
+      els.registrySummaryLine.textContent = normalized.mainnetAvailable
+        ? "Registry on-chain publicado em mainnet. Revisar imediatamente o contrato."
+        : `Registry consultado nesta sessao com status ${normalized.status}. Mainnet continua indisponivel.`;
+      dump(els.registryOutput, normalized);
+      return normalized;
+    }
+
+    function applyLogsState(logs) {
+      const normalized = {
+        status: logs?.status ?? 0,
+        total: logs?.body?.events?.length || logs?.total || 0,
+        events: logs?.body?.events || logs?.events || []
+      };
+      updateLogsSummary(normalized.events);
+      dump(els.logsOutput, normalized);
+      return normalized;
+    }
+
+    function applyTopSummary(state, registry, logs) {
+      updateHealthBadge(state || null, registry || null);
+      const latestEventType = logs?.events?.length ? logs.events[logs.events.length - 1]?.type : "nenhum";
+      updateTopSummary(state || null, registry || null, latestEventType);
+    }
+
+    async function refreshOpsStatus() {
+      const result = await AIBTC_AGENT.getOpsStatus();
+      applyOpsStatus(result);
+      return result;
+    }
+
+    async function runAndShow(target, action, successText) {
+      try {
+        setGlobalStatus("Executando operacao...", "warn");
+        const result = await action();
+        dump(target, result);
+        updatePanelLastUpdated();
+        const outcome = getActionOutcome(result, successText);
+        setGlobalStatus(outcome.text, outcome.kind);
+      } catch (error) {
+        dump(target, { error: error.message || String(error) });
+        if (isGenericFetchError(error)) {
+          setGlobalStatus(getFriendlyFetchWarning(successText), "warn");
+          return;
+        }
+        setGlobalStatus(error.message || String(error), "err");
+      }
+    }
+
+    async function fetchRegistry() {
+      const result = await AIBTC_AGENT.getRegistryStatus();
+      return applyRegistryState(result);
+    }
+
+    async function fetchRegistrySnapshotFromOpsStatus() {
+      const opsStatus = await refreshOpsStatus();
+      const registry = opsStatus?.body?.registry || {};
+      const result = {
+        status: registry.statusCode || 200,
+        body: {
+          snapshot: true,
+          mainnet: registry.mainnetPublished ? {} : null,
+          summary: registry.summary,
+          source: registry.source,
+          checkedAtUtc: registry.checkedAtUtc
+        }
+      };
+      applyRegistryState(result);
+      return result;
+    }
+
+    async function fetchLatestOpsReport() {
+      const result = await AIBTC_AGENT.getLatestOpsReport();
+      return applyReportState(result);
+    }
+
+    async function exportOpsReportNow() {
+      const result = await AIBTC_AGENT.exportOpsReport();
+      if (result.status === 200) {
+        await refreshOpsStatus().catch(() => null);
+      } else if (result?.body?.latestReport) {
+        applyReportState({
+          status: result.status,
+          body: result.body.latestReport
+        });
+      }
+      return result;
+    }
+
+    async function repairLocalStateNow() {
+      const result = await AIBTC_AGENT.repairLocalState();
+      if (result.status === 200) {
+        await refreshOpsStatus().catch(() => null);
+      }
+      return applyMaintenanceState(result, "Reconstrucao do estado local");
+    }
+
+    async function pruneLocalStateNow() {
+      const result = await AIBTC_AGENT.pruneLocalState();
+      if (result.status === 200) {
+        await refreshOpsStatus().catch(() => null);
+      }
+      return applyMaintenanceState(result, "Retencao local");
+    }
+
+    async function backupLocalStateNow() {
+      const result = await AIBTC_AGENT.backupLocalState();
+      if (result.status === 200) {
+        await refreshOpsStatus().catch(() => null);
+      }
+      return applyMaintenanceState(result, "Backup local");
+    }
+
+    async function runMaintenanceCycleNow() {
+      const result = await AIBTC_AGENT.runMaintenanceCycle();
+      if (result.status === 200) {
+        await refreshOpsStatus().catch(() => null);
+      }
+      return applyMaintenanceState(result, "Ciclo completo de manutencao");
+    }
+
+    async function restoreLocalStateNow() {
+      const result = await AIBTC_AGENT.restoreLocalState();
+      if (result.status === 200) {
+        await refreshOpsStatus().catch(() => null);
+      }
+      return applyMaintenanceState(result, "Restauracao local");
+    }
+
+    async function runDailyCheckNow() {
+      const result = await AIBTC_AGENT.runDailyCheck();
+      if (result.status === 200) {
+        await refreshOpsStatus().catch(() => null);
+      }
+      els.dailySummaryLine.textContent = result.status === 200
+        ? "Daily check executado com sucesso."
+        : "Daily check retornou aviso ou falha.";
+      dump(els.dailyOutput, result);
+      return result;
+    }
+
+    async function runIntegrityAuditNow() {
+      const result = await AIBTC_AGENT.runIntegrityAudit();
+      if (result.status === 200) {
+        await refreshOpsStatus().catch(() => null);
+      }
+      els.integritySummaryLine.textContent = result.status === 200
+        ? "Auditoria de integridade executada."
+        : "Auditoria retornou aviso ou falha.";
+      dump(els.integrityOutput, result);
+      return result;
+    }
+
+    async function refreshAlertsOnly() {
+      const result = await refreshOpsStatus();
+      const alerts = result?.body?.alerts || [];
+      updateAlertsBadge(alerts);
+      updateAlertsSummary(alerts);
+      return {
+        status: result.status,
+        total: alerts.length,
+        alerts
+      };
+    }
+
+    async function refreshLocalLogs(opsStatus = null) {
+      const resolved = opsStatus || await refreshOpsStatus();
+      return {
+        status: resolved.status,
+        total: resolved.body?.recentEvents?.length || 0,
+        events: resolved.body?.recentEvents || []
+      };
+    }
+
+    async function bootstrapDashboard() {
+      const [opsStatusResult] = await Promise.allSettled([
+        refreshOpsStatus()
+      ]);
+      const opsStatus = opsStatusResult.status === "fulfilled"
+        ? opsStatusResult.value
+        : null;
+      const logs = opsStatus
+        ? {
+          status: opsStatus.status,
+          total: opsStatus.body?.recentEvents?.length || 0,
+          events: opsStatus.body?.recentEvents || []
+        }
+        : { status: 0, total: 0, events: [] };
+      if (!opsStatus) {
+        applyTopSummary(null, null, logs);
+      }
+      updatePanelLastUpdated();
+
+      const warnings = [];
+      if (opsStatusResult.status === "rejected") {
+        warnings.push(`ops-status: ${opsStatusResult.reason?.message || String(opsStatusResult.reason)}`);
+      }
+      if (warnings.length) {
+        setGlobalStatus(`Dashboard carregado com avisos parciais: ${describeWarnings(warnings)}`, "warn");
+      } else {
+        setGlobalStatus("Dashboard sincronizado com o estado local atual.", "ok");
+      }
+    }
+
+    async function refreshDashboardSilently() {
+      const [opsStatusResult] = await Promise.allSettled([
+        refreshOpsStatus()
+      ]);
+      if (opsStatusResult.status === "fulfilled") {
+        updatePanelLastUpdated();
+        return;
+      }
+      const warnings = [];
+      if (opsStatusResult.status === "rejected") {
+        warnings.push(`ops-status: ${opsStatusResult.reason?.message || String(opsStatusResult.reason)}`);
+      }
+      setGlobalStatus(`Atualizacao automatica com aviso: ${describeWarnings(warnings)}`, "warn");
+    }
+
+    function stopAutoRefresh() {
+      if (autoRefreshState.timerId) {
+        clearInterval(autoRefreshState.timerId);
+        autoRefreshState.timerId = null;
+      }
+      try {
+        window.localStorage.setItem(AUTO_REFRESH_STORAGE_KEY, "off");
+      } catch {}
+      updateAutoRefreshUi(false);
+    }
+
+    function startAutoRefresh() {
+      stopAutoRefresh();
+      autoRefreshState.timerId = setInterval(() => {
+        refreshDashboardSilently().catch((error) => {
+          setGlobalStatus(`Atualizacao automatica com erro residual: ${error.message || String(error)}`, "warn");
+        });
+      }, autoRefreshState.intervalMs);
+      try {
+        window.localStorage.setItem(AUTO_REFRESH_STORAGE_KEY, "on");
+      } catch {}
+      updateAutoRefreshUi(true);
+    }
+
+    function restoreAutoRefreshPreference() {
+      try {
+        if (window.localStorage.getItem(AUTO_REFRESH_STORAGE_KEY) === "on") {
+          startAutoRefresh();
+        }
+      } catch {}
+    }
+
+    document.getElementById("btn-identity").addEventListener("click", () => runAndShow(
+      els.agentStatusOutput,
+      () => AIBTC_AGENT.getIdentity(),
+      "Consulta de identidade concluida."
+    ));
+
+    document.getElementById("btn-verify").addEventListener("click", () => runAndShow(
+      els.agentStatusOutput,
+      () => AIBTC_AGENT.getVerify(),
+      "Consulta de verify concluida."
+    ));
+
+    document.getElementById("btn-heartbeat-status").addEventListener("click", () => runAndShow(
+      els.agentStatusOutput,
+      () => AIBTC_AGENT.getHeartbeatStatus(),
+      "Consulta de heartbeat concluida."
+    ));
+
+    document.getElementById("btn-heartbeat-run").addEventListener("click", () => runAndShow(
+      els.heartbeatOutput,
+      async () => {
+        const result = await AIBTC_AGENT.runHeartbeatCycleAndRefresh();
+        const logs = applyLogsState(result.logs);
+        if (result.opsStatus) {
+          applyOpsStatus(result.opsStatus);
+        } else {
+          const registry = applyRegistryState(result.registry);
+          applyTopSummary(null, registry, logs);
+        }
+        if (result.heartbeat?.postResult?.status === 200 && !result.opsStatus?.body?.heartbeat?.diagnostics) {
+          els.heartbeatSummaryLine.textContent = "Heartbeat aceito pela AIBTC. Atualizacoes auxiliares podem ter retornado aviso.";
+        }
+        return result;
+      },
+      "Heartbeat executado."
+    ));
+
+    document.getElementById("btn-heartbeat-message").addEventListener("click", () => runAndShow(
+      els.heartbeatOutput,
+      async () => {
+        const ts = new Date().toISOString();
+        return {
+          timestampIso: ts,
+          message: AIBTC_AGENT.heartbeatMessage(ts)
+        };
+      },
+      "Mensagem de heartbeat gerada."
+    ));
+
+    document.getElementById("btn-viral-submit").addEventListener("click", () => runAndShow(
+      els.viralOutput,
+      async () => {
+        const result = await AIBTC_AGENT.postViralClaim(els.tweetUrl.value.trim());
+        await refreshOpsStatus().catch(() => {
+          els.viralSummaryLine.textContent = result.status === 200
+            ? "Claim viral aceito com sucesso."
+            : `Claim viral retornou status ${result.status}. Revise a URL do tweet ou a visibilidade da conta.`;
+        });
+        return result;
+      },
+      "Claim viral enviado."
+    ));
+
+    document.getElementById("btn-registry").addEventListener("click", () => runAndShow(
+      els.registryOutput,
+      fetchRegistrySnapshotFromOpsStatus,
+      "Snapshot local do registry carregado."
+    ));
+
+    document.getElementById("btn-registry-live").addEventListener("click", () => runAndShow(
+      els.registryOutput,
+      fetchRegistry,
+      "Consulta ao registry ao vivo concluida."
+    ));
+
+    document.getElementById("btn-logs-refresh").addEventListener("click", () => runAndShow(
+      els.logsOutput,
+      refreshLocalLogs,
+      "Historico local atualizado."
+    ));
+
+    document.getElementById("btn-report-refresh").addEventListener("click", () => runAndShow(
+      els.reportOutput,
+      fetchLatestOpsReport,
+      "Ultimo relatorio local carregado."
+    ));
+
+    document.getElementById("btn-report-export").addEventListener("click", () => runAndShow(
+      els.reportOutput,
+      exportOpsReportNow,
+      "Relatorio operacional exportado."
+    ));
+
+    document.getElementById("btn-maint-repair").addEventListener("click", () => runAndShow(
+      els.maintenanceOutput,
+      repairLocalStateNow,
+      "Reconstrucao do estado local executada."
+    ));
+
+    document.getElementById("btn-maint-cycle").addEventListener("click", () => runAndShow(
+      els.maintenanceOutput,
+      runMaintenanceCycleNow,
+      "Ciclo completo de manutencao executado."
+    ));
+
+    document.getElementById("btn-maint-backup").addEventListener("click", () => runAndShow(
+      els.maintenanceOutput,
+      backupLocalStateNow,
+      "Backup local executado."
+    ));
+
+    document.getElementById("btn-maint-restore").addEventListener("click", () => runAndShow(
+      els.maintenanceOutput,
+      restoreLocalStateNow,
+      "Restauracao local executada."
+    ));
+
+    document.getElementById("btn-maint-prune").addEventListener("click", () => runAndShow(
+      els.maintenanceOutput,
+      pruneLocalStateNow,
+      "Retencao local executada."
+    ));
+
+    document.getElementById("btn-daily-check").addEventListener("click", () => runAndShow(
+      els.dailyOutput,
+      runDailyCheckNow,
+      "Daily check executado."
+    ));
+
+    document.getElementById("btn-integrity-audit").addEventListener("click", () => runAndShow(
+      els.integrityOutput,
+      runIntegrityAuditNow,
+      "Auditoria de integridade executada."
+    ));
+
+    document.getElementById("btn-alerts-refresh").addEventListener("click", () => runAndShow(
+      els.alertsOutput,
+      refreshAlertsOnly,
+      "Alertas operacionais atualizados."
+    ));
+
+    document.getElementById("btn-refresh-all").addEventListener("click", () => runAndShow(
+      els.agentStatusOutput,
+      async () => {
+        const [opsStatusResult] = await Promise.allSettled([
+          refreshOpsStatus()
+        ]);
+        const warnings = [];
+        const logs = opsStatusResult.status === "fulfilled"
+          ? {
+            status: opsStatusResult.value.status,
+            total: opsStatusResult.value.body?.recentEvents?.length || 0,
+            events: opsStatusResult.value.body?.recentEvents || []
+          }
+          : (() => {
+            warnings.push(`ops-status: ${opsStatusResult.reason?.message || String(opsStatusResult.reason)}`);
+            return { status: 0, total: 0, events: [] };
+          })();
+        if (opsStatusResult.status !== "fulfilled") {
+          applyTopSummary(null, null, logs);
+        }
+        return { logs, warnings };
+      },
+      "Estado local do agente atualizado."
+    ));
+
+    document.getElementById("btn-auto-refresh").addEventListener("click", () => {
+      if (autoRefreshState.timerId) {
+        stopAutoRefresh();
+        return;
+      }
+      startAutoRefresh();
+    });
+
+    function wireToggle(buttonId, target, showLabel = "Ver detalhes", hideLabel = "Ocultar detalhes") {
+      document.getElementById(buttonId).addEventListener("click", (event) => {
+        const currentlyHidden = target.hasAttribute("hidden");
+        if (currentlyHidden) {
+          target.removeAttribute("hidden");
+          event.currentTarget.textContent = hideLabel;
+        } else {
+          target.setAttribute("hidden", "");
+          event.currentTarget.textContent = showLabel;
+        }
+      });
+    }
+
+    wireToggle("btn-toggle-agent-details", els.agentStatusOutput);
+    wireToggle("btn-toggle-heartbeat-details", els.heartbeatOutput);
+    wireToggle("btn-toggle-viral-details", els.viralOutput);
+    wireToggle("btn-toggle-registry-details", els.registryOutput);
+    wireToggle("btn-toggle-logs-details", els.logsOutput);
+    wireToggle("btn-toggle-report-details", els.reportOutput);
+    wireToggle("btn-toggle-maint-details", els.maintenanceOutput);
+    wireToggle("btn-toggle-daily-details", els.dailyOutput);
+    wireToggle("btn-toggle-integrity-details", els.integrityOutput);
+    wireToggle("btn-toggle-alerts-details", els.alertsOutput);
+
+    setGlobalStatus("Dashboard pronto. Use os botoes para operar o agente.", "ok");
+    updateHeartbeatBadge(null);
+    updateHeartbeatSourceBadge("unknown");
+    updateHeartbeatSummary(null, "unknown", null);
+    updateRegistryBadge(null);
+    updateHealthBadge(null, null);
+    updateAlertsBadge([]);
+    updateAlertsSummary([]);
+    updatePrimaryAction(null);
+    updateTopSummary(null, null, "nenhum");
+    updateAgentSummary(null);
+    els.viralSummaryLine.textContent = "Nenhum claim viral executado nesta sessao.";
+    els.registrySummaryLine.textContent = "Nenhuma consulta ao registry nesta sessao.";
+    els.reportSummaryLine.textContent = "Nenhum relatorio local carregado ainda.";
+    els.maintenanceSummaryLine.textContent = "Nenhuma manutencao local executada nesta sessao.";
+    els.maintenanceCycleSummaryLine.textContent = "Nenhum ciclo de manutencao conhecido ainda.";
+    els.backupSummaryLine.textContent = "Nenhum backup local conhecido ainda.";
+    els.dailySummaryLine.textContent = "Nenhum daily check executado nesta sessao.";
+    els.integritySummaryLine.textContent = "Nenhuma auditoria executada nesta sessao.";
+    els.panelLastUpdated.textContent = "Ultima atualizacao do painel: ainda nao executada.";
+    updateAutoRefreshUi(false);
+    restoreAutoRefreshPreference();
+    bootstrapDashboard().catch((error) => {
+      setGlobalStatus(`Dashboard carregado com erro residual: ${error.message || String(error)}`, "warn");
+    });
+  </script>
+</body>
+</html>

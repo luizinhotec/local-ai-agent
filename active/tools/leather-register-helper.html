@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIBTC Register Helper</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --panel: #fffaf2;
+      --ink: #1f1a17;
+      --muted: #6d6258;
+      --accent: #b3541e;
+      --accent-2: #355c4d;
+      --border: #d8cbbb;
+      --ok: #1d6b3a;
+      --warn: #8a5d00;
+      --err: #9a2a2a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(179,84,30,.12), transparent 30%),
+        linear-gradient(180deg, #f8f1e7 0%, var(--bg) 100%);
+      color: var(--ink);
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    h1, h2 {
+      margin: 0 0 12px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    p, li, label, input, textarea, button, pre {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+    .hero {
+      margin-bottom: 24px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255, 250, 242, .92);
+      box-shadow: 0 18px 40px rgba(60, 39, 24, .08);
+    }
+    .message {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #efe2d2;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .card {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: 0 10px 24px rgba(60, 39, 24, .06);
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 15px;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button.secondary { background: var(--accent-2); }
+    button.ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--ink);
+    }
+    button:disabled {
+      opacity: .55;
+      cursor: wait;
+    }
+    label {
+      display: block;
+      margin: 10px 0 6px;
+      font-weight: 600;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--ink);
+    }
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #221d19;
+      color: #fef4e6;
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 120px;
+      overflow: auto;
+    }
+    .status {
+      margin: 12px 0 0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #efe9df;
+      color: var(--muted);
+    }
+    .status.ok { color: var(--ok); background: #eaf4ee; }
+    .status.warn { color: var(--warn); background: #fff4db; }
+    .status.err { color: var(--err); background: #fde9e9; }
+    .mono { font-family: Consolas, monospace; }
+    .small { color: var(--muted); font-size: .95rem; }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 700px) {
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>AIBTC Register Helper</h1>
+      <p>Este helper usa a extensao Leather para gerar as assinaturas oficiais da AIBTC e enviar o <span class="mono">POST /api/register</span> localmente no seu navegador.</p>
+      <div class="message">Mensagem oficial: Bitcoin will be the currency of AIs</div>
+      <div id="status" class="status warn">Aguardando Leather.</div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>1. Wallet</h2>
+        <p class="small">Abra a Leather na mesma conta usada pela wallet dedicada e confirme que a extensao esta instalada.</p>
+        <div class="actions">
+          <button id="btn-open" class="ghost" type="button">Abrir Leather</button>
+          <button id="btn-addresses" type="button">Ler enderecos</button>
+        </div>
+        <pre id="addresses-output">Nenhum endereco lido ainda.</pre>
+      </article>
+
+      <article class="card">
+        <h2>2. Assinaturas</h2>
+        <p class="small">As assinaturas sao geradas no navegador com aprovacao explicita da extensao.</p>
+        <div class="actions">
+          <button id="btn-sign-btc" type="button">Assinar BTC</button>
+          <button id="btn-sign-stx" class="secondary" type="button">Assinar STX</button>
+          <button id="btn-sign-taproot" class="ghost" type="button">Assinar Taproot</button>
+        </div>
+        <pre id="sign-output">Nenhuma assinatura gerada ainda.</pre>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>3. Payload e envio</h2>
+      <div class="row">
+        <div>
+          <label for="description">Description</label>
+          <textarea id="description">AI agent operated through Codex and AIBTC MCP on Stacks and Bitcoin mainnet, prepared for safe operator-approved automation.</textarea>
+        </div>
+        <div>
+          <label for="taproot-address">Taproot address</label>
+          <input id="taproot-address" value="bc1ptnnv7qu30adkszyhet9vwef977em55svhlm6js2tfr8qm92neglqzwxz9s">
+          <label for="nostr-key">Nostr public key</label>
+          <input id="nostr-key" placeholder="opcional">
+          <label for="x402-ref">x402Ref</label>
+          <input id="x402-ref" placeholder="opcional">
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btn-build" class="ghost" type="button">Montar payload</button>
+        <button id="btn-submit" type="button">Enviar registro</button>
+      </div>
+      <pre id="payload-output">Payload ainda nao montado.</pre>
+      <pre id="response-output">Resposta da API ainda nao recebida.</pre>
+    </section>
+  </main>
+
+  <script>
+    const MESSAGE = "Bitcoin will be the currency of AIs";
+    const REGISTER_URL = "/api/register-proxy";
+    const state = {
+      addresses: null,
+      bitcoinSignature: "",
+      stacksSignature: "",
+      taprootSignature: "",
+      payload: null
+    };
+
+    const els = {
+      status: document.getElementById("status"),
+      addressesOutput: document.getElementById("addresses-output"),
+      signOutput: document.getElementById("sign-output"),
+      payloadOutput: document.getElementById("payload-output"),
+      responseOutput: document.getElementById("response-output"),
+      description: document.getElementById("description"),
+      taprootAddress: document.getElementById("taproot-address"),
+      nostrKey: document.getElementById("nostr-key"),
+      x402Ref: document.getElementById("x402-ref")
+    };
+
+    function setStatus(text, kind = "warn") {
+      els.status.textContent = text;
+      els.status.className = `status ${kind}`;
+    }
+
+    function provider() {
+      return window.LeatherProvider;
+    }
+
+    function safeJson(value) {
+      return JSON.stringify(value, null, 2);
+    }
+
+    async function leatherRequest(method, params) {
+      if (!provider()) {
+        throw new Error("LeatherProvider nao encontrado. Verifique se a extensao Leather esta instalada e ativa.");
+      }
+      return provider().request(method, params);
+    }
+
+    async function readAddresses() {
+      setStatus("Lendo enderecos pela Leather...", "warn");
+      const response = await leatherRequest("getAddresses");
+      state.addresses = response?.result ?? response;
+      els.addressesOutput.textContent = safeJson(state.addresses);
+      setStatus("Enderecos lidos com sucesso.", "ok");
+    }
+
+    async function signBitcoin(paymentType) {
+      setStatus(`Solicitando assinatura Bitcoin (${paymentType})...`, "warn");
+      const response = await leatherRequest("signMessage", {
+        message: MESSAGE,
+        paymentType,
+        network: "mainnet"
+      });
+      if (paymentType === "p2tr") {
+        state.taprootSignature = response?.result?.signature || "";
+      } else {
+        state.bitcoinSignature = response?.result?.signature || "";
+      }
+      els.signOutput.textContent = safeJson({
+        bitcoinSignature: state.bitcoinSignature,
+        taprootSignature: state.taprootSignature
+      });
+      setStatus(`Assinatura Bitcoin (${paymentType}) gerada.`, "ok");
+    }
+
+    async function signStacks() {
+      setStatus("Solicitando assinatura Stacks...", "warn");
+      const response = await leatherRequest("stx_signMessage", {
+        message: MESSAGE,
+        messageType: "utf8",
+        network: "mainnet"
+      });
+      state.stacksSignature = response?.result?.signature || "";
+      els.signOutput.textContent = safeJson({
+        bitcoinSignature: state.bitcoinSignature,
+        stacksSignature: state.stacksSignature,
+        taprootSignature: state.taprootSignature
+      });
+      setStatus("Assinatura Stacks gerada.", "ok");
+    }
+
+    function buildPayload() {
+      state.payload = {
+        bitcoinSignature: state.bitcoinSignature,
+        stacksSignature: state.stacksSignature,
+        description: els.description.value.trim(),
+        taprootAddress: els.taprootAddress.value.trim(),
+        taprootSignature: state.taprootSignature,
+        nostrPublicKey: els.nostrKey.value.trim(),
+        x402Ref: els.x402Ref.value.trim()
+      };
+      if (!state.payload.taprootSignature) {
+        delete state.payload.taprootSignature;
+      }
+      if (!state.payload.taprootAddress) {
+        delete state.payload.taprootAddress;
+      }
+      if (!state.payload.nostrPublicKey) {
+        delete state.payload.nostrPublicKey;
+      }
+      if (!state.payload.x402Ref) {
+        delete state.payload.x402Ref;
+      }
+      els.payloadOutput.textContent = safeJson(state.payload);
+      return state.payload;
+    }
+
+    async function submitRegister() {
+      const payload = buildPayload();
+      if (!payload.bitcoinSignature || !payload.stacksSignature) {
+        throw new Error("Faltam bitcoinSignature e/ou stacksSignature.");
+      }
+      setStatus("Enviando POST /api/register...", "warn");
+      const response = await fetch(REGISTER_URL, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+      const body = await response.json().catch(async () => ({ raw: await response.text() }));
+      els.responseOutput.textContent = safeJson({
+        httpStatus: response.status,
+        body
+      });
+      if (!response.ok) {
+        throw new Error(`Registro falhou com HTTP ${response.status}.`);
+      }
+      setStatus("Registro enviado com sucesso. Revise claimCode e sponsorApiKey na resposta.", "ok");
+    }
+
+    async function onClick(handler) {
+      try {
+        await handler();
+      } catch (error) {
+        setStatus(error.message || String(error), "err");
+      }
+    }
+
+    document.getElementById("btn-open").addEventListener("click", () => onClick(() => leatherRequest("open")));
+    document.getElementById("btn-addresses").addEventListener("click", () => onClick(readAddresses));
+    document.getElementById("btn-sign-btc").addEventListener("click", () => onClick(() => signBitcoin("p2wpkh")));
+    document.getElementById("btn-sign-stx").addEventListener("click", () => onClick(signStacks));
+    document.getElementById("btn-sign-taproot").addEventListener("click", () => onClick(() => signBitcoin("p2tr")));
+    document.getElementById("btn-build").addEventListener("click", () => onClick(() => Promise.resolve(buildPayload())));
+    document.getElementById("btn-submit").addEventListener("click", () => onClick(submitRegister));
+
+    if (provider()) {
+      setStatus("Leather detectada. Voce ja pode ler enderecos e assinar.", "ok");
+    } else {
+      setStatus("Leather nao detectada ainda. Abra a pagina no navegador com a extensao instalada.", "warn");
+    }
+  </script>
+</body>
+</html>

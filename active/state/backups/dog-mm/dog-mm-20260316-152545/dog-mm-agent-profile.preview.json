@@ -1,0 +1,29 @@
+﻿{
+    "name":  "dog-mm-agent",
+    "displayName":  "DOG MM Agent",
+    "description":  "Bitcoin-native liquidity operator focused on concentrated liquidity management, controlled rebalancing, and disciplined inventory handling for DOG GO TO THE MOON markets.",
+    "operator":  {
+                     "stxAddress":  "SP1GNF1SGP89KT980XRTRMFKZG4H5P3CDS70Y4NRF",
+                     "btcAddress":  "bc1qyqdgy5zd4narvjkvdr3pdz55as448k6ahdf8xy",
+                     "taprootAddress":  "bc1pl3zmeju6xj4z6936qyyun77vr066xhkkd87zawecjg9mt8e7dkkqp5wctq"
+                 },
+    "capabilities":  [
+                         "Bitflow concentrated liquidity operations",
+                         "DOG inventory tracking",
+                         "Operator-approved rebalancing",
+                         "Risk-limited market making",
+                         "Future CEX integration readiness"
+                     ],
+    "links":  {
+                  "website":  "",
+                  "xProfile":  "",
+                  "nostrPublicKey":  ""
+              },
+    "x402Ref":  "",
+    "notes":  [
+                  "Suggested public profile for the second DOG market making agent.",
+                  "Initial phase approved with a 100 USD experimental capital allocation.",
+                  "Fill operator addresses only after creating the dedicated wallet.",
+                  "Do not store mnemonic, passwords, exchange API keys, or live signatures here."
+              ]
+}

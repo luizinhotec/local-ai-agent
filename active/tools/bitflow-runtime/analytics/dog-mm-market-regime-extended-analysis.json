@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-03-20T17:43:42.405Z",
+  "summary": {
+    "total_cycles": 100,
+    "stable_cycles": 0,
+    "volatile_cycles": 100,
+    "stable_ratio": 0
+  },
+  "signals": {
+    "enter_lp_signal_count": 0,
+    "exit_lp_signal_count": 100,
+    "watch_count": 100,
+    "hold_defensive_count": 0
+  },
+  "windows": {
+    "total_entry_windows": 0,
+    "avg_window_duration_ms": null,
+    "max_window_duration_ms": 0,
+    "entry_frequency": 0,
+    "unique_pools_with_entry": [],
+    "best_window_by_gap": null,
+    "best_window_by_stability": null
+  },
+  "entry_windows": [],
+  "conclusion": "NO_ENTRY_WINDOWS_AFTER_EXTENDED_MONITORING"
+}

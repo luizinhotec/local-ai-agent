@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-03-20T17:43:42.363Z",
+  "risk_limits": {
+    "maxExposurePerPoolUsd": 25,
+    "maxTotalExposureUsd": 50,
+    "maxDrawdownPct": 5
+  },
+  "active_positions": [
+    {
+      "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+      "pool_symbol": "sBTC-USDCx",
+      "entry_price": 73558.031964,
+      "current_price": 70437,
+      "estimated_pnl": -0.598848,
+      "estimated_il": -0.00561,
+      "estimated_il_pct": -0.023492,
+      "exposure_usd": 23.282979,
+      "market_state": "VOLATILE",
+      "risk_flags": [
+        "MARKET_VOLATILE"
+      ],
+      "recommended_action": "EXIT_LP"
+    }
+  ],
+  "candidate_pools": [
+    {
+      "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+      "pool_symbol": "STX-USDCx",
+      "pair_candidates": [
+        "STX->USDh",
+        "STX->USDCx",
+        "STX->aeUSDC",
+        "USDh->STX",
+        "USDCx->STX",
+        "aeUSDC->STX",
+        "sBTC->USDh",
+        "sBTC->USDCx",
+        "sBTC->aeUSDC"
+      ],
+      "venue": "bitflow-dlmm",
+      "avg_price_impact_percent": 3.044565,
+      "avg_break_even_gap": 31.628979,
+      "avg_execution_path_length": 2.76087,
+      "tvl_usd": null,
+      "active_bin": 388,
+      "bin_step": 10,
+      "total_fee_bps": 30,
+      "is_toxic": false,
+      "selection_status": "ELIGIBLE",
+      "rejection_reason": null,
+      "market_state": "VOLATILE",
+      "recommended_action": "WATCH"
+    }
+  ],
+  "market_state": "VOLATILE",
+  "total_exposure": 23.282979,
+  "risk_status": "EXIT_OR_HOLD_DEFENSIVE",
+  "risk_flags": [
+    "ACTIVE_POSITION_REQUIRES_EXIT"
+  ]
+}

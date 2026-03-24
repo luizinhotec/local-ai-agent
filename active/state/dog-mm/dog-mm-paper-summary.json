@@ -1,0 +1,47 @@
+{
+  "generatedAtUtc": "2026-03-20T04:00:56.093Z",
+  "logFile": "C:\\dev\\local-ai-agent\\active\\state\\dog-mm\\dog-mm-ops-log.jsonl",
+  "total_cycles": 132,
+  "execute_count": 0,
+  "skip_count": 94,
+  "inconclusive_count": 38,
+  "unknown_decision_count": 0,
+  "execute_rate_percent": 0,
+  "skip_rate_percent": 71.21,
+  "inconclusive_rate_percent": 28.79,
+  "paper_mode_yes_count": 132,
+  "would_broadcast_yes_count": 0,
+  "profit_complete_yes_count": 132,
+  "validation_pass_count": 94,
+  "avg_input_usd": 36.856969,
+  "avg_expected_output_usd": 36.732065,
+  "avg_min_output_usd": 35.630103,
+  "avg_network_fee_usd": 0.847964,
+  "avg_net_profit_usd": -0.972869,
+  "avg_worst_case_net_profit_usd": -2.07483,
+  "avg_net_profit_bps": null,
+  "avg_net_profit_usd_execute": null,
+  "avg_net_profit_usd_skip": -0.224544,
+  "avg_worst_case_net_profit_usd_execute": null,
+  "avg_worst_case_net_profit_usd_skip": -1.657135,
+  "best_net_profit_usd": 0.023207,
+  "worst_net_profit_usd": -32.244929,
+  "best_worst_case_net_profit_usd": -0.26171,
+  "worst_worst_case_net_profit_usd": -33.044812,
+  "decision_reason_ranking": [
+    {
+      "reason": "worst_case_profit_below_threshold",
+      "count": 94
+    },
+    {
+      "reason": "validation_failed",
+      "count": 38
+    }
+  ],
+  "parser": {
+    "invalid_line_count": 0,
+    "skipped_empty_line_count": 1,
+    "parsed_record_count": 132,
+    "cycle_record_count": 132
+  }
+}

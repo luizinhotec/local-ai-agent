@@ -1,0 +1,8 @@
+{
+  "maxSpreadUsd": 5,
+  "maxMarkIndexGapUsd": 25,
+  "maxPositionUsd": 1000,
+  "minAvailableFundsBtc": 0.01,
+  "maxFundingAbs": 0.0005,
+  "maxSnapshotAgeMs": 15000
+}

@@ -1,0 +1,6 @@
+[mcp_servers.aibtc]
+command = "npx"
+args = ["@aibtc/mcp-server@latest"]
+
+[mcp_servers.aibtc.env]
+NETWORK = "mainnet"

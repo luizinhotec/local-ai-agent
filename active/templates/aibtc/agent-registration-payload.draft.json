@@ -1,0 +1,26 @@
+{
+  "agentIdentity": {
+    "name": "leather",
+    "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+    "btcAddress": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
+    "taprootAddress": "bc1ptnnv7qu30adkszyhet9vwef977em55svhlm6js2tfr8qm92neglqzwxz9s"
+  },
+  "platformRegistrationPayload": {
+    "stacksSignature": "<local-only>",
+    "bitcoinSignature": "<local-only>",
+    "description": "AI agent operated through Codex and AIBTC MCP on Stacks and Bitcoin mainnet, prepared for safe operator-approved automation.",
+    "taprootAddress": "bc1ptnnv7qu30adkszyhet9vwef977em55svhlm6js2tfr8qm92neglqzwxz9s",
+    "taprootSignature": "<local-only>",
+    "nostrPublicKey": "",
+    "x402Ref": ""
+  },
+  "onchainIdentityPreparation": {
+    "metadataUri": "https://aibtc.com/api/agents/SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+    "status": "blocked_until_mainnet_registry_exists"
+  },
+  "notes": [
+    "Public addresses only.",
+    "Do not store mnemonic or wallet password here.",
+    "Replace signatures locally only when mainnet registration is available."
+  ]
+}

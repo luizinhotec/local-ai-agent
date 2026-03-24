@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-03-20T17:43:39.442Z",
+  "thresholds": {
+    "maxVolatilityRecentPct": 2,
+    "maxPriceImpactMean": 5,
+    "maxBreakEvenGap": 10,
+    "minStabilityScore": 60
+  },
+  "market_state": "VOLATILE",
+  "pools": [
+    {
+      "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-usdcx-v-1-bps-10",
+      "pool_symbol": "STX-USDCx",
+      "pair_candidates": [
+        "STX->USDh",
+        "STX->USDCx",
+        "STX->aeUSDC",
+        "USDh->STX",
+        "USDCx->STX",
+        "aeUSDC->STX",
+        "sBTC->USDh",
+        "sBTC->USDCx",
+        "sBTC->aeUSDC"
+      ],
+      "recent_volatility_pct": 13.279988,
+      "price_impact_mean": 3.180682,
+      "break_even_gap_mean": 31.333887,
+      "avg_net_edge": -25.008114,
+      "stability_score": 0,
+      "market_state": "VOLATILE"
+    }
+  ]
+}

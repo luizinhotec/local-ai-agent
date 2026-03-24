@@ -1,0 +1,324 @@
+{
+  "generatedAtUtc": "2026-03-20T06:36:12.939Z",
+  "broadcast": false,
+  "wallet": {
+    "id": "c904721f-b3c4-4056-9f67-3f806ab380b4",
+    "name": "dog-mm-mainnet",
+    "address": "SP1GNF1SGP89KT980XRTRMFKZG4H5P3CDS70Y4NRF",
+    "btcAddress": "bc1qyqdgy5zd4narvjkvdr3pdz55as448k6ahdf8xy",
+    "taprootAddress": "bc1pl3zmeju6xj4z6936qyyun77vr066xhkkd87zawecjg9mt8e7dkkqp5wctq"
+  },
+  "inputToken": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+  "outputToken": "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.token-stx-v-1-2",
+  "amountIn": "673950",
+  "ammStrategy": "best",
+  "slippageTolerance": 3,
+  "quote": {
+    "amountOut": "2845447",
+    "minAmountOut": "2760084",
+    "totalHops": 2,
+    "routePath": [
+      "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+      "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+      "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.token-stx-v-1-2"
+    ],
+    "executionPath": [
+      {
+        "pool_trait": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+        "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+        "x_token_trait": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+        "y_token_trait": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+        "expected_bin_id": 103,
+        "function_name": "swap-y-for-x",
+        "x_in": "0",
+        "y_in": "673950",
+        "x_out": "1004",
+        "y_out": "0",
+        "is_empty_swap": false
+      },
+      {
+        "pool_trait": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-sbtc-v-1-bps-15",
+        "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-sbtc-v-1-bps-15",
+        "x_token_trait": "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.token-stx-v-1-2",
+        "y_token_trait": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+        "expected_bin_id": -110,
+        "function_name": "swap-y-for-x",
+        "x_in": "0",
+        "y_in": "1004",
+        "x_out": "2845447",
+        "y_out": "0",
+        "is_empty_swap": false
+      }
+    ],
+    "executionDetails": {
+      "amm_type": "dlmm",
+      "strategy": "multi_bin",
+      "pool_id": "dlmm_2",
+      "active_bin": 103,
+      "traversal_direction": "right",
+      "bins_traversed": 2,
+      "total_bins_available": 200,
+      "fee_rate": "0.003",
+      "fee_amount": "2021",
+      "price_impact_bps": 0,
+      "price_impact_tokens": "0",
+      "execution_path": [
+        {
+          "pool_id": "dlmm_2",
+          "bin_id": 103,
+          "function_name": "swap-y-for-x",
+          "x_in": "0",
+          "y_in": "673950",
+          "x_out": "1004",
+          "y_out": "0"
+        }
+      ],
+      "max_bins_reached": false,
+      "note": "DLMM pricing - single-pass traversal complete Multi-hop route: price impact calculated at route level (hypothetical vs actual).",
+      "unique_bins_used": 2,
+      "price_impact_calculation": "route_level",
+      "hop_details": [
+        {
+          "amm_type": "dlmm",
+          "strategy": "single_bin",
+          "pool_id": "dlmm_2",
+          "active_bin": 103,
+          "traversal_direction": "right",
+          "bins_traversed": 1,
+          "total_bins_available": 200,
+          "fee_rate": "0.003",
+          "fee_amount": "2021",
+          "price_impact_bps": -36,
+          "price_impact_tokens": "3.703799810588671407835926",
+          "execution_path": [
+            {
+              "pool_id": "dlmm_2",
+              "bin_id": 103,
+              "function_name": "swap-y-for-x",
+              "x_in": "0",
+              "y_in": "673950",
+              "x_out": "1004",
+              "y_out": "0"
+            }
+          ],
+          "max_bins_reached": false,
+          "note": "DLMM pricing - single-pass traversal complete"
+        },
+        {
+          "amm_type": "dlmm",
+          "strategy": "single_bin",
+          "pool_id": "dlmm_6",
+          "active_bin": -110,
+          "traversal_direction": "right",
+          "bins_traversed": 1,
+          "total_bins_available": 2,
+          "fee_rate": "0.003",
+          "fee_amount": "3",
+          "price_impact_bps": -29,
+          "price_impact_tokens": "8528.383041018789618806674",
+          "execution_path": [
+            {
+              "pool_id": "dlmm_6",
+              "bin_id": -110,
+              "function_name": "swap-y-for-x",
+              "x_in": "0",
+              "y_in": "1004",
+              "x_out": "2845447",
+              "y_out": "0"
+            }
+          ],
+          "max_bins_reached": false,
+          "note": "DLMM pricing - single-pass traversal complete"
+        }
+      ]
+    }
+  },
+  "swap": {
+    "contract": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-swap-router-v-1-1",
+    "functionName": "swap-simple-multi",
+    "typedParameters": [
+      {
+        "type": "tuple",
+        "value": {
+          "pool-trait": {
+            "type": "contract",
+            "value": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1"
+          },
+          "x-token-trait": {
+            "type": "contract",
+            "value": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token"
+          },
+          "y-token-trait": {
+            "type": "contract",
+            "value": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx"
+          },
+          "amount": {
+            "type": "uint",
+            "value": "673950"
+          },
+          "min-received": {
+            "type": "uint",
+            "value": "973"
+          },
+          "x-for-y": {
+            "type": "false",
+            "value": "false"
+          },
+          "max-steps": {
+            "type": "uint",
+            "value": "1"
+          }
+        }
+      },
+      {
+        "type": "tuple",
+        "value": {
+          "pool-trait": {
+            "type": "contract",
+            "value": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-sbtc-v-1-bps-15"
+          },
+          "x-token-trait": {
+            "type": "contract",
+            "value": "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.token-stx-v-1-2"
+          },
+          "y-token-trait": {
+            "type": "contract",
+            "value": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token"
+          },
+          "amount": {
+            "type": "uint",
+            "value": "1004"
+          },
+          "min-received": {
+            "type": "uint",
+            "value": "2760083"
+          },
+          "x-for-y": {
+            "type": "false",
+            "value": "false"
+          },
+          "max-steps": {
+            "type": "uint",
+            "value": "1"
+          }
+        }
+      }
+    ],
+    "postConditions": [
+      {
+        "amount": "673950",
+        "sender_address": "tx-sender",
+        "condition_code": "less_than_or_equal_to",
+        "token_contract": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
+        "token_decimals": 6,
+        "token_asset_name": "usdcx-token",
+        "post_condition_type": "standard_fungible"
+      },
+      {
+        "amount": "0",
+        "sender_address": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
+        "condition_code": "greater_than_or_equal_to",
+        "token_contract": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+        "token_decimals": 8,
+        "token_asset_name": "sbtc-token",
+        "post_condition_type": "contract_fungible"
+      },
+      {
+        "amount": "0",
+        "sender_address": "tx-sender",
+        "condition_code": "greater_than_or_equal_to",
+        "token_contract": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
+        "token_decimals": 8,
+        "token_asset_name": "sbtc-token",
+        "post_condition_type": "standard_fungible"
+      },
+      {
+        "amount": "2760083",
+        "sender_address": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-stx-sbtc-v-1-bps-15",
+        "condition_code": "greater_than_or_equal_to",
+        "token_contract": "SM1793C4R5PZ4NS4VQ4WMP7SKKYVH8JZEWSZ9HCCR.token-stx-v-1-2",
+        "token_decimals": 6,
+        "token_asset_name": "unknown",
+        "post_condition_type": "contract_stx"
+      }
+    ]
+  },
+  "transaction": {
+    "nonce": "2",
+    "fee": "155018",
+    "txid": "a91ec2b9b6cdbd19ef57c209a664397ef3ecdc29bd3ee4c6a47462871f761351",
+    "hex": "0000000001040061578730b2133d2500ee358a3e7f81225b0d8dc900000000000000020000000000025d8a0001079f3b78f7ba540f6aef49c2799defbe6a1c822be57222e8b11c2b25f9ba932500dd9ba3b168d371aeb4ea77f1e14ea43f4bd69e636495a89d26adb47e67774903020000000401021661578730b2133d2500ee358a3e7f81225b0d8dc916440caf0bbc800a33993ea85c2392aeb53696608b0575736463780b75736463782d746f6b656e0500000000000a489e0103145f3ec2bf9733ae379dbfe5579d65d6cbf58865961e646c6d6d2d706f6f6c2d736274632d75736463782d762d312d6270732d3114f6decc7cfff2a413bd7cd4f53c25ad7fd1899acc0a736274632d746f6b656e0a736274632d746f6b656e03000000000000000001021661578730b2133d2500ee358a3e7f81225b0d8dc914f6decc7cfff2a413bd7cd4f53c25ad7fd1899acc0a736274632d746f6b656e0a736274632d746f6b656e0300000000000000000003145f3ec2bf9733ae379dbfe5579d65d6cbf58865961d646c6d6d2d706f6f6c2d7374782d736274632d762d312d6270732d31350300000000002a1d9302145f3ec2bf9733ae379dbfe5579d65d6cbf588659616646c6d6d2d737761702d726f757465722d762d312d3111737761702d73696d706c652d6d756c7469000000010b000000020c0000000706616d6f756e7401000000000000000000000000000a489e096d61782d737465707301000000000000000000000000000000010c6d696e2d726563656976656401000000000000000000000000000003cd0a706f6f6c2d747261697406145f3ec2bf9733ae379dbfe5579d65d6cbf58865961e646c6d6d2d706f6f6c2d736274632d75736463782d762d312d6270732d3107782d666f722d79040d782d746f6b656e2d74726169740614f6decc7cfff2a413bd7cd4f53c25ad7fd1899acc0a736274632d746f6b656e0d792d746f6b656e2d74726169740616440caf0bbc800a33993ea85c2392aeb53696608b0575736463780c0000000706616d6f756e7401000000000000000000000000000003ec096d61782d737465707301000000000000000000000000000000010c6d696e2d726563656976656401000000000000000000000000002a1d930a706f6f6c2d747261697406145f3ec2bf9733ae379dbfe5579d65d6cbf58865961d646c6d6d2d706f6f6c2d7374782d736274632d762d312d6270732d313507782d666f722d79040d782d746f6b656e2d747261697406144e91b0982dbe4ae49bb9394b1f339fb7144beee60f746f6b656e2d7374782d762d312d320d792d746f6b656e2d74726169740614f6decc7cfff2a413bd7cd4f53c25ad7fd1899acc0a736274632d746f6b656e"
+  },
+  "feeDiagnostics": {
+    "txBytes": 1006,
+    "txHexLength": 2012,
+    "feeMicroStx": 155018,
+    "feeStx": 0.155018,
+    "feePerByte": 154.0934393638171,
+    "routeHops": 2,
+    "routePathLength": 3,
+    "executionPathLength": 2,
+    "postConditionCount": 4,
+    "typedParameterCount": 2
+  },
+  "profitDiagnostics": {
+    "complete": true,
+    "missingFields": [],
+    "inputTokenDecimals": 6,
+    "outputTokenDecimals": 6,
+    "inputTokenUsd": 1,
+    "outputTokenUsd": 0.249221,
+    "stxUsd": 0.249324,
+    "inputAmountHuman": 0.67395,
+    "expectedOutputHuman": 2.845447,
+    "minOutputHuman": 2.760084,
+    "inputUsd": 0.67395,
+    "expectedOutputUsd": 0.709145146787,
+    "minOutputUsd": 0.687870894564,
+    "networkFeeMicroStx": 155018,
+    "networkFeeStx": 0.155018,
+    "networkFeeUsd": 0.038649707831999995,
+    "grossProfitUsd": 0.035195146786999976,
+    "worstCaseProfitUsd": 0.01392089456399992,
+    "netProfitUsd": -0.0034545610450000194,
+    "worstCaseNetProfitUsd": -0.024728813268000076,
+    "netProfitBps": -51.258417464203866,
+    "worstCaseNetProfitBps": -366.92355913643553,
+    "feeAsPercentOfInput": 5.734803447139995,
+    "feeAsPercentOfExpectedOutput": 5.450182943099078,
+    "feeAsPercentOfGrossProfit": 109.8154471862468,
+    "corePriceFeed": {
+      "complete": true,
+      "btcUsd": 70459,
+      "stxUsd": 0.249324,
+      "fetchedAtUtc": "2026-03-20T06:36:13.033Z",
+      "sources": {
+        "btcUsd": "coingecko",
+        "stxUsd": "coingecko"
+      },
+      "warnings": []
+    }
+  },
+  "paperMode": true,
+  "wouldBroadcast": false,
+  "decision": "INCONCLUSIVE",
+  "decisionReason": "validation_failed",
+  "decisionThresholds": {
+    "minExpectedNetUsd": 0.1,
+    "minWorstCaseNetUsd": 0,
+    "policyMinOutputRatio": 0.9699,
+    "policyMaxFeePerByte": 1000,
+    "policyMaxRouteHops": 2
+  },
+  "decisionMetrics": {
+    "profitComplete": true,
+    "validationPassed": false,
+    "netProfitUsd": -0.0034545610450000194,
+    "worstCaseNetProfitUsd": -0.024728813268000076,
+    "outputRatio": 0.9700001440898389,
+    "feePerByte": 154.0934393638171,
+    "routeHops": 2
+  },
+  "minExpectedNetUsd": 0.1,
+  "minWorstCaseNetUsd": 0
+}

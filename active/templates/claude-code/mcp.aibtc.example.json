@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "aibtc": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@aibtc/mcp-server"
+      ]
+    }
+  }
+}

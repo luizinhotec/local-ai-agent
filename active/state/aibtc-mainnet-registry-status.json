@@ -1,0 +1,42 @@
+﻿{
+    "ok":  true,
+    "checkedAtUtc":  "2026-03-17T14:46:37.6709325Z",
+    "statusCode":  200,
+    "mainnetPublished":  false,
+    "mainnet":  null,
+    "body":  {
+                 "networks":  {
+                                  "testnet":  {
+                                                  "deployer":  "ST3YT0XW92E6T2FE59B2G5N2WNNFSBZ6MZKQS5D18",
+                                                  "identity":  "ST3YT0XW92E6T2FE59B2G5N2WNNFSBZ6MZKQS5D18.identity-registry",
+                                                  "reputation":  "ST3YT0XW92E6T2FE59B2G5N2WNNFSBZ6MZKQS5D18.reputation-registry",
+                                                  "validation":  "ST3YT0XW92E6T2FE59B2G5N2WNNFSBZ6MZKQS5D18.validation-registry"
+                                              },
+                                  "mainnet":  null
+                              },
+                 "specification":  {
+                                       "discussionUrl":  "https://forum.stacks.org/t/sip-agent-coordination-framework/18650",
+                                       "erc8004Url":  "https://eips.ethereum.org/EIPS/eip-8004",
+                                       "referenceImpl":  "https://github.com/aibtcdev/erc-8004-stacks"
+                                   },
+                 "registries":  [
+                                    {
+                                        "name":  "identity",
+                                        "description":  "Agent registration with sequential IDs, metadata URIs, and operator approvals"
+                                    },
+                                    {
+                                        "name":  "reputation",
+                                        "description":  "Client feedback system with scores (0-100), tags, revocation, and SIP-018 signatures"
+                                    },
+                                    {
+                                        "name":  "validation",
+                                        "description":  "Third-party verification requests and responses for agent capabilities"
+                                    }
+                                ],
+                 "chainIds":  {
+                                  "mainnet":  1,
+                                  "testnet":  2147483648
+                              },
+                 "caip2Format":  "stacks:\u003cchainId\u003e:\u003cregistry\u003e:\u003cagentId\u003e"
+             }
+}
