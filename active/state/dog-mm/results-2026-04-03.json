@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-04-03T16:44:00Z",
+  "cycle_id": "cycle-001",
+  "action": "observe",
+  "pool": "sBTC-DOG",
+  "price_dog": 0.000021,
+  "price_sbtc": 65000,
+  "decision": "hold",
+  "reason": "spread insuficiente para entrada",
+  "pnl_simulated": 0.00
+}
