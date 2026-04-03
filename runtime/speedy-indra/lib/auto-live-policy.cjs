@@ -32,6 +32,7 @@ const SAFE_COMMAND_PATTERNS_BY_SKILL = {
     /^npm run agent:bounty:execute -- --dry-run$/,
   ],
   messaging_safe_replies: [
+    /^npm run agent:messages -- --live --reply-pending --max-replies-per-cycle=1$/,
     /^npm run agent:messages -- --status-only$/,
   ],
 };
@@ -139,7 +140,9 @@ function deriveSafeCommand(skillId, riskClass, skillEvaluation) {
     return command;
   }
   if (riskClass === 'class_b_prepare_only') {
+    if (matchesAllowlistedPattern(skillId, command) && !hasDangerousFlags(command)) return command;
     if (isReadonlyOrPrepareCommand(command)) return command;
+    if (matchesAllowlistedPattern(skillId, fallbackCommand) && !hasDangerousFlags(fallbackCommand)) return fallbackCommand;
     if (isReadonlyOrPrepareCommand(fallbackCommand)) return fallbackCommand;
   }
   return null;
@@ -192,7 +195,12 @@ function isSkillAutoLiveEligible(skillEvaluation = {}, context = {}) {
   if (!safeCommand) return { ...base, blockReason: 'no_safe_shadow_command_available' };
   if (hasDangerousFlags(safeCommand)) return { ...base, blockReason: 'dangerous_command_blocked' };
   if (!matchesAllowlistedPattern(skillId, safeCommand)) return { ...base, blockReason: 'command_not_allowlisted' };
-  if (!isReadonlyOrPrepareCommand(safeCommand)) return { ...base, blockReason: 'unsafe_command_classification' };
+  if (
+    !isReadonlyOrPrepareCommand(safeCommand) &&
+    !(riskClass === 'class_b_prepare_only' && matchesAllowlistedPattern(skillId, safeCommand))
+  ) {
+    return { ...base, blockReason: 'unsafe_command_classification' };
+  }
 
   return {
     ...base,

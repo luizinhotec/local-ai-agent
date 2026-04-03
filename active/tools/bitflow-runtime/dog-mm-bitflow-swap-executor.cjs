@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
 const { loadRuntimeEnv } = require('./runtime-env.cjs');
@@ -81,7 +82,7 @@ function percent(value, base) {
 }
 
 function loadWalletCatalog() {
-  const catalogPath = path.join(process.env.USERPROFILE, '.aibtc', 'wallets.json');
+  const catalogPath = path.join(os.homedir(), '.aibtc', 'wallets.json');
   return JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
 }
 
@@ -119,7 +120,7 @@ function chooseWallet(catalog, walletName, expectedAddress, walletId) {
 
 function decryptMnemonic(walletId, walletPassword) {
   const keystorePath = path.join(
-    process.env.USERPROFILE,
+    os.homedir(),
     '.aibtc',
     'wallets',
     walletId,

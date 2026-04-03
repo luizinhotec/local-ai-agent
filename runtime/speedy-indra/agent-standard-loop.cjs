@@ -8,6 +8,8 @@ const { readAgentState, updateAgentState, writeAgentStatus, writeWatchdog } = re
 const { recordAutoLiveBlocked, recordAutoLiveExecution } = require('./lib/auto-live-policy.cjs');
 const { sleep } = require('./lib/agent-runtime.cjs');
 const { getPolicyDecision, sanitizeValue } = require('./lib/execution-policy.cjs');
+const { loadAgentConfig } = require('./lib/agent-config.cjs');
+const { buildOperationalSummary } = require('./lib/operational-summary.cjs');
 
 const ROOT_DIR = path.resolve(__dirname, '..', '..');
 const NEXT_ACTION_SCRIPT = path.join(ROOT_DIR, 'runtime', 'speedy-indra', 'agent-next-action.cjs');
@@ -24,7 +26,7 @@ function parseArgs(argv) {
   const parsed = {
     once: argv.includes('--once'),
     intervalSeconds: 60,
-    amountSats: 3000,
+    amountSats: null,
     autoSafeActions: true,
     dryRun: argv.includes('--dry-run'),
   };
@@ -116,16 +118,62 @@ function tryParseEmbeddedJson(stdout) {
   }
 }
 
+function emitOperationalAlerts(previousState, nextState, summary, nowIso) {
+  const previousAlerts = previousState?.operationalAlerts || {};
+  const nextAction = summary?.nextAction || {};
+  const cooldown = summary?.messaging?.cooldown || {};
+
+  if (previousAlerts.lastCooldownActive && !cooldown.active && Number(cooldown.pendingReplyCount || 0) > 0) {
+    appendJsonLog('operational_alert_cooldown_released', sanitizeValue({
+      at: nowIso,
+      pendingReplyCount: cooldown.pendingReplyCount,
+      nextTarget: cooldown.nextTarget,
+      recommendedAction: nextAction.recommendedAction,
+      command: nextAction.command,
+    }));
+  }
+
+  if (!previousAlerts.lastActionableNow && nextAction.actionableNow) {
+    appendJsonLog('operational_alert_action_eligible', sanitizeValue({
+      at: nowIso,
+      recommendedAction: nextAction.recommendedAction,
+      reason: nextAction.reason,
+      command: nextAction.command,
+    }));
+  }
+
+  if (
+    nextAction.recommendedAction &&
+    previousAlerts.lastRecommendedAction &&
+    previousAlerts.lastRecommendedAction !== nextAction.recommendedAction
+  ) {
+    appendJsonLog('operational_alert_recommendation_changed', sanitizeValue({
+      at: nowIso,
+      previousRecommendedAction: previousAlerts.lastRecommendedAction,
+      recommendedAction: nextAction.recommendedAction,
+      reason: nextAction.reason,
+    }));
+  }
+}
+
 async function runOneCycle(options) {
   const cycleStartedAt = new Date().toISOString();
+  const config = loadAgentConfig();
+  const stateBeforeCycle = readAgentState();
+  const selectedAmountSats = Number(
+    options.amountSats ||
+    stateBeforeCycle.defiAmountScan?.preferredAmountSats ||
+    config.routeEvaluator?.defaultAmountSats ||
+    3000
+  );
   appendJsonLog('standard_loop_cycle_started', {
     once: options.once,
     dryRun: options.dryRun,
     autoSafeActions: options.autoSafeActions,
-    amountSats: options.amountSats,
+    amountSats: selectedAmountSats,
   });
 
-  const nextActionCommand = `"${process.execPath}" "${NEXT_ACTION_SCRIPT}" --dry-run --amount-sats=${options.amountSats} --force`;
+  const nextActionCommand = `"${process.execPath}" "${NEXT_ACTION_SCRIPT}" --dry-run --amount-sats=${selectedAmountSats} --force`;
   const decisionRun = await runCommand(nextActionCommand, COMMAND_TIMEOUT_MS);
   const decisionJson = tryParseJson(decisionRun.stdout);
 
@@ -176,7 +224,7 @@ async function runOneCycle(options) {
 
   const executionGate = getPolicyDecision(decisionJson, {
     ...options,
-    state: readAgentState(),
+    state: stateBeforeCycle,
     nowIso: cycleStartedAt,
   });
   let actionRun = null;
@@ -264,6 +312,7 @@ async function runOneCycle(options) {
     });
   }
 
+  let summaryForStatus = null;
   const finalState = updateAgentState(current => {
     current.autoLive = actionExecuted
       ? recordAutoLiveExecution(current, {
@@ -297,8 +346,53 @@ async function runOneCycle(options) {
     if (actionExecuted) {
       current.standardLoopAutoActionsCount += 1;
     }
+    summaryForStatus = buildOperationalSummary({
+      config,
+      state: current,
+      status: {
+        standardLoop: {
+          lastRunAt: current.lastStandardLoopRunAt,
+          lastAction: current.lastStandardLoopAction,
+          lastAuthorizedAction: current.lastStandardLoopAuthorizedAction,
+          lastProposedCommand: current.lastStandardLoopProposedCommand,
+          lastExecutedCommand: current.lastStandardLoopExecutedCommand,
+          lastBlockReason: current.lastStandardLoopBlockReason,
+          lastDecision: current.lastStandardLoopDecision,
+          cycles: current.standardLoopCycles,
+          autoActions: current.standardLoopAutoActionsCount,
+          autoLive: current.autoLive,
+        },
+      },
+      watchdog: {
+        status: 'completed',
+        updatedAt: cycleStartedAt,
+        stale: false,
+      },
+      nowIso: cycleStartedAt,
+    });
+    current.operationalSummary = sanitizeValue(summaryForStatus);
+    current.operationalAlerts = {
+      ...(current.operationalAlerts || {}),
+      lastCooldownActive: Boolean(summaryForStatus.messaging?.cooldown?.active),
+      lastCooldownReleasedAt:
+        current.operationalAlerts?.lastCooldownActive && !summaryForStatus.messaging?.cooldown?.active
+          ? cycleStartedAt
+          : current.operationalAlerts?.lastCooldownReleasedAt || null,
+      lastActionableNow: Boolean(summaryForStatus.nextAction?.actionableNow),
+      lastActionEligibleAt:
+        !current.operationalAlerts?.lastActionableNow && summaryForStatus.nextAction?.actionableNow
+          ? cycleStartedAt
+          : current.operationalAlerts?.lastActionEligibleAt || null,
+      lastRecommendedAction: summaryForStatus.nextAction?.recommendedAction || null,
+      lastRecommendedActionAt:
+        current.operationalAlerts?.lastRecommendedAction !== summaryForStatus.nextAction?.recommendedAction
+          ? cycleStartedAt
+          : current.operationalAlerts?.lastRecommendedActionAt || null,
+    };
     return current;
   });
+
+  emitOperationalAlerts(stateBeforeCycle, finalState, summaryForStatus, cycleStartedAt);
 
   writeAgentStatus({
     checkedAt: new Date().toISOString(),
@@ -314,6 +408,7 @@ async function runOneCycle(options) {
       autoActions: finalState.standardLoopAutoActionsCount,
       autoLive: finalState.autoLive,
     },
+    operationalSummary: sanitizeValue(summaryForStatus),
   });
   writeWatchdog({
     status: 'completed',
@@ -321,6 +416,7 @@ async function runOneCycle(options) {
     staleAfterSec: Math.max(120, options.intervalSeconds * 3),
     action: finalState.lastStandardLoopAction,
   });
+  appendJsonLog('operational_summary_updated', sanitizeValue(summaryForStatus));
   appendJsonLog('standard_loop_cycle_completed', {
     ok: true,
     recommendedAction: decisionJson.recommendedAction,
@@ -352,6 +448,8 @@ async function main() {
     dryRun: options.dryRun,
     intervalSeconds: options.intervalSeconds,
     amountSats: options.amountSats,
+    effectiveAmountSats:
+      options.amountSats || readAgentState().defiAmountScan?.preferredAmountSats || loadAgentConfig().routeEvaluator?.defaultAmountSats || 3000,
     autoSafeActions: options.autoSafeActions,
     lockId: lock.metadata.lockId,
   });

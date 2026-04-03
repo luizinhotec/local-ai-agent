@@ -1,4 +1,5 @@
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
 const ecc = require('tiny-secp256k1');
@@ -73,7 +74,7 @@ function readJsonIfExists(filePath) {
 }
 
 function getWalletCatalogPath() {
-  return path.join(process.env.USERPROFILE || '', '.aibtc', 'wallets.json');
+  return path.join(os.homedir(), '.aibtc', 'wallets.json');
 }
 
 function readWalletCatalog() {
@@ -128,7 +129,7 @@ function findWalletMatch(config) {
 
 function decryptMnemonic(walletId, walletPassword) {
   const keystorePath = path.join(
-    process.env.USERPROFILE || '',
+    os.homedir(),
     '.aibtc',
     'wallets',
     walletId,
@@ -433,7 +434,7 @@ async function checkNetworkStatus() {
 function buildDependencyReadiness(walletMatch) {
   const catalogPath = getWalletCatalogPath();
   const keystorePath = walletMatch.ok
-    ? path.join(process.env.USERPROFILE || '', '.aibtc', 'wallets', walletMatch.wallet.id, 'keystore.json')
+    ? path.join(os.homedir(), '.aibtc', 'wallets', walletMatch.wallet.id, 'keystore.json')
     : null;
   return {
     catalogPresent: fs.existsSync(catalogPath),

@@ -5,6 +5,7 @@ const { readAgentState, readAgentStatus, readWatchdog } = require('./lib/agent-s
 const { readLock } = require('./lib/agent-lock.cjs');
 const { readTail } = require('./lib/agent-logger.cjs');
 const { loadActiveOpsSummary } = require('./lib/agent-runtime.cjs');
+const { buildOperationalSummary } = require('./lib/operational-summary.cjs');
 
 function main() {
   const config = loadAgentConfig();
@@ -17,16 +18,24 @@ function main() {
   const watchdogStale =
     watchdogUpdatedAtMs > 0 &&
     Date.now() - watchdogUpdatedAtMs > config.heartbeat.watchdogStaleSec * 1000;
+  const effectiveWatchdog = {
+    ...watchdog,
+    stale: watchdogStale,
+  };
+  const operationalSummary = buildOperationalSummary({
+    config,
+    state,
+    status,
+    watchdog: effectiveWatchdog,
+  });
 
   const payload = {
     checkedAt: new Date().toISOString(),
     featureFlags: config.featureFlags,
     state,
     status,
-    watchdog: {
-      ...watchdog,
-      stale: watchdogStale,
-    },
+    watchdog: effectiveWatchdog,
+    operationalSummary,
     lock,
     activeOpsSummary: activeOpsSummary
       ? {

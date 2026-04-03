@@ -19,7 +19,7 @@ function main() {
     }
   );
   assert.equal(messagingAllowed.authorized, true);
-  assert.equal(messagingAllowed.commandToExecute, 'npm run agent:messages -- --status-only');
+  assert.equal(messagingAllowed.commandToExecute, 'npm run agent:messages -- --live --reply-pending --max-replies-per-cycle=1');
   assert.equal(messagingAllowed.autoLiveClass, 'class_b_prepare_only');
 
   const quoteAllowed = __test.getPolicyDecision(
@@ -103,10 +103,28 @@ function main() {
   assert.equal(nonAllowlistedBlocked.authorized, false);
   assert.ok(['command_not_allowlisted', 'no_safe_shadow_command_available'].includes(nonAllowlistedBlocked.blockReason));
 
+  const messagingIgnoresChampionshipGate = __test.getPolicyDecision(
+    {
+      autoLiveSkillId: 'messaging_safe_replies',
+      recommendedAction: 'messaging_only',
+      recommendedCommand: 'npm run agent:messages -- --live --reply-pending --max-replies-per-cycle=1',
+      safetyLevel: 'safe_live_reply',
+      approvalRequired: false,
+      fallbackCommand: 'npm run agent:messages -- --status-only',
+      championshipGateEligible: false,
+      championshipGateBlockReason: 'decision_not_pass',
+    },
+    {
+      autoSafeActions: true,
+      dryRun: false,
+    }
+  );
+  assert.equal(messagingIgnoresChampionshipGate.authorized, true);
+
   console.log(JSON.stringify({
     ok: true,
     test: 'standard-loop-policy',
-    assertions: 6,
+    assertions: 7,
   }, null, 2));
 }
 

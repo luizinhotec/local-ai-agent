@@ -4,6 +4,7 @@ const { appendJsonLog } = require('./lib/agent-logger.cjs');
 const { readAgentState, updateAgentState, writeAgentStatus } = require('./lib/agent-state.cjs');
 const { materializeAutoLiveState } = require('./lib/auto-live-policy.cjs');
 const { getPolicyDecision } = require('./lib/execution-policy.cjs');
+const { loadAgentConfig } = require('./lib/agent-config.cjs');
 const { runRouteEvaluatorSkill } = require('./skill-route-evaluator.cjs');
 
 function parseBoolean(value, fallback = false) {
@@ -146,7 +147,14 @@ async function main() {
   const statusOnly = parseBoolean(flags.statusOnly, false);
   const dryRun = flags.dryRun === undefined ? true : parseBoolean(flags.dryRun, true);
   const force = parseBoolean(flags.force, false);
-  const amountSats = Number(flags['amount-sats'] || 3000);
+  const config = loadAgentConfig();
+  const currentState = readAgentState();
+  const amountSats = Number(
+    flags['amount-sats'] ||
+    currentState.defiAmountScan?.preferredAmountSats ||
+    config.routeEvaluator?.defaultAmountSats ||
+    3000
+  );
 
   appendJsonLog('next_action_started', {
     statusOnly,
@@ -155,7 +163,6 @@ async function main() {
     amountSats,
   });
 
-  const currentState = readAgentState();
   let decision = null;
 
   if (
@@ -257,6 +264,7 @@ async function main() {
       manualPriorityCommand: suggestion.manualPrioritySkill?.command || null,
       manualPriorityScore: suggestion.manualPrioritySkill?.score || 0,
       manualPriorityWhyNow: suggestion.manualPrioritySkill?.whyNow || null,
+      preferredDefiAmountSats: current.defiAmountScan?.preferredAmountSats || null,
     });
     current.lastNextActionCommand = suggestion.recommendedCommand;
     current.lastNextActionAt = nowIso;
@@ -288,6 +296,7 @@ async function main() {
       manualPriorityCommand: suggestion.manualPrioritySkill?.command || null,
       manualPriorityScore: suggestion.manualPrioritySkill?.score || 0,
       manualPriorityWhyNow: suggestion.manualPrioritySkill?.whyNow || null,
+      preferredDefiAmountSats: finalState.defiAmountScan?.preferredAmountSats || null,
       source: decision.source,
     },
   });
@@ -310,6 +319,7 @@ async function main() {
     manualPriorityCommand: suggestion.manualPrioritySkill?.command || null,
     manualPriorityScore: suggestion.manualPrioritySkill?.score || 0,
     manualPriorityWhyNow: suggestion.manualPrioritySkill?.whyNow || null,
+    preferredDefiAmountSats: finalState.defiAmountScan?.preferredAmountSats || null,
     source: decision.source,
   }));
 
@@ -332,6 +342,7 @@ async function main() {
     manualPriorityCommand: suggestion.manualPrioritySkill?.command || null,
     manualPriorityScore: suggestion.manualPrioritySkill?.score || 0,
     manualPriorityWhyNow: suggestion.manualPrioritySkill?.whyNow || null,
+    preferredDefiAmountSats: finalState.defiAmountScan?.preferredAmountSats || null,
     autoExecutableByStandardLoop: autoExecutionPolicy.authorized,
     autoExecutionBlockReason: autoExecutionPolicy.blockReason,
     autoExecutionPolicy: autoExecutionPolicy.policy,

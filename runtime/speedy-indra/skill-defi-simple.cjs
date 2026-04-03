@@ -75,7 +75,7 @@ function readJsonIfExists(filePath) {
 }
 
 function getWalletCatalogPath() {
-  return path.join(process.env.USERPROFILE || '', '.aibtc', 'wallets.json');
+  return path.join(os.homedir(), '.aibtc', 'wallets.json');
 }
 
 function findWalletMatch(config) {
@@ -943,7 +943,7 @@ async function runSbtcToUsdcx(options = {}) {
     });
   }
 
-  const previousFailures = Number(previousState.consecutiveDefiFailures || previousState.defiFailed || 0);
+  const previousFailures = Number(previousState.consecutiveDefiFailures || 0);
   const walletMatch = findWalletMatch(config);
   const balances = await checkStacksBalances(walletMatch.wallet?.stxAddress || config.stxAddress);
   const networkStatus = await checkNetworkStatus();
@@ -1191,8 +1191,6 @@ async function runSbtcToUsdcx(options = {}) {
           current.consecutiveDefiFailures += 1;
         } else if (liveRequested && execution.status === 'skipped') {
           current.lastDefiLiveOutcome = execution.reason || execution.status;
-        } else if (plan.knownBlockers.length > 0) {
-          current.defiFailed += 1;
         }
       }
       current.skills.defiSimple = {

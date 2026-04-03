@@ -1,4 +1,5 @@
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { loadAgentConfig } = require('./lib/agent-config.cjs');
 const { appendJsonLog } = require('./lib/agent-logger.cjs');
@@ -53,7 +54,7 @@ function readJsonIfExists(filePath) {
 }
 
 function getWalletCatalogPath() {
-  return path.join(process.env.USERPROFILE || '', '.aibtc', 'wallets.json');
+  return path.join(os.homedir(), '.aibtc', 'wallets.json');
 }
 
 function findWalletMatch(config) {

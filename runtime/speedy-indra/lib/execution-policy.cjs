@@ -1,5 +1,20 @@
 const { isSkillAutoLiveEligible } = require('./auto-live-policy.cjs');
 
+function inferAutoLiveSkillId(suggestion = {}) {
+  if (suggestion?.autoLiveSkillId) return suggestion.autoLiveSkillId;
+  if (suggestion?.skillId) return suggestion.skillId;
+  switch (String(suggestion?.recommendedAction || '')) {
+    case 'messaging_only':
+      return 'messaging_safe_replies';
+    case 'quote_only':
+      return 'defi_quote_monitor';
+    case 'defi_swap_execute':
+      return 'defi_swap_execute';
+    default:
+      return null;
+  }
+}
+
 function sanitizeValue(value) {
   if (Array.isArray(value)) return value.map(item => sanitizeValue(item));
   if (!value || typeof value !== 'object') return value;
@@ -19,7 +34,11 @@ function getPolicyDecision(suggestion, options = {}) {
   const recommendedCommand = suggestion?.recommendedCommand ? String(suggestion.recommendedCommand) : null;
   const safetyLevel = String(suggestion?.safetyLevel || '');
   const approvalRequired = Boolean(suggestion?.approvalRequired);
-  const autoLiveDecision = isSkillAutoLiveEligible(suggestion, {
+  const normalizedSuggestion = {
+    ...suggestion,
+    autoLiveSkillId: inferAutoLiveSkillId(suggestion),
+  };
+  const autoLiveDecision = isSkillAutoLiveEligible(normalizedSuggestion, {
     autoSafeActions: options.autoSafeActions,
     dryRun: options.dryRun,
     state: options.state,
@@ -42,7 +61,7 @@ function getPolicyDecision(suggestion, options = {}) {
     autoLiveClass: autoLiveDecision.autoLiveClass,
     autoLiveBlockReason: autoLiveDecision.blockReason,
     autoLivePolicyVersion: autoLiveDecision.autoLivePolicyVersion,
-    autoLiveSkillId: autoLiveDecision.skillId || suggestion?.autoLiveSkillId || null,
+    autoLiveSkillId: autoLiveDecision.skillId || normalizedSuggestion.autoLiveSkillId || null,
     estimatedFeeSats: autoLiveDecision.estimatedFeeSats || 0,
     estimatedSpendSats: autoLiveDecision.estimatedSpendSats || 0,
   };
@@ -54,6 +73,15 @@ function getPolicyDecision(suggestion, options = {}) {
       blockReason: 'wait_recommended',
       autoLiveEligible: false,
       autoLiveBlockReason: 'wait_recommended',
+    };
+  }
+  if (options.dryRun) {
+    return {
+      ...base,
+      authorized: false,
+      blockReason: 'dry_run_loop',
+      autoLiveEligible: false,
+      autoLiveBlockReason: 'dry_run_loop',
     };
   }
   if (!['messaging_only', 'quote_only', 'defi_swap_execute', 'wait'].includes(recommendedAction)) {
@@ -74,7 +102,11 @@ function getPolicyDecision(suggestion, options = {}) {
       autoLiveBlockReason: 'no_recommended_command',
     };
   }
-  if (suggestion?.championshipGateEligible === false && suggestion?.championshipGateBlockReason) {
+  if (
+    ['quote_only', 'defi_swap_execute'].includes(recommendedAction) &&
+    suggestion?.championshipGateEligible === false &&
+    suggestion?.championshipGateBlockReason
+  ) {
     return {
       ...base,
       authorized: false,

@@ -599,6 +599,9 @@ function updateSkillState(previous, evaluation, nowIso) {
     ...createDefaultSkillState(evaluation.id),
     ...(previous || {}),
   };
+  const substantiveBlockers = (evaluation.blockers || []).filter(
+    blocker => blocker && blocker !== 'circuit_breaker_open'
+  );
 
   next.evaluations += 1;
   next.baseScore = evaluation.baseScore;
@@ -619,6 +622,13 @@ function updateSkillState(previous, evaluation, nowIso) {
   next.manualApprovalRequired = Boolean(evaluation.approvalRequired);
   next.autoExecutable = Boolean(evaluation.autoExecutable);
 
+  // Heal legacy self-fed breaker state that was opened only by the synthetic breaker blocker itself.
+  if (next.breakerReason === 'circuit_breaker_open') {
+    next.consecutiveFailures = 0;
+    next.breakerOpenUntil = null;
+    next.breakerReason = null;
+  }
+
   if (evaluation.usefulSignalFound) {
     next.lastUsefulSignalAt = nowIso;
   }
@@ -627,11 +637,11 @@ function updateSkillState(previous, evaluation, nowIso) {
     next.consecutiveFailures = 0;
     next.breakerOpenUntil = null;
     next.breakerReason = null;
-  } else if (['blocked', 'source_unavailable'].includes(evaluation.status) && evaluation.blockers.length > 0) {
+  } else if (['blocked', 'source_unavailable'].includes(evaluation.status) && substantiveBlockers.length > 0) {
     next.consecutiveFailures += 1;
     if (next.consecutiveFailures >= 3) {
       next.breakerOpenUntil = new Date(Date.now() + 30 * 60 * 1000).toISOString();
-      next.breakerReason = evaluation.blockers[0];
+      next.breakerReason = substantiveBlockers[0];
     }
   }
 

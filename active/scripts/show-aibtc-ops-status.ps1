@@ -116,6 +116,7 @@ function Build-StatusFromHelper {
             stale = $HelperStatus.registry.stale
             snapshotAgeMinutes = $HelperStatus.registry.snapshotAgeMinutes
         }
+        hermeticaDirectRedeem = Get-HermeticaRedeemGuard
     }
 }
 
@@ -227,6 +228,31 @@ function Get-RegistrySummary {
     }
 }
 
+function Get-HermeticaRedeemGuard {
+    $guardFile = Join-Path $PSScriptRoot "..\..\state\speedy-indra\hermetica-direct-redeem-guard.json"
+    if (-not (Test-Path $guardFile)) {
+        return [pscustomobject]@{
+            blocked = $false
+            reason = "none"
+            lastDetectedError = $null
+            sinceUtc = $null
+            cooldownUntilUtc = $null
+        }
+    }
+
+    try {
+        return Get-Content -Path $guardFile -Raw | ConvertFrom-Json
+    } catch {
+        return [pscustomobject]@{
+            blocked = $false
+            reason = "none"
+            lastDetectedError = $null
+            sinceUtc = $null
+            cooldownUntilUtc = $null
+        }
+    }
+}
+
 $helperStatus = Get-OpsStatusFromHelper
 $result = Build-StatusFromHelper -HelperStatus $helperStatus
 
@@ -275,6 +301,7 @@ if (-not $result) {
             source = $registry.source
             checkedAtLocal = if ($registry.checkedAtUtc) { Convert-ToLocalString $registry.checkedAtUtc } else { $null }
         }
+        hermeticaDirectRedeem = Get-HermeticaRedeemGuard
     }
 }
 
@@ -299,6 +326,16 @@ if ($Plain) {
         Write-Host "registry snapshot/live em: $($result.registry.checkedAtLocal) [$($result.registry.source)]"
     }
     Write-Host "ultimo evento local: $($result.summary.latestLocalEvent)"
+    if ($result.hermeticaDirectRedeem) {
+        Write-Host "HERMETICA_DIRECT_REDEEM_BLOCKED: $($result.hermeticaDirectRedeem.blocked)"
+        Write-Host "HERMETICA_DIRECT_REDEEM_REASON: $($result.hermeticaDirectRedeem.reason)"
+        Write-Host "HERMETICA_DIRECT_REDEEM_SOURCE: $($result.hermeticaDirectRedeem.sourceOfBlock)"
+        Write-Host "HERMETICA_DIRECT_REDEEM_LAST_ERROR: $($result.hermeticaDirectRedeem.lastDetectedError)"
+        Write-Host "HERMETICA_DIRECT_REDEEM_COOLDOWN_UNTIL: $($result.hermeticaDirectRedeem.cooldownUntilUtc)"
+        $redeemAction = 'direct_redeem_allowed'
+        if ($result.hermeticaDirectRedeem.blocked) { $redeemAction = 'USE_FALLBACK' }
+        Write-Host "HERMETICA_DIRECT_REDEEM_ACTION: $redeemAction"
+    }
     exit 0
 }
 

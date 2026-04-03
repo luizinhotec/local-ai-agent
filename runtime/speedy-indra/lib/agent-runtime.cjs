@@ -85,6 +85,13 @@ function ensureHelper(config = loadAgentConfig()) {
       reason: 'helper_ensure_disabled',
     };
   }
+  if (process.platform !== 'win32') {
+    return {
+      ok: true,
+      skipped: true,
+      reason: 'helper_ensure_not_supported_on_platform',
+    };
+  }
   const result = spawnSync(
     'powershell',
     [

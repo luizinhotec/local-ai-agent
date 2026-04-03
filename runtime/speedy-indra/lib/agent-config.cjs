@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { ensureManagedWalletSession } = require('./windows-credential-loader.cjs');
 
 const DEFAULT_AGENT_NAME = 'Speedy Indra';
 const DEFAULT_BTC_ADDRESS = 'bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9';
@@ -47,6 +48,7 @@ function ensureLocalEnvLoaded() {
   const rootDir = path.resolve(__dirname, '..', '..', '..');
   loadDotEnvFile(path.join(rootDir, '.env'));
   loadDotEnvFile(path.join(rootDir, '.env.local'));
+  ensureManagedWalletSession();
   envLoaded = true;
 }
 
@@ -77,6 +79,13 @@ function readCsvEnv(name) {
     .split(',')
     .map(item => item.trim())
     .filter(Boolean);
+}
+
+function readNumberListEnv(name, fallback = []) {
+  const values = readCsvEnv(name)
+    .map(item => Number(item))
+    .filter(item => Number.isFinite(item) && item > 0);
+  return values.length > 0 ? values : fallback;
 }
 
 function readJsonEnv(name, fallback) {
@@ -176,6 +185,8 @@ function loadAgentConfig() {
       autoCheckEnabled: readBooleanEnv('ENABLE_AUTO_DEFI_CHECK', false),
     },
     routeEvaluator: {
+      defaultAmountSats: readNumberEnv('SPEEDY_DEFAULT_AMOUNT_SATS', 3000),
+      amountCandidates: readNumberListEnv('SPEEDY_AMOUNT_CANDIDATES_SATS', [500, 1000, 1500, 2000, 2500, 3000]),
       policyDefaults: {
         decision: {
           minOutputRatio: readNumberEnv('SPEEDY_DECISION_MIN_OUTPUT_RATIO', 0.97),

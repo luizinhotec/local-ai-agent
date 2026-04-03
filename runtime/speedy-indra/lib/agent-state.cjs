@@ -117,6 +117,13 @@ function defaultAgentState() {
     defiKnownBlockers: [],
     defiLastPlan: null,
     defiLastQuoteSummary: null,
+    defiAmountScan: {
+      lastScanAt: null,
+      preferredAmountSats: null,
+      preferredReason: null,
+      preferredPassNow: false,
+      amounts: [],
+    },
     routeEvaluatorStatus: {
       implemented: false,
       status: 'not_checked',
@@ -172,6 +179,18 @@ function defaultAgentState() {
       lastAutoBlockedReason: null,
       policyVersion: 'auto_live_policy_v1',
       executionHistory: [],
+    },
+    operationalAlerts: {
+      lastCooldownActive: false,
+      lastCooldownReleasedAt: null,
+      lastActionableNow: false,
+      lastActionEligibleAt: null,
+      lastRecommendedAction: null,
+      lastRecommendedActionAt: null,
+    },
+    operationalSummary: {
+      generatedAt: null,
+      supervisorLine: null,
     },
     bountyExecution: {
       preparedCandidates: [],
@@ -348,7 +367,9 @@ function readJson(filePath, fallback) {
 
 function writeJson(filePath, value) {
   ensureDir(path.dirname(filePath));
-  fs.writeFileSync(filePath, JSON.stringify(value, null, 2));
+  const tmpPath = filePath + '.tmp';
+  fs.writeFileSync(tmpPath, JSON.stringify(value, null, 2));
+  fs.renameSync(tmpPath, filePath);
 }
 
 function readAgentState() {
@@ -378,7 +399,10 @@ function readAgentState() {
     },
     skillBuilder: mergeSkillBuilderState(current.skillBuilder),
     autoLive: { ...defaults.autoLive, ...(current.autoLive || {}) },
+    operationalAlerts: { ...defaults.operationalAlerts, ...(current.operationalAlerts || {}) },
+    operationalSummary: { ...defaults.operationalSummary, ...(current.operationalSummary || {}) },
     bountyExecution: { ...defaults.bountyExecution, ...(current.bountyExecution || {}) },
+    defiAmountScan: { ...defaults.defiAmountScan, ...(current.defiAmountScan || {}) },
     skills: {
       ...defaults.skills,
       ...(current.skills || {}),
@@ -435,7 +459,11 @@ function updateAgentState(mutator) {
 }
 
 function writeAgentStatus(status) {
-  writeJson(AGENT_STATUS_PATH, status);
+  const current = readJson(AGENT_STATUS_PATH, {});
+  writeJson(AGENT_STATUS_PATH, {
+    ...current,
+    ...(status || {}),
+  });
 }
 
 function readAgentStatus() {

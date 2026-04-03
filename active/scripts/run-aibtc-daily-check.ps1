@@ -23,6 +23,11 @@ if ($OpenDashboard) {
 
 powershell @startArgs | Out-Host
 
+$guardScript = Join-Path $PSScriptRoot "check-hermetica-direct-redeem-guard.ps1"
+Write-Host "" 
+Write-Host "Verificando guard de Hermetica direct redeem..." -ForegroundColor Cyan
+powershell -ExecutionPolicy Bypass -File $guardScript | Out-Host
+
 Write-Host ""
 Write-Host "Atualizando snapshot do registry..." -ForegroundColor Cyan
 powershell -ExecutionPolicy Bypass -File $registryWatchScript -IntervalSeconds 30 -Iterations 1 | Out-Host

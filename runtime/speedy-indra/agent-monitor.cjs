@@ -57,6 +57,16 @@ function emit(level, message, payload = null, beep = false) {
   }
 }
 
+function formatMinutes(value) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return null;
+  if (parsed < 1) return '<1 min';
+  if (parsed < 60) return `${Math.ceil(parsed)} min`;
+  const hours = Math.floor(parsed / 60);
+  const minutes = Math.ceil(parsed % 60);
+  return minutes > 0 ? `${hours}h ${minutes}min` : `${hours}h`;
+}
+
 function safeParseJson(line) {
   try {
     return JSON.parse(line);
@@ -119,6 +129,61 @@ function classifyRecord(record, monitorState, options) {
   if (!record) return;
   monitorState.lastEventAt = Date.now();
   monitorState.staleAlertSent = false;
+
+  if (record.type === 'operational_alert_cooldown_released') {
+    emit('WARNING', 'cooldown de mensagem liberado', {
+      pendingReplyCount: record.pendingReplyCount,
+      nextTarget: record.nextTarget?.peerDisplayName || record.nextTarget?.target || null,
+      recommendedAction: record.recommendedAction || null,
+    }, options.beep);
+  }
+
+  if (record.type === 'operational_alert_action_eligible') {
+    emit('ALERT', 'acao segura elegivel agora', {
+      recommendedAction: record.recommendedAction,
+      command: record.command || null,
+    }, options.beep);
+  }
+
+  if (record.type === 'operational_alert_recommendation_changed') {
+    emit('INFO', 'recomendacao operacional mudou', {
+      previousRecommendedAction: record.previousRecommendedAction || null,
+      recommendedAction: record.recommendedAction || null,
+      reason: record.reason || null,
+    }, false);
+  }
+
+  if (record.type === 'operational_summary_updated') {
+    const supervisorLine = record.supervisorLine || null;
+    const cooldown = record.messaging?.cooldown || null;
+    const summaryChanged = supervisorLine && supervisorLine !== monitorState.lastSupervisorLine;
+    if (summaryChanged) {
+      monitorState.lastSupervisorLine = supervisorLine;
+      emit('INFO', 'resumo operacional', {
+        summary: supervisorLine,
+      }, false);
+    }
+
+    const cooldownKey = JSON.stringify({
+      active: Boolean(cooldown?.active),
+      availableAt: cooldown?.availableAt || null,
+      pendingReplyCount: cooldown?.pendingReplyCount || 0,
+    });
+    if (cooldownKey !== monitorState.lastCooldownSnapshotKey) {
+      monitorState.lastCooldownSnapshotKey = cooldownKey;
+      if (cooldown?.active) {
+        emit('INFO', 'mensagem em cooldown', {
+          target: cooldown?.nextTarget?.peerDisplayName || cooldown?.nextTarget?.target || null,
+          remaining: formatMinutes(cooldown?.remainingMin),
+          availableAt: cooldown?.availableAt || null,
+        }, false);
+      } else if ((cooldown?.pendingReplyCount || 0) > 0) {
+        emit('WARNING', 'mensagem livre para resposta', {
+          pendingReplyCount: cooldown.pendingReplyCount,
+        }, options.beep);
+      }
+    }
+  }
 
   const recommendedAction =
     record.recommendedAction ||
@@ -209,6 +274,8 @@ async function main() {
   const monitorState = {
     lastEventAt: null,
     lastRecommendedAction: null,
+    lastSupervisorLine: null,
+    lastCooldownSnapshotKey: null,
     staleAlertSent: false,
     breakerOpen: false,
     lastAlertAtByKey: {},

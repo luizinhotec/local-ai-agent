@@ -4,6 +4,25 @@
 
 Este roteiro existe para a rotina mais curta possivel do agente.
 
+## Protecao local: Hermetica direct_redeem
+
+- Ao detectar `ERR_NOT_PROTOCOL` / `missing_protocol_role` / `vault-hbtc-v1` sem role PROTOCOL / registry indisponivel:
+  - Bloquear `direct_redeem` localmente
+  - Marcar `HERMETICA_DIRECT_REDEEM_BLOCKED` em estado local
+  - Recomendacao: `bridge_recovery` ou `manual_bridge_fallback`
+  - Aplicar cooldown por default 24h
+- Comando de verificacao/guard:
+  - `powershell -ExecutionPolicy Bypass -File active/scripts/check-hermetica-direct-redeem-guard.ps1`
+- Comando de desbloqueio manual:
+  - `powershell -ExecutionPolicy Bypass -File active/scripts/check-hermetica-direct-redeem-guard.ps1 -ForceUnblock`
+
+## Quando NÃO usar ForceUnblock
+
+- Não liberar `direct_redeem` se o registro do Jacen esteja ainda indisponível (`registry mainnet indisponivel`).
+- Não usar quando houver ocorrências de `ERR_NOT_PROTOCOL` ou `missing_protocol_role` no histórico local e não foram corrigidas on-chain.
+- Não usar se não houver evidência clara e recente de que o `vault-hbtc-v1` agora possui role `PROTOCOL` em `hq-v1`.
+- Em vez disso, investigue `bridge_recovery` / `manual_bridge_fallback` e confirme operação segura antes de tentar.
+
 Use quando voce so quiser:
 
 - checar se esta tudo saudavel

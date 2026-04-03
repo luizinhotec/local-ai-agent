@@ -1,13 +1,459 @@
 {
-  "checkedAt": "2026-03-23T10:51:14.160Z",
-  "blsm": {
-    "status": "evaluated",
-    "mode": "status-only",
-    "poolId": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1",
-    "positionKey": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1:SP1GNF1SGP89KT980XRTRMFKZG4H5P3CDS70Y4NRF",
-    "strategyShape": "spot",
-    "recommendedAction": "RECENTER",
-    "reasonCode": "out_of_range_with_positive_edge",
-    "estimatedNetReturnUsd": 3.282061
+  "checkedAt": "2026-04-03T02:34:11.300Z",
+  "nextAction": {
+    "recommendedAction": "quote_only",
+    "reason": "defi_quote_monitoring_available",
+    "recommendedCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
+    "commandClass": "read_only_quote",
+    "safetyLevel": "safe_read_only",
+    "estimatedCostClass": "zero",
+    "fallbackCommand": "npm run agent:status",
+    "approvalRequired": false,
+    "autoExecutableByStandardLoop": false,
+    "autoExecutionBlockReason": "decision_not_pass",
+    "autoExecutionPolicy": "standard_loop_execution_policy_v1",
+    "autoLiveEligible": false,
+    "autoLiveClass": "class_a_safe_readonly",
+    "autoLiveBlockReason": "decision_not_pass",
+    "autoLivePolicyVersion": "auto_live_policy_v1",
+    "championshipGateEligible": false,
+    "championshipGateBlockReason": "decision_not_pass",
+    "manualPrioritySkill": {
+      "skillId": "bounty_interactions",
+      "label": "Bounties",
+      "category": "bounty",
+      "reason": "prepared_bounty_candidate_ready",
+      "whyNow": "prepared_bounty_candidate_ready",
+      "command": "npm run agent:bounty:execute -- --dry-run",
+      "fallbackCommand": "npm run agent:bounty:scan -- --dry-run",
+      "approvalRequired": false,
+      "autoExecutable": false,
+      "score": 74
+    },
+    "manualPriorityReason": "prepared_bounty_candidate_ready",
+    "manualPriorityCommand": "npm run agent:bounty:execute -- --dry-run",
+    "manualPriorityScore": 74,
+    "manualPriorityWhyNow": "prepared_bounty_candidate_ready",
+    "preferredDefiAmountSats": 3000,
+    "source": "fresh_evaluation"
+  },
+  "messaging": {
+    "unreadCount": 0,
+    "queueDepth": 0,
+    "lastMessagingRunAt": "2026-04-03T02:32:53.630Z",
+    "lastReplyAt": "2026-04-01T03:50:24.957Z",
+    "lastReplyTargets": [
+      {
+        "at": "2026-03-21T03:13:20.931Z",
+        "messageId": "msg_1773675285623_c0701fce-5d48-4251-95af-457303a65b19",
+        "peerBtcAddress": "bc1qqaxq5vxszt0lzmr9gskv4lcx7jzrg772s4vxpp",
+        "peerDisplayName": "Secret Mars"
+      },
+      {
+        "at": "2026-03-21T05:31:45.986Z",
+        "messageId": "msg_1773466197746_e9d341b1-9f81-4d9b-9e42-05a163f2aad2",
+        "peerBtcAddress": "bc1qwpxqtc3zsswz4v870pcgq02n8m5yj39ahg2zfe",
+        "peerDisplayName": "Icy Lance"
+      },
+      {
+        "at": "2026-04-01T01:45:17.356Z",
+        "messageId": "msg_1774400294706_92eb3585-2800-4ed0-971c-e9e2698e1d52",
+        "peerBtcAddress": "bc1qxn29uthvpsf8h0h7re0jhzf0tvqqcuuuux8w9f",
+        "peerDisplayName": "Graphite Elan"
+      },
+      {
+        "at": "2026-04-01T01:45:31.317Z",
+        "messageId": "msg_1774393078889_721f4f03-8c1c-427a-8e8e-8b56cbdf1ab0",
+        "peerBtcAddress": "bc1qyu22hyqr406pus0g9jmfytk4ss5z8qsje74l76",
+        "peerDisplayName": "Tiny Marten"
+      },
+      {
+        "at": "2026-04-01T03:50:24.957Z",
+        "messageId": "msg_1774364430073_70766d53-3b35-4f55-b814-fde406834fc9",
+        "peerBtcAddress": "bc1qxn29uthvpsf8h0h7re0jhzf0tvqqcuuuux8w9f",
+        "peerDisplayName": "Graphite Elan"
+      }
+    ],
+    "policyMode": "safe_replies_only",
+    "activePolicy": "safe_replies_only",
+    "lastActionType": "status",
+    "lastActionResult": "status_completed",
+    "lastPaymentTxId": null,
+    "experimental": false,
+    "replyTemplateStats": {
+      "default_ad70b41b": 1,
+      "default_b634c74a": 2
+    },
+    "replySuccessRate": 1,
+    "detectedAchievements": [],
+    "lastOutcome": "completed"
+  },
+  "wallet": {
+    "implemented": true,
+    "ready": false,
+    "status": "partial",
+    "wallet": {
+      "id": "de1522df-bf68-461c-958c-2b7cb14b14e4",
+      "name": "agent-mainnet",
+      "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+      "btcAddress": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
+      "taprootAddress": "bc1ptnnv7qu30adkszyhet9vwef977em55svhlm6js2tfr8qm92neglqzwxz9s",
+      "network": "mainnet",
+      "createdAt": "2026-03-31T23:09:00.444Z",
+      "lastUsed": null
+    },
+    "balances": {
+      "btc": {
+        "ok": false,
+        "status": "degraded",
+        "reason": "btc_balance_lookup_failed",
+        "error": "fetch failed"
+      },
+      "stacks": {
+        "ok": true,
+        "status": "ready",
+        "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+        "stxMicroStx": 76476487,
+        "sbtcSats": 16815,
+        "usdcxBaseUnits": 7329062,
+        "tokenKeys": {
+          "sbtc": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
+          "usdcx": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx::usdcx-token"
+        }
+      }
+    },
+    "network": {
+      "btc": {
+        "ok": false,
+        "status": "degraded",
+        "reason": "btc_network_probe_failed",
+        "error": "fetch failed"
+      },
+      "stacks": {
+        "ok": true,
+        "status": "ready",
+        "burnBlockHeight": 943450,
+        "stacksTipHeight": 7450280,
+        "responseStatus": 200
+      }
+    },
+    "signerReadiness": {
+      "ok": true,
+      "status": "ready",
+      "source": "wallet_keystore",
+      "derivationPath": "m/84'/0'/0'/0/0",
+      "address": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
+      "reason": null
+    },
+    "stacksSignerReadiness": {
+      "ok": true,
+      "status": "ready",
+      "source": "wallet_keystore",
+      "address": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+      "reason": null
+    },
+    "dependencyReadiness": {
+      "catalogPresent": true,
+      "keystorePresent": true,
+      "walletMatch": true,
+      "walletId": "de1522df-bf68-461c-958c-2b7cb14b14e4",
+      "walletName": "agent-mainnet",
+      "network": "mainnet"
+    },
+    "approvalRequiredForValueActions": true
+  },
+  "walletPlan": {
+    "walletStatus": {
+      "implemented": true,
+      "ready": false,
+      "status": "partial",
+      "wallet": {
+        "id": "de1522df-bf68-461c-958c-2b7cb14b14e4",
+        "name": "agent-mainnet",
+        "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+        "btcAddress": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
+        "taprootAddress": "bc1ptnnv7qu30adkszyhet9vwef977em55svhlm6js2tfr8qm92neglqzwxz9s",
+        "network": "mainnet",
+        "createdAt": "2026-03-31T23:09:00.444Z",
+        "lastUsed": null
+      },
+      "balances": {
+        "btc": {
+          "ok": false,
+          "status": "degraded",
+          "reason": "btc_balance_lookup_failed",
+          "error": "fetch failed"
+        },
+        "stacks": {
+          "ok": true,
+          "status": "ready",
+          "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+          "stxMicroStx": 76476487,
+          "sbtcSats": 16815,
+          "usdcxBaseUnits": 7329062,
+          "tokenKeys": {
+            "sbtc": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
+            "usdcx": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx::usdcx-token"
+          }
+        }
+      },
+      "network": {
+        "btc": {
+          "ok": false,
+          "status": "degraded",
+          "reason": "btc_network_probe_failed",
+          "error": "fetch failed"
+        },
+        "stacks": {
+          "ok": true,
+          "status": "ready",
+          "burnBlockHeight": 943450,
+          "stacksTipHeight": 7450280,
+          "responseStatus": 200
+        }
+      },
+      "signerReadiness": {
+        "ok": true,
+        "status": "ready",
+        "source": "wallet_keystore",
+        "derivationPath": "m/84'/0'/0'/0/0",
+        "address": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
+        "reason": null
+      },
+      "stacksSignerReadiness": {
+        "ok": true,
+        "status": "ready",
+        "source": "wallet_keystore",
+        "address": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+        "reason": null
+      },
+      "dependencyReadiness": {
+        "catalogPresent": true,
+        "keystorePresent": true,
+        "walletMatch": true,
+        "walletId": "de1522df-bf68-461c-958c-2b7cb14b14e4",
+        "walletName": "agent-mainnet",
+        "network": "mainnet"
+      },
+      "approvalRequiredForValueActions": true
+    },
+    "knownBlockers": [
+      "feature_disabled",
+      "btc_network_unavailable",
+      "btc_balance_empty_or_unavailable",
+      "wallet_live_requires_approval"
+    ],
+    "microAction": {
+      "actionType": "btc_signer_probe",
+      "status": "ready_for_explicit_live",
+      "dryRunDefault": true,
+      "liveApprovalRequiredForValueTransfer": true,
+      "valueTransferImplemented": true,
+      "probeMessage": "Speedy Indra wallet probe | SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT | bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9 | 2026-04-03T02:32:54.780Z",
+      "proofFormat": "bip322",
+      "maxValueSats": 1000,
+      "valueActionPlan": {
+        "actionType": "controlled_transfer_stx_micro",
+        "status": "blocked",
+        "approvalRequired": true,
+        "executorAvailable": true,
+        "reason": "feature_disabled",
+        "suggestedAmountMicroStx": 1000,
+        "maxFeeMicroStx": 3000,
+        "targetAddress": null,
+        "memo": "speedy-indra-micro",
+        "sourceAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
+        "targetSource": "missing",
+        "amountMicroStx": 1000,
+        "requestedAmountMicroStx": null,
+        "dryRunDefault": true,
+        "signerReady": true,
+        "feeEstimateMicroStx": null,
+        "nonce": null,
+        "txid": null,
+        "sufficientBalance": false,
+        "blockers": [
+          "feature_disabled"
+        ],
+        "prerequisites": {
+          "featureEnabled": false,
+          "stacksSignerReady": true,
+          "stacksBalanceKnown": true,
+          "stacksNetworkReady": true,
+          "targetResolved": false
+        }
+      },
+      "balancesSnapshot": {
+        "stxMicroStx": 76476487,
+        "sbtcSats": 16815,
+        "btcSats": null
+      }
+    }
+  },
+  "btcL1ToUsdcRouter": {
+    "status": "blocked",
+    "route": "btc_l1_to_sbtc_to_usdcx",
+    "blockers": [
+      "btc_balance_lookup_failed",
+      "btc_network_probe_failed",
+      "manual_bridge_required"
+    ]
+  },
+  "routeEvaluator": {
+    "recommendedAction": "quote_only",
+    "recommendedSkillId": "bounty_interactions",
+    "recommendedSkillLabel": "Bounties",
+    "recommendedSkillScore": 74,
+    "nextBestAction": "wait",
+    "confidence": 0.7,
+    "estimatedCostClass": "zero",
+    "reason": "defi_quote_monitoring_available",
+    "blockers": [],
+    "watchGateEligible": false,
+    "watchGateReason": "amount_outside_watch_band",
+    "watchGateScore": 0,
+    "edgeScore": 64,
+    "executionQualityScore": 59,
+    "championshipGateEligible": false,
+    "championshipGateBlockReason": "decision_not_pass",
+    "watchGateVersion": "championship_watch_gate_v1",
+    "championshipGateVersion": "championship_execution_gate_v1",
+    "decision": "SKIP",
+    "decisionReason": "worst_case_profit_below_threshold",
+    "estimatedFeeSats": 91,
+    "priceImpactBps": -30,
+    "quoteFresh": true,
+    "policySource": "default",
+    "routeOverrideActive": false,
+    "effectiveDecisionPolicy": {
+      "minOutputRatio": 0.97,
+      "maxEstimatedFeeSats": 500,
+      "maxFeePerByte": 1000,
+      "maxRouteHops": 2,
+      "minExpectedNetUsd": 0.1,
+      "minWorstCaseNetUsd": 0
+    },
+    "effectiveWatchPolicy": {
+      "maxEstimatedFeeSats": 200,
+      "maxPriceImpactBps": 40,
+      "maxAmountSats": 2000
+    },
+    "effectiveChampionshipPolicy": {
+      "maxEstimatedFeeSats": 300,
+      "maxPriceImpactBps": 50
+    }
+  },
+  "standardLoop": {
+    "lastRunAt": "2026-04-03T02:32:52.875Z",
+    "lastAction": "skipped",
+    "lastAuthorizedAction": null,
+    "lastProposedCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
+    "lastExecutedCommand": null,
+    "lastBlockReason": "dry_run_loop",
+    "lastDecision": {
+      "recommendedAction": "quote_only",
+      "authorizedAction": null,
+      "proposedCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
+      "executedCommand": null,
+      "safetyLevel": "safe_read_only",
+      "estimatedCostClass": "zero",
+      "approvalRequired": false,
+      "autoLiveEligible": false,
+      "autoLiveClass": "class_a_safe_readonly",
+      "autoLiveBlockReason": "dry_run_loop",
+      "autoLivePolicyVersion": "auto_live_policy_v1",
+      "actionExecuted": false,
+      "actionReason": "dry_run_loop"
+    },
+    "cycles": 1732,
+    "autoActions": 2,
+    "autoLive": {
+      "executionsToday": 0,
+      "executionsLastHour": 0,
+      "spendSatsToday": 0,
+      "lastAutoExecutedSkillId": "messaging_safe_replies",
+      "lastAutoExecutedAt": "2026-04-01T03:50:04.803Z",
+      "lastAutoBlockedReason": "dry_run_loop",
+      "policyVersion": "auto_live_policy_v1",
+      "executionHistory": [
+        {
+          "at": "2026-04-01T01:45:14.532Z",
+          "skillId": "messaging_safe_replies",
+          "feeSats": 0,
+          "spendSats": 0
+        },
+        {
+          "at": "2026-04-01T03:50:04.803Z",
+          "skillId": "messaging_safe_replies",
+          "feeSats": 0,
+          "spendSats": 0
+        }
+      ]
+    }
+  },
+  "operationalSummary": {
+    "generatedAt": "2026-04-03T02:32:52.875Z",
+    "loopRunning": true,
+    "watchdogStale": false,
+    "messaging": {
+      "enabled": true,
+      "policyMode": "safe_replies_only",
+      "unreadCount": 0,
+      "repliedMessages": 5,
+      "cooldown": {
+        "active": false,
+        "cooldownMin": 60,
+        "pendingReplyCount": 0,
+        "blockedTargetCount": 0,
+        "nextTarget": null,
+        "remainingMin": 0,
+        "availableAt": null
+      }
+    },
+    "nextAction": {
+      "recommendedAction": "quote_only",
+      "reason": "defi_quote_monitoring_available",
+      "command": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
+      "autoLiveEligible": false,
+      "autoLiveBlockReason": "decision_not_pass",
+      "actionableNow": false
+    },
+    "defi": {
+      "recommendedAction": "quote_only",
+      "gateReason": "decision_not_pass",
+      "blockers": [],
+      "decision": "SKIP",
+      "decisionReason": "worst_case_profit_below_threshold",
+      "estimatedFeeSats": 91,
+      "maxDecisionFeeSats": 500,
+      "feeOverDecisionLimit": false,
+      "feePerByte": 459.49348534201954,
+      "maxFeePerByte": 1000,
+      "feePerByteOverLimit": false,
+      "routeHops": 1,
+      "maxRouteHops": 2,
+      "routeHopsOverLimit": false,
+      "outputRatio": 0.9738539548660792,
+      "minOutputRatio": 0.97,
+      "outputRatioBelowMin": false,
+      "priceImpactBps": -30,
+      "breakerOpenUntil": null,
+      "humanReason": "A estrategia atual permite apenas observacao de cotacao. O gate de execucao nao aprovou a oportunidade atual."
+    },
+    "defiAmountScan": {
+      "lastScanAt": "2026-04-01T03:50:32.026Z",
+      "preferredAmountSats": 3000,
+      "preferredPassNow": false,
+      "preferredReason": "fee_above_limit,decision_not_pass,validation_failed",
+      "scannedCount": 6
+    },
+    "loop": {
+      "lastRunAt": "2026-04-03T02:32:52.875Z",
+      "lastAction": "skipped",
+      "lastBlockReason": "dry_run_loop",
+      "cycles": 1732,
+      "autoActions": 2
+    },
+    "supervisorLine": "loop=skipped | msgs=0 unread/5 replied | cooldown=free | next=quote_only | defi=A estrategia atual permite apenas observacao de cotacao. O gate de execucao nao aprovou a oportunidade atual."
   }
 }

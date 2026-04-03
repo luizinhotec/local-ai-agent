@@ -605,6 +605,7 @@ async function runRouteEvaluatorSkill(options = {}) {
   const statusOnly = parseBoolean(options.statusOnly, false);
   const dryRun = options.dryRun === undefined ? true : parseBoolean(options.dryRun, true);
   const force = parseBoolean(options.force, false);
+  const persist = options.persist === undefined ? true : parseBoolean(options.persist, true);
   const amountSats = Number(options['amount-sats'] || 3000);
   const pair = 'sbtc-usdcx';
   const competitivePolicy = resolveCompetitivePolicy(config, pair);
@@ -747,96 +748,7 @@ async function runRouteEvaluatorSkill(options = {}) {
     routeOverrideActive: competitivePolicy.routeOverrideActive,
   };
 
-  const finalState = updateAgentState(current => {
-    current.routeEvaluatorStatus = routeEvaluatorStatus;
-    current.lastRouteEvaluationAt = nowIso;
-    current.lastRecommendedAction = decision.recommendedAction;
-    current.lastRecommendedReason = decision.reason;
-    current.lastRecommendationConfidence = decision.confidence;
-    current.routeEvaluatorDecisionContext = sanitizeValue(decisionContext);
-    current.watchGateEligible = decision.watchGateEligible;
-    current.watchGateReason = decision.watchGateReason;
-    current.watchGateScore = decision.watchGateScore;
-    current.lastShadowExecution = sanitizeValue(
-      decision.watchGateEligible ? decisionContext.defi.shadowExecution : null
-    );
-    current.edgeScore = decision.edgeScore;
-    current.executionQualityScore = decision.executionQualityScore;
-    current.championshipGateEligible = decision.championshipGateEligible;
-    current.championshipGateBlockReason = decision.championshipGateBlockReason;
-    current.lastChampionshipWatchGate = sanitizeValue({
-      at: nowIso,
-      version: decision.watchGateVersion,
-      watchGateEligible: decision.watchGateEligible,
-      watchGateReason: decision.watchGateReason,
-      watchGateScore: decision.watchGateScore,
-      estimatedFeeSats: decisionContext.defi.estimatedFeeSats,
-      priceImpactBps: decisionContext.defi.priceImpactBps,
-      decision: decisionContext.defi.decision,
-      decisionReason: decisionContext.defi.decisionReason,
-      quoteFresh: decisionContext.defi.quoteFresh,
-      policySource: competitivePolicy.source,
-      routeOverrideActive: competitivePolicy.routeOverrideActive,
-      effectiveDecisionPolicy: competitivePolicy.decision,
-      effectiveWatchPolicy: competitivePolicy.watchGate,
-    });
-    current.lastChampionshipExecutionGate = sanitizeValue({
-      at: nowIso,
-      version: decision.championshipGateVersion,
-      championshipGateEligible: decision.championshipGateEligible,
-      championshipGateBlockReason: decision.championshipGateBlockReason,
-      decision: decisionContext.defi.decision,
-      decisionReason: decisionContext.defi.decisionReason,
-      estimatedFeeSats: decisionContext.defi.estimatedFeeSats,
-      priceImpactBps: decisionContext.defi.priceImpactBps,
-      quoteFresh: decisionContext.defi.quoteFresh,
-      policySource: competitivePolicy.source,
-      routeOverrideActive: competitivePolicy.routeOverrideActive,
-      effectiveDecisionPolicy: competitivePolicy.decision,
-      effectiveChampionshipPolicy: competitivePolicy.championshipGate,
-    });
-    current.skillBuilder = skillBuilder.nextBuilderState;
-    current.routeEvaluatorHistory = trimHistory([
-      ...(current.routeEvaluatorHistory || []),
-      {
-        at: nowIso,
-        amountSats,
-        recommendedAction: decision.recommendedAction,
-        recommendedSkillId: decision.recommendedSkillId,
-        recommendedSkillReason: decision.recommendedSkillReason,
-        recommendedSkillScore: decision.recommendedSkillScore,
-        loopRecommendedSkillId: decision.loopRecommendedSkillId,
-        nextBestAction: decision.nextBestAction,
-        confidence: decision.confidence,
-        estimatedCostClass: decision.estimatedCostClass,
-        reason: decision.reason,
-        blockers: decision.blockers,
-        watchGateEligible: decision.watchGateEligible,
-        watchGateReason: decision.watchGateReason,
-        watchGateScore: decision.watchGateScore,
-        edgeScore: decision.edgeScore,
-        executionQualityScore: decision.executionQualityScore,
-        championshipGateEligible: decision.championshipGateEligible,
-        championshipGateBlockReason: decision.championshipGateBlockReason,
-        policySource: competitivePolicy.source,
-        routeOverrideActive: competitivePolicy.routeOverrideActive,
-        effectiveDecisionPolicy: competitivePolicy.decision,
-      },
-    ]);
-    current.skills.routeEvaluator = {
-      ...current.skills.routeEvaluator,
-      enabled: true,
-      lastRunAt: nowIso,
-      lastSuccessAt: nowIso,
-      lastSkipReason: null,
-      lastOutcome: 'completed',
-      lastAttemptMode: dryRun ? 'dry_run' : statusOnly ? 'status_only' : 'evaluate',
-      lastStatusCode: 200,
-    };
-    return current;
-  });
-
-  writeAgentStatus({
+  const routeEvaluatorStatusPayload = {
     checkedAt: nowIso,
     routeEvaluator: {
       recommendedAction: decision.recommendedAction,
@@ -868,7 +780,101 @@ async function runRouteEvaluatorSkill(options = {}) {
       effectiveWatchPolicy: competitivePolicy.watchGate,
       effectiveChampionshipPolicy: competitivePolicy.championshipGate,
     },
-  });
+  };
+
+  let finalState = readAgentState();
+  if (persist) {
+    finalState = updateAgentState(current => {
+      current.routeEvaluatorStatus = routeEvaluatorStatus;
+      current.lastRouteEvaluationAt = nowIso;
+      current.lastRecommendedAction = decision.recommendedAction;
+      current.lastRecommendedReason = decision.reason;
+      current.lastRecommendationConfidence = decision.confidence;
+      current.routeEvaluatorDecisionContext = sanitizeValue(decisionContext);
+      current.watchGateEligible = decision.watchGateEligible;
+      current.watchGateReason = decision.watchGateReason;
+      current.watchGateScore = decision.watchGateScore;
+      current.lastShadowExecution = sanitizeValue(
+        decision.watchGateEligible ? decisionContext.defi.shadowExecution : null
+      );
+      current.edgeScore = decision.edgeScore;
+      current.executionQualityScore = decision.executionQualityScore;
+      current.championshipGateEligible = decision.championshipGateEligible;
+      current.championshipGateBlockReason = decision.championshipGateBlockReason;
+      current.lastChampionshipWatchGate = sanitizeValue({
+        at: nowIso,
+        version: decision.watchGateVersion,
+        watchGateEligible: decision.watchGateEligible,
+        watchGateReason: decision.watchGateReason,
+        watchGateScore: decision.watchGateScore,
+        estimatedFeeSats: decisionContext.defi.estimatedFeeSats,
+        priceImpactBps: decisionContext.defi.priceImpactBps,
+        decision: decisionContext.defi.decision,
+        decisionReason: decisionContext.defi.decisionReason,
+        quoteFresh: decisionContext.defi.quoteFresh,
+        policySource: competitivePolicy.source,
+        routeOverrideActive: competitivePolicy.routeOverrideActive,
+        effectiveDecisionPolicy: competitivePolicy.decision,
+        effectiveWatchPolicy: competitivePolicy.watchGate,
+      });
+      current.lastChampionshipExecutionGate = sanitizeValue({
+        at: nowIso,
+        version: decision.championshipGateVersion,
+        championshipGateEligible: decision.championshipGateEligible,
+        championshipGateBlockReason: decision.championshipGateBlockReason,
+        decision: decisionContext.defi.decision,
+        decisionReason: decisionContext.defi.decisionReason,
+        estimatedFeeSats: decisionContext.defi.estimatedFeeSats,
+        priceImpactBps: decisionContext.defi.priceImpactBps,
+        quoteFresh: decisionContext.defi.quoteFresh,
+        policySource: competitivePolicy.source,
+        routeOverrideActive: competitivePolicy.routeOverrideActive,
+        effectiveDecisionPolicy: competitivePolicy.decision,
+        effectiveChampionshipPolicy: competitivePolicy.championshipGate,
+      });
+      current.skillBuilder = skillBuilder.nextBuilderState;
+      current.routeEvaluatorHistory = trimHistory([
+        ...(current.routeEvaluatorHistory || []),
+        {
+          at: nowIso,
+          amountSats,
+          recommendedAction: decision.recommendedAction,
+          recommendedSkillId: decision.recommendedSkillId,
+          recommendedSkillReason: decision.recommendedSkillReason,
+          recommendedSkillScore: decision.recommendedSkillScore,
+          loopRecommendedSkillId: decision.loopRecommendedSkillId,
+          nextBestAction: decision.nextBestAction,
+          confidence: decision.confidence,
+          estimatedCostClass: decision.estimatedCostClass,
+          reason: decision.reason,
+          blockers: decision.blockers,
+          watchGateEligible: decision.watchGateEligible,
+          watchGateReason: decision.watchGateReason,
+          watchGateScore: decision.watchGateScore,
+          edgeScore: decision.edgeScore,
+          executionQualityScore: decision.executionQualityScore,
+          championshipGateEligible: decision.championshipGateEligible,
+          championshipGateBlockReason: decision.championshipGateBlockReason,
+          policySource: competitivePolicy.source,
+          routeOverrideActive: competitivePolicy.routeOverrideActive,
+          effectiveDecisionPolicy: competitivePolicy.decision,
+        },
+      ]);
+      current.skills.routeEvaluator = {
+        ...current.skills.routeEvaluator,
+        enabled: true,
+        lastRunAt: nowIso,
+        lastSuccessAt: nowIso,
+        lastSkipReason: null,
+        lastOutcome: 'completed',
+        lastAttemptMode: dryRun ? 'dry_run' : statusOnly ? 'status_only' : 'evaluate',
+        lastStatusCode: 200,
+      };
+      return current;
+    });
+
+    writeAgentStatus(routeEvaluatorStatusPayload);
+  }
 
   appendJsonLog('route_evaluator_decision_made', sanitizeValue({
     recommendedAction: decision.recommendedAction,
@@ -921,6 +927,7 @@ async function runRouteEvaluatorSkill(options = {}) {
     skill: 'route-evaluator',
     statusOnly,
     dryRun,
+    persist,
     amountSats,
     recommendedAction: decision.recommendedAction,
     reason: decision.reason,

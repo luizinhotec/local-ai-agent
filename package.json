@@ -4,6 +4,8 @@
   "description": "Repositorio principal do workspace para `GPT/Codex + AIBTC MCP`.",
   "scripts": {
     "agent:status": "node runtime/speedy-indra/agent-status.cjs",
+    "agent:summary": "node runtime/speedy-indra/agent-summary.cjs",
+    "agent:defi:amount-scan": "node runtime/speedy-indra/agent-defi-amount-scan.cjs",
     "agent:heartbeat": "node runtime/speedy-indra/run-skill.cjs heartbeat",
   "agent:messages": "node runtime/speedy-indra/run-skill.cjs messaging",
   "agent:messages:dryrun": "node runtime/speedy-indra/run-skill.cjs messaging --dry-run",

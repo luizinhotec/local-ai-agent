@@ -1,0 +1,11 @@
+﻿{
+    "blocked":  true,
+    "reason":  "registry_unavailable",
+    "sourceOfBlock":  "registry_unavailable",
+    "lastDetectedError":  " / registry mainnet indisponivel",
+    "sinceUtc":  "2026-03-27T03:17:27.0297065Z",
+    "blockedAtUtc":  "2026-03-27T03:17:27.0297065Z",
+    "unblockedAtUtc":  null,
+    "cooldownUntilUtc":  "2026-03-28T03:17:27.0297065Z",
+    "checkedAtUtc":  "2026-03-27T03:17:27.0297065Z"
+}
