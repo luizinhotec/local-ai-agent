@@ -11,6 +11,7 @@ workspace/deribit/config/deribit.config.json
 workspace/deribit/config/deribit.risk.json
 workspace/deribit/config/deribit.strategy.json
 workspace/deribit/config/deribit.execution.json
+workspace/deribit/config/deribit.env.ps1
 workspace/deribit/state/
 node_modules/
 .env
@@ -26,7 +27,12 @@ tmp/
 *.tmp
 logs/
 *.jsonl
-active/state/
+# active/state: exclude everything except versioned results
+active/state/*
+!active/state/dog-mm
+active/state/dog-mm/*
+!active/state/dog-mm/results*.json
+!active/state/dog-mm/results-template.json
 node_modules/
 .env
 .env.*
