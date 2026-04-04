@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
-const crypto = require('crypto');
 const { loadRuntimeEnv } = require('./runtime-env.cjs');
 const { generateWallet } = require('@stacks/wallet-sdk');
 const {
@@ -24,6 +22,10 @@ const {
 const DEFAULTS = {
   walletName: process.env.DOG_MM_WALLET_NAME || 'dog-mm-mainnet',
   expectedAddress: process.env.DOG_MM_EXPECTED_ADDRESS || '',
+  seedPhrase: process.env.DOG_MM_SEED_PHRASE || '',
+  accountIndex: parseInt(process.env.DOG_MM_ACCOUNT_INDEX || '0', 10),
+  btcAddress: process.env.DOG_MM_BTC_ADDRESS || null,
+  taprootAddress: process.env.DOG_MM_TAPROOT_ADDRESS || null,
   inputToken: process.env.DOG_MM_INPUT_TOKEN || 'SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token',
   outputToken: process.env.DOG_MM_OUTPUT_TOKEN || 'SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx',
   amountIn: process.env.DOG_MM_AMOUNT_IN || '13479',
@@ -81,82 +83,14 @@ function percent(value, base) {
   return (value / base) * 100;
 }
 
-function loadWalletCatalog() {
-  const catalogPath = path.join(os.homedir(), '.aibtc', 'wallets.json');
-  return JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-}
-
-function chooseWallet(catalog, walletName, expectedAddress, walletId) {
-  if (walletId) {
-    const byId = catalog.wallets.find(wallet => wallet.id === walletId);
-    if (!byId) throw new Error(`Wallet id not found: ${walletId}`);
-    return byId;
-  }
-
-  const matches = catalog.wallets
-    .filter(wallet => !walletName || wallet.name === walletName)
-    .filter(wallet => !expectedAddress || wallet.address === expectedAddress)
-    .sort((left, right) => {
-      const leftDate = new Date(left.lastUsed || left.createdAt || 0).getTime();
-      const rightDate = new Date(right.lastUsed || right.createdAt || 0).getTime();
-      return rightDate - leftDate;
-    });
-
-  if (matches.length === 0) {
-    const filters = [];
-    if (walletName) filters.push(`name=${walletName}`);
-    if (expectedAddress) filters.push(`address=${expectedAddress}`);
-    throw new Error(`No wallet matched the requested selector${filters.length ? ` (${filters.join(', ')})` : ''}.`);
-  }
-
-  if (matches.length > 1 && !walletName && !expectedAddress) {
-    throw new Error(
-      'Multiple wallets are available. Set --wallet-id, --wallet-name, or --expected-address (or DOG_MM_WALLET_NAME / DOG_MM_EXPECTED_ADDRESS).'
-    );
-  }
-
-  return matches[0];
-}
-
-function decryptMnemonic(walletId, walletPassword) {
-  const keystorePath = path.join(
-    os.homedir(),
-    '.aibtc',
-    'wallets',
-    walletId,
-    'keystore.json'
-  );
-  const keystore = JSON.parse(fs.readFileSync(keystorePath, 'utf8'));
-  const encrypted = keystore.encrypted;
-  const key = crypto.scryptSync(
-    walletPassword,
-    Buffer.from(encrypted.salt, 'base64'),
-    encrypted.scryptParams.keyLen,
-    {
-      N: encrypted.scryptParams.N,
-      r: encrypted.scryptParams.r,
-      p: encrypted.scryptParams.p,
-    }
-  );
-  const decipher = crypto.createDecipheriv(
-    'aes-256-gcm',
-    key,
-    Buffer.from(encrypted.iv, 'base64')
-  );
-  decipher.setAuthTag(Buffer.from(encrypted.authTag, 'base64'));
-  const plaintext = Buffer.concat([
-    decipher.update(Buffer.from(encrypted.ciphertext, 'base64')),
-    decipher.final(),
-  ]);
-  return plaintext.toString('utf8').trim();
-}
-
-async function deriveSenderKey(mnemonic) {
+async function deriveSenderKey(mnemonic, accountIndex = 0) {
   const wallet = await generateWallet({
     secretKey: mnemonic,
     password: 'bitflow-runtime',
   });
-  return wallet.accounts[0].stxPrivateKey;
+  const account = wallet.accounts[accountIndex];
+  if (!account) throw new Error(`Account index ${accountIndex} not found in derived wallet`);
+  return account.stxPrivateKey;
 }
 
 async function postJson(url, payload) {
@@ -439,9 +373,11 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const options = {
     walletName: args['wallet-name'] || DEFAULTS.walletName,
-    walletId: args['wallet-id'] || '',
     expectedAddress: args['expected-address'] || DEFAULTS.expectedAddress,
-    walletPassword: args['wallet-password'] || process.env.DOG_MM_WALLET_PASSWORD || '',
+    seedPhrase: DEFAULTS.seedPhrase,
+    accountIndex: DEFAULTS.accountIndex,
+    btcAddress: DEFAULTS.btcAddress,
+    taprootAddress: DEFAULTS.taprootAddress,
     inputToken: args['input-token'] || DEFAULTS.inputToken,
     outputToken: args['output-token'] || DEFAULTS.outputToken,
     amountIn: args['amount-in'] || DEFAULTS.amountIn,
@@ -461,30 +397,16 @@ async function main() {
     summaryFile: args['summary-file'] ? path.resolve(args['summary-file']) : DEFAULTS.summaryFile,
   };
 
-  if (!options.walletPassword) {
-    throw new Error('Missing wallet password. Use --wallet-password or DOG_MM_WALLET_PASSWORD.');
+  if (!options.seedPhrase) {
+    throw new Error('Missing seed phrase. Set DOG_MM_SEED_PHRASE.');
   }
 
-  const walletCatalog = loadWalletCatalog();
-  const wallet = chooseWallet(
-    walletCatalog,
-    options.walletName,
-    options.expectedAddress,
-    options.walletId
-  );
-  const mnemonic = decryptMnemonic(wallet.id, options.walletPassword);
-  const senderKey = await deriveSenderKey(mnemonic);
+  const senderKey = await deriveSenderKey(options.seedPhrase, options.accountIndex);
   const senderAddress = getAddressFromPrivateKey(senderKey, 'mainnet');
-
-  if (senderAddress !== wallet.address) {
-    throw new Error(
-      `Derived sender address ${senderAddress} does not match wallet catalog address ${wallet.address}.`
-    );
-  }
 
   if (options.expectedAddress && senderAddress !== options.expectedAddress) {
     throw new Error(
-      `Derived sender address ${senderAddress} does not match expected address ${options.expectedAddress}.`
+      `Derived address ${senderAddress} does not match DOG_MM_EXPECTED_ADDRESS ${options.expectedAddress}.`
     );
   }
 
@@ -554,11 +476,11 @@ async function main() {
     generatedAtUtc: new Date().toISOString(),
     broadcast: options.broadcast,
     wallet: {
-      id: wallet.id,
-      name: wallet.name,
-      address: wallet.address,
-      btcAddress: wallet.btcAddress,
-      taprootAddress: wallet.taprootAddress,
+      id: 'direct-seed',
+      name: options.walletName || 'dog-mm-mainnet',
+      address: senderAddress,
+      btcAddress: options.btcAddress,
+      taprootAddress: options.taprootAddress,
     },
     inputToken: options.inputToken,
     outputToken: options.outputToken,
