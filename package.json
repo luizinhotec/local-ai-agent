@@ -109,6 +109,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "ws": "^8.18.0",
     "@stacks/network": "^7.3.1",
     "@stacks/transactions": "^7.3.1",
     "@stacks/wallet-sdk": "^7.2.0",

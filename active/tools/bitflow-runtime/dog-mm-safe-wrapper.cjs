@@ -1,8 +1,28 @@
 #!/usr/bin/env node
 
-const { spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+
+function loadEnvFile(filePath) {
+  if (!fs.existsSync(filePath)) return;
+  const lines = fs.readFileSync(filePath, 'utf8').split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const sep = trimmed.indexOf('=');
+    if (sep <= 0) continue;
+    const key = trimmed.slice(0, sep).trim();
+    const val = trimmed.slice(sep + 1).trim();
+    if (!key || process.env[key] !== undefined) continue;
+    process.env[key] = val.replace(/^['"]|['"]$/g, '');
+  }
+}
+
+const ROOT = path.resolve(__dirname, '..', '..', '..');
+loadEnvFile(path.join(ROOT, '.env'));
+loadEnvFile(path.join(ROOT, '.env.local'));
+
+const { spawnSync } = require('child_process');
 const { loadRuntimeEnv, buildChildEnv } = require('./runtime-env.cjs');
 const {
   computeProfitDiagnostics,
@@ -11,8 +31,6 @@ const {
 const {
   evaluateDecision,
 } = require('./policy/decision-engine.cjs');
-
-const ROOT = path.resolve(__dirname, '..', '..', '..');
 const EXECUTOR = path.resolve(__dirname, 'dog-mm-bitflow-swap-executor.cjs');
 const STATE_DIR = path.resolve(ROOT, 'active', 'state', 'dog-mm');
 const STATE_FILE = path.resolve(STATE_DIR, 'bitflow-last-swap-plan.json');
