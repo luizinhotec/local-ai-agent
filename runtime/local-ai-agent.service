@@ -1,0 +1,15 @@
+[Unit]
+Description=Local AI Agent - All Bots
+After=network.target
+
+[Service]
+Type=forking
+User=luiz
+WorkingDirectory=/home/luiz/projetos/local-ai-agent
+ExecStart=/bin/bash /home/luiz/projetos/local-ai-agent/runtime/start-all.sh
+ExecStop=/bin/bash /home/luiz/projetos/local-ai-agent/runtime/stop-all.sh
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
