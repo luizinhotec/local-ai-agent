@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # runtime/dog-mm-start.sh — Linux startup script for DOG-MM safe loop
+export PATH="/home/luiz/.nvm/versions/node/v20.20.2/bin:$PATH"
 set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

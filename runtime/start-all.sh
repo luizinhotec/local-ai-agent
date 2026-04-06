@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # runtime/start-all.sh — start all bots in background (Linux)
+export PATH="/home/luiz/.nvm/versions/node/v20.20.2/bin:$PATH"
+export NVM_DIR="/home/luiz/.nvm"
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
