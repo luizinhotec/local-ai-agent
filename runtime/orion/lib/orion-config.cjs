@@ -8,10 +8,6 @@ const ROOT = path.resolve(__dirname, '..', '..', '..');
 
 let _loaded = false;
 
-function stripQuotes(value) {
-  return value.replace(/^['"]|['"]$/g, '');
-}
-
 function loadEnvFile(filePath) {
   if (!fs.existsSync(filePath)) return;
   try {
@@ -22,9 +18,13 @@ function loadEnvFile(filePath) {
       const sep = trimmed.indexOf('=');
       if (sep <= 0) continue;
       const key = trimmed.slice(0, sep).trim();
-      const raw = trimmed.slice(sep + 1).trim();
+      let val = trimmed.slice(sep + 1);
+      if ((val.startsWith('"') && val.endsWith('"')) ||
+          (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.slice(1, -1);
+      }
       if (key && process.env[key] === undefined) {
-        process.env[key] = stripQuotes(raw);
+        process.env[key] = val;
       }
     }
   } catch (_) {}
