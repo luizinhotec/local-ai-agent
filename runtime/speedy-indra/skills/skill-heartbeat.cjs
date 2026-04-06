@@ -61,7 +61,10 @@ function computeBackoffMs(attemptNumber, config) {
 }
 
 function isSuccessfulHeartbeat(result) {
-  return Boolean(result?.parsed?.ok && result?.parsed?.postResult?.status === 200);
+  if (!result?.ok) return false;
+  if (result.parsed?.skipped) return false;
+  if (result.parsed === null || result.parsed === undefined) return true;
+  return result.parsed.ok !== false;
 }
 
 function isNotReadySkip(result) {
