@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # runtime/deribit-start.sh — Linux startup script for Deribit bot
-set -euo pipefail
+set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
@@ -11,18 +11,9 @@ cd "$ROOT"
 load_env() {
   local file="$1"
   [[ -f "$file" ]] || return 0
-  while IFS= read -r line || [[ -n "$line" ]]; do
-    line="${line#"${line%%[![:space:]]*}"}"  # ltrim
-    [[ -z "$line" || "$line" == \#* ]] && continue
-    if [[ "$line" == *=* ]]; then
-      local key="${line%%=*}"
-      local val="${line#*=}"
-      # strip surrounding quotes
-      val="${val#\'}" ; val="${val%\'}"
-      val="${val#\"}" ; val="${val%\"}"
-      [[ -z "${!key+x}" ]] && export "$key=$val"
-    fi
-  done < "$file"
+  set -a
+  source "$file" 2>/dev/null || true
+  set +a
 }
 
 load_env "$ROOT/.env"
