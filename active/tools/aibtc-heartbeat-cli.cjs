@@ -4,6 +4,23 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
+
+function loadEnv(file) {
+  if (!fs.existsSync(file)) return;
+  for (const line of fs.readFileSync(file, 'utf8').split(/\r?\n/)) {
+    const t = line.trim();
+    if (!t || t.startsWith('#')) continue;
+    const i = t.indexOf('=');
+    if (i <= 0) continue;
+    const k = t.slice(0, i).trim();
+    let v = t.slice(i + 1);
+    if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) v = v.slice(1, -1);
+    if (k && process.env[k] === undefined) process.env[k] = v;
+  }
+}
+const ROOT = path.resolve(__dirname, '..', '..');
+loadEnv(path.join(ROOT, '.env'));
+loadEnv(path.join(ROOT, '.env.local'));
 const ecc = require('tiny-secp256k1');
 const { BIP32Factory } = require('bip32');
 const bip32 = BIP32Factory(ecc);

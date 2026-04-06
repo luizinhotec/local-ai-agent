@@ -119,6 +119,11 @@ function runHeartbeatCli(args = []) {
   const result = spawnSync('node', [ACTIVE_HEARTBEAT_CLI_PATH, ...args], {
     encoding: 'utf8',
     stdio: 'pipe',
+    env: {
+      ...process.env,
+      AIBTC_WALLET_PASSWORD: process.env.AIBTC_WALLET_PASSWORD,
+      AIBTC_WALLET_NAME: process.env.AIBTC_WALLET_NAME,
+    },
   });
   const parsed =
     parseJsonOutput(result.stdout) ||
