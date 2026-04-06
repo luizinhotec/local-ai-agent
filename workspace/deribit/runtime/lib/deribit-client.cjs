@@ -1,3 +1,7 @@
+if (typeof WebSocket === 'undefined') {
+  global.WebSocket = require('ws');
+}
+
 const WS_URLS = {
   testnet: 'wss://test.deribit.com/ws/api/v2',
   production: 'wss://www.deribit.com/ws/api/v2',

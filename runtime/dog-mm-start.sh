@@ -8,6 +8,7 @@ ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 cd "$ROOT"
 
 # ── load .env files ────────────────────────────────────────────────────────────
+# Always re-exports every variable so child processes inherit fresh values.
 load_env() {
   local file="$1"
   [[ -f "$file" ]] || return 0
@@ -19,13 +20,17 @@ load_env() {
       local val="${line#*=}"
       val="${val#\'}" ; val="${val%\'}"
       val="${val#\"}" ; val="${val%\"}"
-      [[ -z "${!key+x}" ]] && export "$key=$val"
+      export "$key=$val"
     fi
   done < "$file"
 }
 
-load_env "$ROOT/.env"
-load_env "$ROOT/.env.local"
+reload_env() {
+  load_env "$ROOT/.env"
+  load_env "$ROOT/.env.local"
+}
+
+reload_env
 
 # ── ensure directories ────────────────────────────────────────────────────────
 mkdir -p "$ROOT/active/state/dog-mm"
@@ -89,6 +94,9 @@ cycle=0
 while true; do
   cycle=$(( cycle + 1 ))
   log "--- cycle $cycle ---"
+
+  # reload env every cycle so child process always inherits fresh values
+  reload_env
 
   if [[ -f "$LOCK_FILE" ]]; then
     log "skip: lock_active ($LOCK_FILE exists)"
