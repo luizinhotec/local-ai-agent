@@ -252,11 +252,14 @@ async function runHeartbeatSkill(options = {}) {
       current.skills.heartbeat.lastSuccessAt = current.lastHeartbeatSuccessAt;
       current.skills.heartbeat.lastOutcome = 'success';
       current.skills.heartbeat.lastStatusCode = 200;
+    } else if (isNotReadySkip(lastResult)) {
+      current.skills.heartbeat.lastOutcome = 'skipped';
+      current.skills.heartbeat.lastStatusCode = null;
     } else {
       current.consecutiveHeartbeatFailures += 1;
       current.skills.heartbeat.errorCount += 1;
       current.skills.heartbeat.lastFailureAt = nowIso;
-      current.skills.heartbeat.lastOutcome = isNotReadySkip(lastResult) ? 'skipped' : 'failed';
+      current.skills.heartbeat.lastOutcome = 'failed';
       current.skills.heartbeat.lastStatusCode =
         lastResult?.parsed?.postResult?.status ||
         lastResult?.parsed?.statusResult?.status ||
