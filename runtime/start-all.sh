@@ -12,6 +12,11 @@ nohup node runtime/speedy-indra/agent-loop.cjs --live > logs/speedy-indra.log 2>
 echo $! > state/speedy-indra/speedy-indra.pid
 echo "[start-all] speedy-indra PID $(cat state/speedy-indra/speedy-indra.pid)"
 
+echo "[start-all] iniciando helper aibtc..."
+nohup python3 active/tools/register_helper_server.py > logs/helper.log 2>&1 &
+echo $! > state/helper.pid
+echo "[start-all] helper PID $(cat state/helper.pid)"
+
 echo "[start-all] iniciando deribit..."
 nohup bash runtime/deribit-start.sh --execute > logs/deribit.log 2>&1 &
 echo $! > workspace/deribit/state/deribit.pid
@@ -31,6 +36,7 @@ echo "[start-all] todos os bots iniciados"
 echo ""
 echo "PIDs:"
 echo "  speedy-indra : $(cat state/speedy-indra/speedy-indra.pid)"
+echo "  helper       : $(cat state/helper.pid)"
 echo "  deribit      : $(cat workspace/deribit/state/deribit.pid)"
 echo "  dog-mm       : $(cat active/state/dog-mm/dog-mm.pid)"
 echo "  orion        : $(cat runtime/orion/state/orion.pid)"

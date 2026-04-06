@@ -67,6 +67,20 @@ stop_bot "dog-mm"       "${BOTS["dog-mm"]}"
 stop_bot "deribit"      "${BOTS["deribit"]}"
 stop_bot "speedy-indra" "${BOTS["speedy-indra"]}"
 
+if [ -f state/helper.pid ]; then
+  PID=$(cat state/helper.pid)
+  if kill -0 "$PID" 2>/dev/null; then
+    echo "[stop-all] helper: sending SIGTERM to PID $PID..."
+    kill -TERM "$PID"
+    sleep 2
+    kill -0 "$PID" 2>/dev/null && kill -KILL "$PID"
+    echo "[stop-all] helper: stopped"
+  else
+    echo "[stop-all] helper: PID $PID not running — removing pid file"
+  fi
+  rm -f state/helper.pid
+fi
+
 # Also clean up any stale lock files
 LOCK_FILE="$ROOT/active/state/dog-mm/dog-mm-cycle.lock"
 if [[ -f "$LOCK_FILE" ]]; then
