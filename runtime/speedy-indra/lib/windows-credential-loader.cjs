@@ -80,7 +80,13 @@ function ensureManagedWalletSession(options = {}) {
   credentialLoadAttempted = true;
 
   if (process.platform !== 'win32') {
-    credentialLoadResult = { ok: false, reason: 'unsupported_platform' };
+    // On Linux/macOS credentials come from .env / .env.local already loaded
+    const password = process.env.AIBTC_WALLET_PASSWORD || process.env.DOG_MM_WALLET_PASSWORD;
+    if (password) {
+      credentialLoadResult = { ok: true, source: 'env_file' };
+    } else {
+      credentialLoadResult = { ok: false, reason: 'missing_env_credentials' };
+    }
     return credentialLoadResult;
   }
 
