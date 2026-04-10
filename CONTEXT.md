@@ -19,6 +19,8 @@
 - Status deribit: node workspace/deribit/runtime/deribit-bot-summary.cjs
 - Decisão deribit: node workspace/deribit/runtime/deribit-decision-preview.cjs
 - Heartbeat manual: node active/tools/aibtc-heartbeat-cli.cjs
+- DCA dry-run: node active/tools/bitflow-dca.cjs --dry-run
+- DCA manual: node active/tools/bitflow-dca.cjs
 - Logs: tail -f logs/orion.log / logs/deribit.log / logs/speedy-indra.log
 
 ## Arquivos sensíveis (não vão ao git)
@@ -37,6 +39,8 @@
 - deribit: PRODUÇÃO ativa, observando mercado, 0 trades executados
 - dog-mm: bloqueado — Bitflow não suporta token pontis-bridge-DOG ainda
 - orion: OK, Telegram funcionando, alertas ativos
+- bitflow-dca: ATIVO, $5/dia → sBTC, cron 12:00 UTC, commit 385dc50
+- dog-dca: aguardando pontis-bridge-DOG no Bitflow (contratos mapeados em bitflow-dca.cjs)
 
 ## Problemas conhecidos
 - dog-mm: HTTP 400 Unsupported output token pontis-bridge-DOG (aguardar Bitflow)
