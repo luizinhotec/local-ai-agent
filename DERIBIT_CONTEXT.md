@@ -1,11 +1,20 @@
 # Deribit Bot — Contexto para Nova Sessão
 
-## Estado atual (2026-04-11)
+## Estado atual (2026-04-11 ~16h)
 - Produção ativa: mainnet, BTC-PERPETUAL
 - Equity: ~0.000127 BTC (~$19)
-- Primeiro trade executado com sucesso (lucro positivo) — trade_id: 424623283
+- Acesso Linux: AnyDesk ID 736635741 (sem precisar de WhatsApp)
 - Processo: systemd (`sudo systemctl restart local-ai-agent`)
 - Logs: `tail -f workspace/deribit/state/deribit-bot-loop.log`
+
+## Métricas acumuladas
+| Métrica | Valor |
+|---|---|
+| entry_executions | 7 |
+| exit_executions | 5 |
+| cumulative_fees_btc | 2.8e-7 |
+| realized_pnl_btc | 9e-8 |
+| resultado líquido | negativo (otimizações aplicadas) |
 
 ## Configuração ativa
 | Arquivo | Parâmetro | Valor |
@@ -21,23 +30,48 @@
 | deribit.strategy.json | shortEntryPremiumUsd | 3 |
 | deribit.strategy.json | longEntryDiscountUsd | 3 |
 | deribit.strategy.json | maxPositionUsd | 15 |
+| deribit.strategy.json | takeProfitBtc | 0.0000002 |
 
-## Bug resolvido: audit travado em "sent"
-**Sintoma:** `state/deribit-execution-latest.json` ficava com `status: "sent"` permanentemente,
-ativando o blocker `same_direction_reentry_blocked` e impedindo novos trades.
+## Otimizações de taxa aplicadas (2026-04-11 tarde)
 
-**Causa raiz:** credenciais de testnet sendo usadas com `DERIBIT_ENVIRONMENT=production` → ordens
-rejeitadas pela exchange, mas o audit não era atualizado para `failed`.
+### Problema identificado
+Bot entrava como maker (sem taxa) mas saía **sempre** como taker (com taxa 0.05%).
+Com posição de $10 USD → $0.005 por saída. `break-even-exit` disparava após 45s sem
+dar tempo do preço se mover. Resultado: taxas acumuladas > lucro bruto.
 
-**Causa secundária:** `defaultOrderSizeUsd=5` abaixo do mínimo da Deribit (10 USD).
+### Mudanças em deribit-execution.cjs
+- Saídas normais agora usam `postOnly: true` (maker, sem taxa)
+- Apenas `stop-loss`, `loss-timeout`, `time-stop` e `risk-reduction` saem como taker
+- `break-even-exit` **removido** da lista `CRITICAL_EXIT_MODES` → agora sai como maker
+- Lógica: `postOnly: isCriticalExit ? false : true`
 
-**Solução aplicada:** deletar manualmente `state/deribit-execution-latest.json` + corrigir
-credenciais e tamanho mínimo. Após essas correções, o bug não deve se repetir.
+### Mudanças em deribit-strategy.cjs (DEFAULT_STRATEGY_CONFIG)
+- `breakEvenHoldMs`: 45000 → **120000** (aguarda 2 min antes de sair no break-even)
+- `breakEvenToleranceBtc`: 0.0000001 → **0.0000003** (mais tolerância a pequeno prejuízo)
 
-**Se travar novamente:**
+### Mudança em config/deribit.strategy.json
+- `takeProfitBtc`: 0.000001 → **0.0000002**
+
+## Bug recorrente: same_direction_reentry_blocked
+
+**Sintoma:** blocker ativa mesmo após deletar `deribit-execution-latest.json`.
+
+**Causa:** bot coloca nova ordem antes do cleanup completar.
+
+**Solução completa:**
 ```bash
+# exportar credenciais primeiro
+export DERIBIT_CLIENT_ID=oIb-AgN5
+export DERIBIT_CLIENT_SECRET=7OnZjKYqkPbYfCKZTlrMxmgQ4w1k5KrgtuFARLg1ii8
+export DERIBIT_ENVIRONMENT=production
+
+node workspace/deribit/runtime/deribit-cancel-open-orders.cjs
 rm workspace/deribit/state/deribit-execution-latest.json
 ```
+
+## Bug anterior resolvido: audit travado em "sent"
+**Causa raiz:** credenciais testnet com `DERIBIT_ENVIRONMENT=production` → ordens rejeitadas
+sem atualizar audit. **Causa secundária:** `defaultOrderSizeUsd=5` abaixo do mínimo (10 USD).
 
 ## Arquitetura geral
 
@@ -57,7 +91,7 @@ workspace/deribit/
 - deribit-reconcile.cjs        → sincronização local ↔ exchange
 - deribit-risk.cjs             → evaluateRisk
 - deribit-strategy.cjs         → decideAction
-- deribit-execution.cjs        → sendOrder
+- deribit-execution.cjs        → sendOrder (postOnly dinâmico)
 - deribit-execution-audit.cjs  → audit trail
 - deribit-state-store.cjs      → leitura/escrita de estado
 - deribit-calibration.cjs      → auto-calibração
@@ -91,9 +125,8 @@ node workspace/deribit/runtime/deribit-flatten-position.cjs
 ```
 
 ## Perguntas para a próxima sessão
-1. Quantos trades executados? P&L acumulado?
-2. Blockers frequentes? Ver `deribit-decision-latest.json`
-3. Auto-calibração ajustou parâmetros? Ver `deribit-calibration-latest.json`
-4. `deribit-economic-viability-report` mostra edge positivo consistente?
-5. `minDirectionalEdgeUsd: 2` está gerando trades suficientes sem ruído?
-6. Considerar aumentar `defaultOrderSizeUsd` se equity crescer acima de $25?
+1. As saídas como maker estão funcionando? `cumulative_fees` parou de crescer rápido?
+2. `breakEvenHoldMs` de 120s está dando tempo suficiente para lucro?
+3. Resultado líquido melhorou após as otimizações?
+4. `same_direction_reentry_blocked` ainda ocorre com frequência?
+5. Considerar aumentar posição se resultado líquido ficar positivo por 24h

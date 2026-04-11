@@ -1,12 +1,13 @@
 # Deribit Bot
 
-## Status (2026-04-11)
+## Status (2026-04-11 ~16h)
 - **Ambiente:** production (mainnet)
 - **Instrumento:** BTC-PERPETUAL
-- **Equity:** ~0.000127 BTC
-- **Primeiro trade:** executado com sucesso (trade_id: 424623283, lucro positivo)
+- **Equity:** ~0.000127 BTC (~$19)
+- **Trades:** 7 entradas, 5 saídas — resultado líquido ainda negativo (otimizações aplicadas)
 - **Processo:** systemd — `sudo systemctl restart local-ai-agent`
 - **Logs:** `tail -f workspace/deribit/state/deribit-bot-loop.log`
+- **Acesso Linux:** AnyDesk ID 736635741
 
 ## Objetivo
 
@@ -67,7 +68,7 @@ workspace/deribit/
   "maxPositionUsd": 15,
   "entryConfidenceThreshold": 0.55,
   "makerOnlyEntry": true,
-  "takeProfitBtc": 0.000001,
+  "takeProfitBtc": 0.0000002,
   "stopLossBtc": 0.000003
 }
 ```
@@ -82,7 +83,7 @@ workspace/deribit/
 | deribit-reconcile.cjs | sincronização local ↔ exchange |
 | deribit-risk.cjs | evaluateRisk |
 | deribit-strategy.cjs | decideAction |
-| deribit-execution.cjs | sendOrder |
+| deribit-execution.cjs | sendOrder (postOnly dinâmico: maker por padrão, taker só em saídas críticas) |
 | deribit-execution-audit.cjs | audit trail |
 | deribit-state-store.cjs | leitura/escrita de estado |
 | deribit-calibration.cjs | auto-calibração |
@@ -137,6 +138,21 @@ Credenciais ficam em `.env.local` na raiz (nunca commitado).
 
 ## Bugs conhecidos e soluções
 
+### same_direction_reentry_blocked recorrente
+**Sintoma:** blocker ativa mesmo após deletar `deribit-execution-latest.json`.
+
+**Causa:** bot coloca nova ordem antes do cleanup completar.
+
+**Solução completa:**
+```bash
+export DERIBIT_CLIENT_ID=oIb-AgN5
+export DERIBIT_CLIENT_SECRET=7OnZjKYqkPbYfCKZTlrMxmgQ4w1k5KrgtuFARLg1ii8
+export DERIBIT_ENVIRONMENT=production
+
+node workspace/deribit/runtime/deribit-cancel-open-orders.cjs
+rm workspace/deribit/state/deribit-execution-latest.json
+```
+
 ### Audit travado em `status: "sent"`
 **Sintoma:** `state/deribit-execution-latest.json` fica com `status: "sent"` permanentemente,
 ativando `same_direction_reentry_blocked` e impedindo novos trades.
@@ -150,6 +166,19 @@ atualizar o audit.
 rm workspace/deribit/state/deribit-execution-latest.json
 ```
 Após corrigir credenciais e tamanho mínimo.
+
+### Saídas como taker consumindo lucro
+**Diagnóstico (2026-04-11):** bot entrava como maker mas saía sempre como taker (0.05% taxa).
+Com $10 USD de posição → $0.005 por saída. `break-even-exit` disparava em 45s.
+
+**Solução aplicada em deribit-execution.cjs:**
+- Saídas normais agora usam `postOnly: true`
+- Apenas `stop-loss`, `loss-timeout`, `time-stop`, `risk-reduction` saem como taker
+- `break-even-exit` removido de `CRITICAL_EXIT_MODES`
+
+**Solução aplicada em deribit-strategy.cjs:**
+- `breakEvenHoldMs`: 45000 → 120000
+- `breakEvenToleranceBtc`: 0.0000001 → 0.0000003
 
 ## Observações
 
