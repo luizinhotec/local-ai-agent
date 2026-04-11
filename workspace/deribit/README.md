@@ -1,10 +1,10 @@
 # Deribit Bot
 
-## Status (2026-04-11 ~16h)
+## Status (2026-04-11 23h)
 - **Ambiente:** production (mainnet)
 - **Instrumento:** BTC-PERPETUAL
-- **Equity:** ~0.000127 BTC (~$19)
-- **Trades:** 7 entradas, 5 saídas — resultado líquido ainda negativo (otimizações aplicadas)
+- **Equity:** 0.00012737 BTC (~$19)
+- **Trades:** 10 entradas, 6 saídas — realized_pnl_btc: 1.3e-7 (positivo após otimizações)
 - **Processo:** systemd — `sudo systemctl restart local-ai-agent`
 - **Logs:** `tail -f workspace/deribit/state/deribit-bot-loop.log`
 - **Acesso Linux:** AnyDesk ID 736635741
@@ -42,10 +42,13 @@ workspace/deribit/
   "maxOrderSizeUsd": 10,
   "allowProductionExecution": true,
   "postOnly": true,
+  "timeInForce": "immediate_or_cancel",
   "labelPrefix": "codex-deribit"
 }
 ```
 > Mínimo de ordem na Deribit: 10 USD. Usar valor menor causa rejeição silenciosa.
+> `immediate_or_cancel`: ordens maker não preenchidas são canceladas imediatamente,
+> evitando que fiquem penduradas por horas quando o preço se move.
 
 ### deribit.risk.json
 ```json
@@ -167,18 +170,24 @@ rm workspace/deribit/state/deribit-execution-latest.json
 ```
 Após corrigir credenciais e tamanho mínimo.
 
-### Saídas como taker consumindo lucro
-**Diagnóstico (2026-04-11):** bot entrava como maker mas saía sempre como taker (0.05% taxa).
-Com $10 USD de posição → $0.005 por saída. `break-even-exit` disparava em 45s.
+### Saídas como taker consumindo lucro — RESOLVIDO
+**Causa:** bot saía sempre como taker (0.05% taxa). `break-even-exit` disparava em 45s
+sem dar tempo do preço se mover.
 
-**Solução aplicada em deribit-execution.cjs:**
-- Saídas normais agora usam `postOnly: true`
-- Apenas `stop-loss`, `loss-timeout`, `time-stop`, `risk-reduction` saem como taker
-- `break-even-exit` removido de `CRITICAL_EXIT_MODES`
+**Solução em deribit-execution.cjs:** `postOnly: isCriticalExit ? false : true`
+— `break-even-exit` removido de `CRITICAL_EXIT_MODES`, saídas normais são maker.
 
-**Solução aplicada em deribit-strategy.cjs:**
-- `breakEvenHoldMs`: 45000 → 120000
-- `breakEvenToleranceBtc`: 0.0000001 → 0.0000003
+**Solução em deribit-strategy.cjs:** `breakEvenHoldMs` 45s→120s,
+`breakEvenToleranceBtc` 1e-7→3e-7.
+
+### Ordens penduradas por horas — RESOLVIDO
+**Causa:** `timeInForce: good_til_cancelled` deixava ordens abertas quando preço se movia.
+**Solução:** `timeInForce: immediate_or_cancel` em deribit.execution.json.
+
+### managementActions review_open_orders nunca executado — PENDENTE
+**Sintoma:** o loop não chama `review_open_orders` nas `managementActions`.
+Ordens abertas podem não ser revisadas adequadamente.
+**Status:** identificado, não corrigido. Investigar e implementar na próxima sessão.
 
 ## Observações
 

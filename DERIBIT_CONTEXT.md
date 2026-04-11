@@ -1,20 +1,20 @@
 # Deribit Bot — Contexto para Nova Sessão
 
-## Estado atual (2026-04-11 ~16h)
+## Estado atual (2026-04-11 23h)
 - Produção ativa: mainnet, BTC-PERPETUAL
-- Equity: ~0.000127 BTC (~$19)
-- Acesso Linux: AnyDesk ID 736635741 (sem precisar de WhatsApp)
+- Equity: 0.00012737 BTC (~$19)
+- Acesso Linux: AnyDesk ID 736635741
 - Processo: systemd (`sudo systemctl restart local-ai-agent`)
 - Logs: `tail -f workspace/deribit/state/deribit-bot-loop.log`
 
-## Métricas acumuladas
+## Métricas acumuladas (2026-04-11 23h)
 | Métrica | Valor |
 |---|---|
-| entry_executions | 7 |
-| exit_executions | 5 |
+| entry_executions | 10 |
+| exit_executions | 6 |
 | cumulative_fees_btc | 2.8e-7 |
-| realized_pnl_btc | 9e-8 |
-| resultado líquido | negativo (otimizações aplicadas) |
+| realized_pnl_btc | 1.3e-7 |
+| resultado líquido | positivo (pnl > fees após otimizações) |
 
 ## Configuração ativa
 | Arquivo | Parâmetro | Valor |
@@ -23,6 +23,7 @@
 | deribit.execution.json | defaultOrderSizeUsd | 10 |
 | deribit.execution.json | maxOrderSizeUsd | 10 |
 | deribit.execution.json | allowProductionExecution | true |
+| deribit.execution.json | timeInForce | immediate_or_cancel |
 | deribit.risk.json | maxPositionUsd | 15 |
 | deribit.risk.json | minAvailableFundsBtc | 0.0001 |
 | deribit.risk.json | maxSnapshotAgeMs | 60000 |
@@ -32,35 +33,31 @@
 | deribit.strategy.json | maxPositionUsd | 15 |
 | deribit.strategy.json | takeProfitBtc | 0.0000002 |
 
-## Otimizações de taxa aplicadas (2026-04-11 tarde)
+## Otimizações aplicadas (2026-04-11)
 
-### Problema identificado
-Bot entrava como maker (sem taxa) mas saía **sempre** como taker (com taxa 0.05%).
-Com posição de $10 USD → $0.005 por saída. `break-even-exit` disparava após 45s sem
-dar tempo do preço se mover. Resultado: taxas acumuladas > lucro bruto.
+### 1. Ordens penduradas horas — deribit.execution.json
+- `timeInForce`: `good_til_cancelled` → **`immediate_or_cancel`**
+- Motivo: ordens maker não preenchidas imediatamente eram canceladas automaticamente,
+  evitando que ficassem penduradas quando o preço se movia
 
-### Mudanças em deribit-execution.cjs
+### 2. Saídas como taker consumindo lucro — deribit-execution.cjs
 - Saídas normais agora usam `postOnly: true` (maker, sem taxa)
-- Apenas `stop-loss`, `loss-timeout`, `time-stop` e `risk-reduction` saem como taker
-- `break-even-exit` **removido** da lista `CRITICAL_EXIT_MODES` → agora sai como maker
+- Apenas `stop-loss`, `loss-timeout`, `time-stop`, `risk-reduction` saem como taker
+- `break-even-exit` **removido** de `CRITICAL_EXIT_MODES` → agora sai como maker
 - Lógica: `postOnly: isCriticalExit ? false : true`
 
-### Mudanças em deribit-strategy.cjs (DEFAULT_STRATEGY_CONFIG)
+### 3. Break-even disparando cedo demais — deribit-strategy.cjs
 - `breakEvenHoldMs`: 45000 → **120000** (aguarda 2 min antes de sair no break-even)
 - `breakEvenToleranceBtc`: 0.0000001 → **0.0000003** (mais tolerância a pequeno prejuízo)
 
-### Mudança em config/deribit.strategy.json
+### 4. Take-profit muito alto — deribit.strategy.json
 - `takeProfitBtc`: 0.000001 → **0.0000002**
 
-## Bug recorrente: same_direction_reentry_blocked
+## Bugs e soluções
 
-**Sintoma:** blocker ativa mesmo após deletar `deribit-execution-latest.json`.
-
+### same_direction_reentry_blocked recorrente
 **Causa:** bot coloca nova ordem antes do cleanup completar.
-
-**Solução completa:**
 ```bash
-# exportar credenciais primeiro
 export DERIBIT_CLIENT_ID=oIb-AgN5
 export DERIBIT_CLIENT_SECRET=7OnZjKYqkPbYfCKZTlrMxmgQ4w1k5KrgtuFARLg1ii8
 export DERIBIT_ENVIRONMENT=production
@@ -69,9 +66,17 @@ node workspace/deribit/runtime/deribit-cancel-open-orders.cjs
 rm workspace/deribit/state/deribit-execution-latest.json
 ```
 
-## Bug anterior resolvido: audit travado em "sent"
-**Causa raiz:** credenciais testnet com `DERIBIT_ENVIRONMENT=production` → ordens rejeitadas
-sem atualizar audit. **Causa secundária:** `defaultOrderSizeUsd=5` abaixo do mínimo (10 USD).
+### Audit travado em "sent"/"open"
+**Causa:** credenciais erradas ou `defaultOrderSizeUsd < 10 USD` → ordem rejeitada sem
+atualizar audit.
+```bash
+rm workspace/deribit/state/deribit-execution-latest.json
+```
+
+### managementActions review_open_orders nunca executado no loop
+**Status:** identificado, **não corrigido ainda**.
+O loop não chama `review_open_orders` nas `managementActions`. Pode deixar ordens
+abertas sem revisão. Próxima sessão deve investigar e implementar fix.
 
 ## Arquitetura geral
 
@@ -125,8 +130,8 @@ node workspace/deribit/runtime/deribit-flatten-position.cjs
 ```
 
 ## Perguntas para a próxima sessão
-1. As saídas como maker estão funcionando? `cumulative_fees` parou de crescer rápido?
-2. `breakEvenHoldMs` de 120s está dando tempo suficiente para lucro?
-3. Resultado líquido melhorou após as otimizações?
+1. `immediate_or_cancel` está gerando trades suficientes?
+2. `cumulative_fees` parou de crescer rápido após postOnly nas saídas?
+3. Resultado líquido continua positivo?
 4. `same_direction_reentry_blocked` ainda ocorre com frequência?
-5. Considerar aumentar posição se resultado líquido ficar positivo por 24h
+5. Implementar fix do `managementActions review_open_orders` no loop
