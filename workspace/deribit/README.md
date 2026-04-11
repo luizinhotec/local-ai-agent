@@ -1,231 +1,161 @@
-# Deribit Runtime
+# Deribit Bot
+
+## Status (2026-04-11)
+- **Ambiente:** production (mainnet)
+- **Instrumento:** BTC-PERPETUAL
+- **Equity:** ~0.000127 BTC
+- **Primeiro trade:** executado com sucesso (trade_id: 424623283, lucro positivo)
+- **Processo:** systemd — `sudo systemctl restart local-ai-agent`
+- **Logs:** `tail -f workspace/deribit/state/deribit-bot-loop.log`
 
 ## Objetivo
 
-Esta pasta contem a base tecnica inicial da trilha `Deribit` no repositorio.
-
-Entrega atual:
-
-- monitor `read-only`
-- suporte a `testnet` e `production`
-- WebSocket com `JSON-RPC`
-- autenticacao opcional
-- subscriptions de mercado
-- leitura opcional de conta e posicao quando houver credenciais
-- persistencia do ultimo snapshot local
-- log local de eventos
-- CLI local de resumo de risco
+Bot autônomo de market-making em BTC-PERPETUAL na Deribit. Acumula sats via
+maker orders com gerenciamento de posição, take-profit, stop-loss e redução
+por funding adverso.
 
 ## Estrutura
 
-- `config/deribit.config.example.json`
-- `config/deribit.env.example.ps1`
-- `runtime/deribit-read-only-monitor.cjs`
-- `runtime/deribit-show-latest.cjs`
-- `runtime/deribit-risk-summary.cjs`
-- `runtime/deribit-status.cjs`
-- `runtime/deribit-decision-preview.cjs`
-- `runtime/deribit-evaluate.cjs`
-- `runtime/deribit-execute-decision.cjs`
-- `runtime/deribit-show-open-orders.cjs`
-- `runtime/deribit-private-sync.cjs`
-- `runtime/deribit-execution-status.cjs`
-- `runtime/deribit-cancel-open-orders.cjs`
-- `runtime/deribit-flatten-position.cjs`
-- `runtime/deribit-bot-loop.cjs`
-- `runtime/lib/deribit-client.cjs`
-- `runtime/lib/deribit-risk.cjs`
-- `runtime/lib/deribit-strategy.cjs`
-- `runtime/lib/deribit-execution.cjs`
-
-## Como Usar
-
-Via `npm` no Windows PowerShell:
-
-```powershell
-npm.cmd run deribit:testnet-monitor
+```
+workspace/deribit/
+├── config/
+│   ├── deribit.bot.json
+│   ├── deribit.execution.json   ← environment, orderSize, allowProductionExecution
+│   ├── deribit.risk.json        ← limites de risco
+│   ├── deribit.strategy.json    ← parâmetros de entrada e saída
+│   ├── deribit.config.json      ← config geral (gitignored)
+│   └── deribit.env.example.ps1  ← template de variáveis
+├── runtime/
+│   ├── lib/                     ← 11 módulos core
+│   └── *.cjs                    ← 29 scripts de operação e diagnóstico
+└── state/                       ← arquivos de estado runtime (gitignored)
 ```
 
-Com credenciais:
+## Configuração ativa
 
-```powershell
-. .\workspace\deribit\config\deribit.env.example.ps1
-npm.cmd run deribit:testnet-monitor
+### deribit.execution.json
+```json
+{
+  "environment": "production",
+  "defaultOrderSizeUsd": 10,
+  "maxOrderSizeUsd": 10,
+  "allowProductionExecution": true,
+  "postOnly": true,
+  "labelPrefix": "codex-deribit"
+}
+```
+> Mínimo de ordem na Deribit: 10 USD. Usar valor menor causa rejeição silenciosa.
+
+### deribit.risk.json
+```json
+{
+  "maxPositionUsd": 15,
+  "minAvailableFundsBtc": 0.0001,
+  "maxSnapshotAgeMs": 60000,
+  "maxSpreadUsd": 5,
+  "maxMarkIndexGapUsd": 25,
+  "maxFundingAbs": 0.0005
+}
 ```
 
-Via `node`:
-
-```powershell
-node workspace/deribit/runtime/deribit-read-only-monitor.cjs
+### deribit.strategy.json
+```json
+{
+  "minDirectionalEdgeUsd": 2,
+  "shortEntryPremiumUsd": 3,
+  "longEntryDiscountUsd": 3,
+  "maxPositionUsd": 15,
+  "entryConfidenceThreshold": 0.55,
+  "makerOnlyEntry": true,
+  "takeProfitBtc": 0.000001,
+  "stopLossBtc": 0.000003
+}
 ```
 
-Snapshot unico e saida imediata:
+## Módulos core (runtime/lib/)
 
-```powershell
-node workspace/deribit/runtime/deribit-read-only-monitor.cjs --once
-```
+| Módulo | Responsabilidade |
+|---|---|
+| deribit-bot.cjs | orquestração, createCyclePlan |
+| deribit-client.cjs | WebSocket com a exchange |
+| deribit-private-snapshot.cjs | posição, equity, ordens |
+| deribit-reconcile.cjs | sincronização local ↔ exchange |
+| deribit-risk.cjs | evaluateRisk |
+| deribit-strategy.cjs | decideAction |
+| deribit-execution.cjs | sendOrder |
+| deribit-execution-audit.cjs | audit trail |
+| deribit-state-store.cjs | leitura/escrita de estado |
+| deribit-calibration.cjs | auto-calibração |
+| deribit-process-lock.cjs | processo único |
 
-Leitura do ultimo snapshot persistido:
+## Fluxo de um ciclo
 
-```powershell
-node workspace/deribit/runtime/deribit-show-latest.cjs
-```
+1. acquireProcessLock
+2. reconcileWithExchange
+3. createCyclePlan → decision + orderIntent
+4. getStaleOrders → cancelOrders se necessário
+5. verifica blockers → sai se bloqueado
+6. dry-run (sem --execute) → loga intenção
+7. execução real (--execute) → sendOrder
+8. persiste estado → metrics, botState, events, audit
+9. maybeAutoCalibrate → recalibra se posição flat
 
-Leitura das ultimas ordens abertas persistidas:
+## Comandos úteis
 
-```powershell
-node workspace/deribit/runtime/deribit-show-open-orders.cjs
-```
-
-Status de execucao:
-
-```powershell
-node workspace/deribit/runtime/deribit-execution-status.cjs
-```
-
-Resumo de risco sobre o ultimo snapshot:
-
-```powershell
-node workspace/deribit/runtime/deribit-risk-summary.cjs
-```
-
-Status operacional resumido:
-
-```powershell
+```bash
+# Diagnóstico
+node workspace/deribit/runtime/deribit-bot-summary.cjs
 node workspace/deribit/runtime/deribit-status.cjs
-```
+node workspace/deribit/runtime/deribit-risk-summary.cjs
+node workspace/deribit/runtime/deribit-decision-preview.cjs
+node workspace/deribit/runtime/deribit-economic-viability-report.cjs
+node workspace/deribit/runtime/deribit-edge-decomposition-report.cjs
 
-Checagem completa em um comando:
+# Operação
+node workspace/deribit/runtime/deribit-bot-loop.cjs --once           # dry-run
+node workspace/deribit/runtime/deribit-bot-loop.cjs --once --execute  # real
+node workspace/deribit/runtime/deribit-cancel-open-orders.cjs
+node workspace/deribit/runtime/deribit-flatten-position.cjs
 
-```powershell
+# Utilitários
+node workspace/deribit/runtime/deribit-validate-auth.cjs
+node workspace/deribit/runtime/deribit-private-sync.cjs
 node workspace/deribit/runtime/deribit-check.cjs
 ```
 
-Preview da decisao autonoma sobre o ultimo snapshot:
+## Variáveis de ambiente
 
-```powershell
-node workspace/deribit/runtime/deribit-decision-preview.cjs
+| Variável | Default | Descrição |
+|---|---|---|
+| DERIBIT_ENVIRONMENT | testnet | `testnet` ou `production` |
+| DERIBIT_CLIENT_ID | — | API key |
+| DERIBIT_CLIENT_SECRET | — | API secret |
+| DERIBIT_CURRENCY | BTC | moeda base |
+| DERIBIT_INSTRUMENT | BTC-PERPETUAL | instrumento |
+
+Credenciais ficam em `.env.local` na raiz (nunca commitado).
+
+## Bugs conhecidos e soluções
+
+### Audit travado em `status: "sent"`
+**Sintoma:** `state/deribit-execution-latest.json` fica com `status: "sent"` permanentemente,
+ativando `same_direction_reentry_blocked` e impedindo novos trades.
+
+**Causa:** credenciais erradas (ex: testnet com `DERIBIT_ENVIRONMENT=production`) ou
+`defaultOrderSizeUsd` abaixo do mínimo da exchange (10 USD) → ordem rejeitada sem
+atualizar o audit.
+
+**Solução:**
+```bash
+rm workspace/deribit/state/deribit-execution-latest.json
 ```
+Após corrigir credenciais e tamanho mínimo.
 
-Avaliacao completa com snapshot fresco, risco e decisao:
+## Observações
 
-```powershell
-node workspace/deribit/runtime/deribit-evaluate.cjs
-```
-
-Preflight de execucao da decisao:
-
-```powershell
-node workspace/deribit/runtime/deribit-execute-decision.cjs
-```
-
-Envio real em `testnet`:
-
-```powershell
-node workspace/deribit/runtime/deribit-execute-decision.cjs --execute
-```
-
-Sincronizacao privada one-shot:
-
-```powershell
-node workspace/deribit/runtime/deribit-private-sync.cjs
-```
-
-Cancelar ordens abertas:
-
-```powershell
-node workspace/deribit/runtime/deribit-cancel-open-orders.cjs
-node workspace/deribit/runtime/deribit-cancel-open-orders.cjs --execute
-```
-
-Flatten da posicao:
-
-```powershell
-node workspace/deribit/runtime/deribit-flatten-position.cjs
-node workspace/deribit/runtime/deribit-flatten-position.cjs --execute
-```
-
-Loop autonomo controlado:
-
-```powershell
-node workspace/deribit/runtime/deribit-bot-loop.cjs --once
-node workspace/deribit/runtime/deribit-bot-loop.cjs
-node workspace/deribit/runtime/deribit-bot-loop.cjs --execute
-```
-
-Operacao em background no Windows:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File active/scripts/start-deribit-bot.ps1 -Execute
-powershell -ExecutionPolicy Bypass -File active/scripts/show-deribit-bot-status.ps1
-powershell -ExecutionPolicy Bypass -File active/scripts/stop-deribit-bot.ps1
-```
-
-Validacao simples da autenticacao privada:
-
-```powershell
-node workspace/deribit/runtime/deribit-validate-auth.cjs
-```
-
-## Variaveis De Ambiente
-
-- `DERIBIT_ENVIRONMENT`
-  - `testnet` ou `production`
-  - default: `testnet`
-- `DERIBIT_CLIENT_ID`
-- `DERIBIT_CLIENT_SECRET`
-- `DERIBIT_CURRENCY`
-  - default: `BTC`
-- `DERIBIT_INSTRUMENT`
-  - default: `BTC-PERPETUAL`
-- `DERIBIT_LOG_INTERVAL_MS`
-  - default: `5000`
-- `DERIBIT_PRIVATE_REFRESH_INTERVAL_MS`
-  - default: `10000`
-
-Config local opcional:
-
-- `workspace/deribit/config/deribit.config.json`
-- `workspace/deribit/config/deribit.risk.json`
-- `workspace/deribit/config/deribit.strategy.json`
-- `workspace/deribit/config/deribit.execution.json`
-- `workspace/deribit/config/deribit.bot.json`
-- preencha o template local em `workspace/deribit/config/deribit.env.example.ps1` antes dos comandos privados
-
-## Comportamento
-
-Sem credenciais:
-
-- conecta no WebSocket
-- assina `ticker` e `book`
-- mostra snapshot publico
-
-Com credenciais:
-
-- autentica via `public/auth`
-- consulta `private/get_account_summary`
-- consulta `private/get_position`
-- consulta `private/get_open_orders_by_instrument`
-- assina `user.portfolio`, `user.orders` e `user.trades`
-- faz refresh periodico de `account summary` e `position`
-- persiste o ultimo snapshot em `workspace/deribit/state/deribit-latest.json`
-- registra eventos em `workspace/deribit/state/deribit-events.jsonl`
-- persiste o ultimo resumo de risco em `workspace/deribit/state/deribit-risk-latest.json`
-- persiste a ultima decisao em `workspace/deribit/state/deribit-decision-latest.json`
-- persiste as ultimas ordens abertas em `workspace/deribit/state/deribit-open-orders-latest.json`
-
-## Observacoes
-
-- o runtime atual nao envia ordens
-- o foco e observabilidade e base de infraestrutura
-- a camada atual ja produz decisao sugerida, mas ainda nao executa
-- a camada de execucao existe em `dry-run` por padrao
-- envio real exige autenticacao privada e `--execute`
-- o loop autonomo respeita cooldown e limite de ordens abertas
-- o loop agora separa `entry` de `position-management`
-- com posicao aberta, o bot nao deve abrir nova entrada na mesma logica de entry
-- `position-management` agora pode reduzir por `take-profit`, `stop-loss`, `time-stop` e funding adverso
-- ordens abertas envelhecidas podem ser canceladas pelo loop
-- `deribit-status.cjs` retorna codigo `2` quando houver `block`
-- `deribit-check.cjs` executa snapshot fresco e depois o status
-- `deribit-evaluate.cjs` executa snapshot, risco e decisao em sequencia
+- `--execute` é obrigatório para envio real de ordens
+- `deribit-status.cjs` retorna código `2` quando houver blocker
+- `deribit-check.cjs` executa snapshot fresco + status em sequência
+- o loop respeita cooldown e limite de ordens abertas
+- `position-management` pode reduzir por take-profit, stop-loss, time-stop e funding adverso
+- ordens abertas envelhecidas são canceladas automaticamente pelo loop
