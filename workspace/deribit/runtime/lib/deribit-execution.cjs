@@ -16,7 +16,6 @@ const CRITICAL_EXIT_MODES = new Set([
   'stop-loss',
   'loss-timeout',
   'time-stop',
-  'break-even-exit',
   'risk-reduction',
 ]);
 
@@ -98,10 +97,9 @@ function buildReduceExecutionPolicy(snapshot, decision) {
   return {
     direction,
     type: 'limit',
-    postOnly: false,
+    postOnly: isCriticalExit ? false : true,
     reduceOnly: true,
-    // Keep the exchange parameter set already used by the project; improve exit safety via price selection.
-    timeInForce: 'good_til_cancelled',
+    timeInForce: isCriticalExit ? 'immediate_or_cancel' : 'good_til_cancelled',
     price: direction === 'sell' ? snapshot.bestBid : snapshot.bestAsk,
     lifecycleHint: isCriticalExit ? 'critical-exit' : 'managed-exit',
   };
