@@ -281,6 +281,7 @@ async function runCycle(config, runtimeFlags, cycleRuntime) {
     const cancelWindowState = getCancelWindowState(cycle.botState, botConfig, Date.now());
     const lastCancelAt = cycle.botState?.lastCancelAt ? new Date(cycle.botState.lastCancelAt).getTime() : 0;
     const cancelCooldownActive =
+      staleReduceOrders.length === 0 &&
       lastCancelAt && Date.now() - lastCancelAt < botConfig.cancelReplaceCooldownMs;
     const cancelLimitReached =
       cancelWindowState.count >= botConfig.maxCancelReplacePerWindow;
