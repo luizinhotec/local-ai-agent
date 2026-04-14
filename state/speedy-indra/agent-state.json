@@ -151,7 +151,7 @@
       "paymentSatoshis": 100
     }
   ],
-  "lastMessagingRunAt": "2026-04-03T02:32:53.630Z",
+  "lastMessagingRunAt": "2026-04-06T01:20:50.783Z",
   "messageWindow": [],
   "recentMessageHashes": [],
   "identityStatus": {
@@ -180,8 +180,8 @@
     "approvalRequired": true,
     "liveEligible": false
   },
-  "lastBtcL1ToUsdcxCheckAt": "2026-04-03T02:33:43.092Z",
-  "lastBtcL1ToUsdcxAttemptAt": "2026-04-03T02:33:43.092Z",
+  "lastBtcL1ToUsdcxCheckAt": "2026-04-06T01:21:36.006Z",
+  "lastBtcL1ToUsdcxAttemptAt": "2026-04-06T01:21:36.006Z",
   "lastBtcL1ToUsdcxSuccessAt": null,
   "btcL1ToUsdcxRouteSuggested": "defi_native",
   "btcL1ToUsdcxRouteUsed": "defi_native",
@@ -203,9 +203,9 @@
       "dryRun": true,
       "statusOnly": true,
       "btcWallet": {
-        "ok": true,
+        "ok": false,
         "address": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
-        "signerReady": true,
+        "signerReady": false,
         "balanceSats": 0,
         "wallet": {
           "id": "de1522df-bf68-461c-958c-2b7cb14b14e4",
@@ -239,11 +239,12 @@
           "ok": true,
           "status": "ready",
           "responseStatus": 200,
-          "burnBlockHeight": 943450,
-          "stacksTipHeight": 7450288
+          "burnBlockHeight": 943856,
+          "stacksTipHeight": 7490278
         }
       },
       "blockers": [
+        "wallet_signer_material_missing",
         "btc_balance_lookup_failed",
         "btc_network_probe_failed",
         "manual_bridge_required"
@@ -255,6 +256,7 @@
       "bridgeMode": "manual_ui",
       "recommendation": "manual_bridge_required",
       "blockers": [
+        "wallet_signer_material_missing",
         "btc_balance_lookup_failed",
         "btc_network_probe_failed",
         "manual_bridge_required"
@@ -269,11 +271,11 @@
       "approveLive": false,
       "pair": "sbtc-usdcx",
       "amountSats": 3000,
-      "status": "ready",
+      "status": "partial",
       "quoteSummary": {
         "amountIn": "3000",
-        "amountOut": "1999764",
-        "minAmountOut": "1939771",
+        "amountOut": "2060635",
+        "minAmountOut": "1998816",
         "routePath": [
           "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
           "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx"
@@ -284,12 +286,12 @@
             "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
             "x_token_trait": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
             "y_token_trait": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
-            "expected_bin_id": 10,
+            "expected_bin_id": 40,
             "function_name": "swap-x-for-y",
             "x_in": "3000",
             "y_in": "0",
             "x_out": "0",
-            "y_out": "1999764",
+            "y_out": "2060635",
             "is_empty_swap": false
           }
         ],
@@ -298,37 +300,23 @@
         "priceImpactBps": -30,
         "quoteSource": "bitflow_live_quote",
         "responseStatus": 200,
-        "fetchedAt": "2026-04-03T02:34:08.249Z",
+        "fetchedAt": "2026-04-06T01:21:58.311Z",
         "cacheAvailable": false,
         "cacheCompatible": false,
         "cacheRejectReason": "missing_context",
         "cacheAgeSec": null,
         "cacheGeneratedAtUtc": null,
-        "feeSource": "live_derived",
-        "feeComputationReason": "executor_preflight_fee_microstx_x_core_prices",
-        "feeConfidence": "high",
-        "rawFeeInputs": {
-          "feeMicroStx": 895014,
-          "feePerByte": 1457.6775244299674,
-          "txBytes": 614,
-          "btcUsd": 66398,
-          "stxUsd": 0.212865,
-          "priceSources": {
-            "outputTokenUsd": "stablecoin_heuristic",
-            "btcUsd": "coingecko",
-            "stxUsd": "coingecko",
-            "inputTokenUsd": "coingecko"
-          },
-          "priceWarnings": [],
-          "preflightGeneratedAtUtc": "2026-04-03T02:34:11.055Z"
-        },
-        "estimatedFeeSats": 287,
-        "estimatedFeeMicroStx": 895014
+        "feeSource": "unavailable",
+        "feeComputationReason": "wallet_password_missing_for_executor",
+        "feeConfidence": "none",
+        "rawFeeInputs": null,
+        "estimatedFeeSats": null,
+        "estimatedFeeMicroStx": null
       },
       "plan": {
         "pair": "sbtc-usdcx",
         "amountSats": 3000,
-        "status": "ready",
+        "status": "partial",
         "wallet": {
           "id": "de1522df-bf68-461c-958c-2b7cb14b14e4",
           "name": "agent-mainnet",
@@ -340,14 +328,14 @@
           "lastUsed": null
         },
         "balances": {
-          "sbtcSats": 16815,
+          "sbtcSats": 9815,
           "usdcxBaseUnits": 7329062,
-          "stxMicroStx": 76476487
+          "stxMicroStx": 76475786
         },
         "dependencyReadiness": {
           "walletMatch": true,
-          "signerReady": true,
-          "executorPasswordReady": true,
+          "signerReady": false,
+          "executorPasswordReady": false,
           "executorAvailable": true,
           "cachedPlanAvailable": false,
           "cachedPlanCompatible": false,
@@ -362,8 +350,8 @@
         },
         "quote": {
           "amountIn": "3000",
-          "amountOut": "1999764",
-          "minAmountOut": "1939771",
+          "amountOut": "2060635",
+          "minAmountOut": "1998816",
           "routePath": [
             "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
             "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx"
@@ -374,12 +362,12 @@
               "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
               "x_token_trait": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
               "y_token_trait": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
-              "expected_bin_id": 10,
+              "expected_bin_id": 40,
               "function_name": "swap-x-for-y",
               "x_in": "3000",
               "y_in": "0",
               "x_out": "0",
-              "y_out": "1999764",
+              "y_out": "2060635",
               "is_empty_swap": false
             }
           ],
@@ -388,37 +376,23 @@
           "priceImpactBps": -30,
           "quoteSource": "bitflow_live_quote",
           "responseStatus": 200,
-          "fetchedAt": "2026-04-03T02:34:08.249Z",
+          "fetchedAt": "2026-04-06T01:21:58.311Z",
           "cacheAvailable": false,
           "cacheCompatible": false,
           "cacheRejectReason": "missing_context",
           "cacheAgeSec": null,
           "cacheGeneratedAtUtc": null,
-          "feeSource": "live_derived",
-          "feeComputationReason": "executor_preflight_fee_microstx_x_core_prices",
-          "feeConfidence": "high",
-          "rawFeeInputs": {
-            "feeMicroStx": 895014,
-            "feePerByte": 1457.6775244299674,
-            "txBytes": 614,
-            "btcUsd": 66398,
-            "stxUsd": 0.212865,
-            "priceSources": {
-              "outputTokenUsd": "stablecoin_heuristic",
-              "btcUsd": "coingecko",
-              "stxUsd": "coingecko",
-              "inputTokenUsd": "coingecko"
-            },
-            "priceWarnings": [],
-            "preflightGeneratedAtUtc": "2026-04-03T02:34:11.055Z"
-          },
-          "estimatedFeeSats": 287,
-          "estimatedFeeMicroStx": 895014
+          "feeSource": "unavailable",
+          "feeComputationReason": "wallet_password_missing_for_executor",
+          "feeConfidence": "none",
+          "rawFeeInputs": null,
+          "estimatedFeeSats": null,
+          "estimatedFeeMicroStx": null
         },
-        "quoteFreshnessSec": 3,
+        "quoteFreshnessSec": 0,
         "quoteFresh": true,
         "executionPolicy": {
-          "liveEnabled": true,
+          "liveEnabled": false,
           "approvalRequired": true,
           "maxInputSats": 10000,
           "maxSlippageBps": 300,
@@ -431,13 +405,16 @@
         },
         "executor": {
           "path": "C:\\dev\\local-ai-agent\\active\\tools\\bitflow-runtime\\dog-mm-bitflow-swap-executor.cjs",
-          "mode": "subprocess_wrapper_available"
+          "mode": "subprocess_wrapper_blocked"
         },
         "cachedContext": null,
-        "knownBlockers": []
+        "knownBlockers": [
+          "wallet_password_missing",
+          "estimated_fee_unavailable"
+        ]
       },
       "executionPolicy": {
-        "liveEnabled": true,
+        "liveEnabled": false,
         "approvalRequired": true,
         "maxInputSats": 10000,
         "maxSlippageBps": 300,
@@ -448,7 +425,10 @@
         ],
         "circuitBreakerThreshold": 3
       },
-      "blockers": [],
+      "blockers": [
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
+      ],
       "execution": {
         "executed": false,
         "status": "skipped",
@@ -456,24 +436,30 @@
       },
       "state": null
     },
-    "estimatedOutput": "1999764",
+    "estimatedOutput": "2060635",
     "totalFeesEstimate": {
       "bridgeBtcFeeSats": null,
-      "sbtcToUsdcxFeeSats": 287
+      "sbtcToUsdcxFeeSats": null
     },
     "executionMode": "manual + automated",
     "blockers": [
+      "wallet_signer_material_missing",
       "btc_balance_lookup_failed",
       "btc_network_probe_failed",
-      "manual_bridge_required"
+      "manual_bridge_required",
+      "wallet_password_missing",
+      "estimated_fee_unavailable"
     ],
     "status": "blocked",
     "pointOfManualAction": "btc_l1_to_sbtc_bridge"
   },
   "btcL1ToUsdcxKnownBlockers": [
+    "wallet_signer_material_missing",
     "btc_balance_lookup_failed",
     "btc_network_probe_failed",
-    "manual_bridge_required"
+    "manual_bridge_required",
+    "wallet_password_missing",
+    "estimated_fee_unavailable"
   ],
   "walletStatus": {
     "implemented": true,
@@ -500,8 +486,8 @@
         "ok": true,
         "status": "ready",
         "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
-        "stxMicroStx": 76476487,
-        "sbtcSats": 16815,
+        "stxMicroStx": 76475786,
+        "sbtcSats": 9815,
         "usdcxBaseUnits": 7329062,
         "tokenKeys": {
           "sbtc": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
@@ -519,25 +505,25 @@
       "stacks": {
         "ok": true,
         "status": "ready",
-        "burnBlockHeight": 943450,
-        "stacksTipHeight": 7450280,
+        "burnBlockHeight": 943856,
+        "stacksTipHeight": 7490267,
         "responseStatus": 200
       }
     },
     "signerReadiness": {
-      "ok": true,
-      "status": "ready",
+      "ok": false,
+      "status": "locked",
       "source": "wallet_keystore",
-      "derivationPath": "m/84'/0'/0'/0/0",
-      "address": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
-      "reason": null
+      "derivationPath": null,
+      "address": null,
+      "reason": "wallet_password_missing"
     },
     "stacksSignerReadiness": {
-      "ok": true,
-      "status": "ready",
+      "ok": false,
+      "status": "locked",
       "source": "wallet_keystore",
-      "address": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
-      "reason": null
+      "address": null,
+      "reason": "wallet_password_missing"
     },
     "dependencyReadiness": {
       "catalogPresent": true,
@@ -549,17 +535,18 @@
     },
     "approvalRequiredForValueActions": true
   },
-  "walletChecks": 2068,
+  "walletChecks": 2073,
   "walletActionsAttempted": 0,
   "walletActionsSucceeded": 0,
   "walletActionsFailed": 0,
-  "lastWalletCheckAt": "2026-04-03T02:32:54.780Z",
+  "lastWalletCheckAt": "2026-04-06T01:20:50.948Z",
   "lastWalletActionAt": null,
   "lastWalletActionTxId": null,
   "lastWalletActionOutcome": "never",
   "walletKnownBlockers": [
     "feature_disabled",
     "btc_network_unavailable",
+    "wallet_password_missing",
     "btc_balance_empty_or_unavailable",
     "wallet_live_requires_approval"
   ],
@@ -589,8 +576,8 @@
           "ok": true,
           "status": "ready",
           "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
-          "stxMicroStx": 76476487,
-          "sbtcSats": 16815,
+          "stxMicroStx": 76475786,
+          "sbtcSats": 9815,
           "usdcxBaseUnits": 7329062,
           "tokenKeys": {
             "sbtc": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
@@ -608,25 +595,25 @@
         "stacks": {
           "ok": true,
           "status": "ready",
-          "burnBlockHeight": 943450,
-          "stacksTipHeight": 7450280,
+          "burnBlockHeight": 943856,
+          "stacksTipHeight": 7490267,
           "responseStatus": 200
         }
       },
       "signerReadiness": {
-        "ok": true,
-        "status": "ready",
+        "ok": false,
+        "status": "locked",
         "source": "wallet_keystore",
-        "derivationPath": "m/84'/0'/0'/0/0",
-        "address": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
-        "reason": null
+        "derivationPath": null,
+        "address": null,
+        "reason": "wallet_password_missing"
       },
       "stacksSignerReadiness": {
-        "ok": true,
-        "status": "ready",
+        "ok": false,
+        "status": "locked",
         "source": "wallet_keystore",
-        "address": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
-        "reason": null
+        "address": null,
+        "reason": "wallet_password_missing"
       },
       "dependencyReadiness": {
         "catalogPresent": true,
@@ -641,23 +628,24 @@
     "knownBlockers": [
       "feature_disabled",
       "btc_network_unavailable",
+      "wallet_password_missing",
       "btc_balance_empty_or_unavailable",
       "wallet_live_requires_approval"
     ],
     "microAction": {
       "actionType": "btc_signer_probe",
-      "status": "ready_for_explicit_live",
+      "status": "blocked",
       "dryRunDefault": true,
       "liveApprovalRequiredForValueTransfer": true,
       "valueTransferImplemented": true,
-      "probeMessage": "Speedy Indra wallet probe | SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT | bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9 | 2026-04-03T02:32:54.780Z",
+      "probeMessage": "Speedy Indra wallet probe | SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT | bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9 | 2026-04-06T01:20:50.948Z",
       "proofFormat": "bip322",
       "maxValueSats": 1000,
       "valueActionPlan": {
         "actionType": "controlled_transfer_stx_micro",
         "status": "blocked",
         "approvalRequired": true,
-        "executorAvailable": true,
+        "executorAvailable": false,
         "reason": "feature_disabled",
         "suggestedAmountMicroStx": 1000,
         "maxFeeMicroStx": 3000,
@@ -668,7 +656,7 @@
         "amountMicroStx": 1000,
         "requestedAmountMicroStx": null,
         "dryRunDefault": true,
-        "signerReady": true,
+        "signerReady": false,
         "feeEstimateMicroStx": null,
         "nonce": null,
         "txid": null,
@@ -678,15 +666,15 @@
         ],
         "prerequisites": {
           "featureEnabled": false,
-          "stacksSignerReady": true,
+          "stacksSignerReady": false,
           "stacksBalanceKnown": true,
           "stacksNetworkReady": true,
           "targetResolved": false
         }
       },
       "balancesSnapshot": {
-        "stxMicroStx": 76476487,
-        "sbtcSats": 16815,
+        "stxMicroStx": 76475786,
+        "sbtcSats": 9815,
         "btcSats": null
       }
     }
@@ -1070,15 +1058,15 @@
   "watchGateReason": "amount_outside_watch_band",
   "watchGateScore": 0,
   "lastChampionshipWatchGate": {
-    "at": "2026-04-03T02:32:53.628Z",
+    "at": "2026-04-06T01:20:50.781Z",
     "version": "championship_watch_gate_v1",
     "watchGateEligible": false,
     "watchGateReason": "amount_outside_watch_band",
     "watchGateScore": 0,
-    "estimatedFeeSats": 91,
+    "estimatedFeeSats": null,
     "priceImpactBps": -30,
-    "decision": "SKIP",
-    "decisionReason": "worst_case_profit_below_threshold",
+    "decision": "INCONCLUSIVE",
+    "decisionReason": "estimated_fee_unavailable",
     "quoteFresh": true,
     "policySource": "default",
     "routeOverrideActive": false,
@@ -1097,27 +1085,27 @@
     }
   },
   "lastShadowExecution": null,
-  "edgeScore": 64,
+  "edgeScore": 48,
   "executionQualityScore": 59,
-  "autoArmStatus": "expired",
-  "autoArmNonce": "CRP9UU",
-  "autoArmArmedAt": "2026-03-22T19:19:49.483Z",
-  "autoArmExpiresAt": "2026-03-22T19:20:49.483Z",
-  "autoArmConsumedAt": "2026-03-22T19:20:53.504Z",
+  "autoArmStatus": "fired",
+  "autoArmNonce": "N7Z423",
+  "autoArmArmedAt": "2026-04-06T01:22:18.437Z",
+  "autoArmExpiresAt": "2026-04-06T01:23:18.437Z",
+  "autoArmConsumedAt": "2026-04-06T01:22:19.156Z",
   "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
   "autoArmAmountSats": 2000,
   "autoArmPair": "sbtc-usdcx",
-  "autoArmExecutionOutcome": "expired",
+  "autoArmExecutionOutcome": "simulated",
   "autoArmExecutionTxId": null,
   "remoteExecPilotConsumedAt": null,
   "remoteExecPilotExecutionCount": 0,
-  "remoteExecPilotLastOutcome": null,
+  "remoteExecPilotLastOutcome": "simulated",
   "remoteExecPilotLastTxId": null,
-  "lastTelegramExecCommandAt": null,
-  "lastTelegramExecCommandText": null,
-  "lastTelegramExecDecision": "expired",
-  "lastTelegramUpdateId": 525079760,
-  "lastRouteEvaluationAt": "2026-04-03T02:32:53.628Z",
+  "lastTelegramExecCommandAt": "2026-04-06T01:22:19.520Z",
+  "lastTelegramExecCommandText": "EXEC N7Z423",
+  "lastTelegramExecDecision": "already_consumed",
+  "lastTelegramUpdateId": 525079764,
+  "lastRouteEvaluationAt": "2026-04-06T01:20:50.781Z",
   "lastRecommendedAction": "quote_only",
   "lastRecommendedReason": "defi_quote_monitoring_available",
   "lastRecommendationConfidence": 0.7,
@@ -1152,15 +1140,16 @@
     },
     "wallet": {
       "ready": false,
-      "signerReady": true,
+      "signerReady": false,
       "btcNetworkReady": false,
       "stacksNetworkReady": true,
       "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
-      "stxMicro": 76476487,
-      "sbtcSats": 16815,
+      "stxMicro": 76475786,
+      "sbtcSats": 9815,
       "usdcxBaseUnits": 7329062,
       "blockers": [
         "btc_network_unavailable",
+        "wallet_password_missing",
         "btc_balance_empty_or_unavailable",
         "wallet_live_requires_approval"
       ],
@@ -1168,7 +1157,7 @@
         "actionType": "controlled_transfer_stx_micro",
         "status": "blocked",
         "approvalRequired": true,
-        "executorAvailable": true,
+        "executorAvailable": false,
         "reason": "feature_disabled",
         "suggestedAmountMicroStx": 1000,
         "maxFeeMicroStx": 3000,
@@ -1179,7 +1168,7 @@
         "amountMicroStx": 1000,
         "requestedAmountMicroStx": null,
         "dryRunDefault": true,
-        "signerReady": true,
+        "signerReady": false,
         "feeEstimateMicroStx": null,
         "nonce": null,
         "txid": null,
@@ -1189,7 +1178,7 @@
         ],
         "prerequisites": {
           "featureEnabled": false,
-          "stacksSignerReady": true,
+          "stacksSignerReady": false,
           "stacksBalanceKnown": true,
           "stacksNetworkReady": true,
           "targetResolved": false
@@ -1198,12 +1187,12 @@
     },
     "defi": {
       "pair": "sbtc-usdcx",
-      "status": "ready",
+      "status": "partial",
       "amountSats": 3000,
       "quoteSummary": {
         "amountIn": "3000",
-        "amountOut": "1999764",
-        "minAmountOut": "1939771",
+        "amountOut": "2060635",
+        "minAmountOut": "1998816",
         "routePath": [
           "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
           "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx"
@@ -1214,12 +1203,12 @@
             "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
             "x_token_trait": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
             "y_token_trait": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
-            "expected_bin_id": 10,
+            "expected_bin_id": 40,
             "function_name": "swap-x-for-y",
             "x_in": "3000",
             "y_in": "0",
             "x_out": "0",
-            "y_out": "1999764",
+            "y_out": "2060635",
             "is_empty_swap": false
           }
         ],
@@ -1228,45 +1217,37 @@
         "priceImpactBps": -30,
         "quoteSource": "bitflow_live_quote",
         "responseStatus": 200,
-        "fetchedAt": "2026-04-03T02:33:18.552Z",
+        "fetchedAt": "2026-04-06T01:21:14.305Z",
         "cacheAvailable": false,
         "cacheCompatible": false,
         "cacheRejectReason": "missing_context",
         "cacheAgeSec": null,
         "cacheGeneratedAtUtc": null,
-        "feeSource": "live_derived",
-        "feeComputationReason": "executor_preflight_fee_microstx_x_core_prices",
-        "feeConfidence": "high",
-        "rawFeeInputs": {
-          "feeMicroStx": 282129,
-          "feePerByte": 459.49348534201954,
-          "txBytes": 614,
-          "btcUsd": 66395,
-          "stxUsd": 0.213053,
-          "priceSources": {
-            "outputTokenUsd": "stablecoin_heuristic",
-            "btcUsd": "coingecko",
-            "stxUsd": "coingecko",
-            "inputTokenUsd": "coingecko"
-          },
-          "priceWarnings": [],
-          "preflightGeneratedAtUtc": "2026-04-03T02:33:21.398Z"
-        },
-        "estimatedFeeSats": 91,
-        "estimatedFeeMicroStx": 282129
+        "feeSource": "unavailable",
+        "feeComputationReason": "wallet_password_missing_for_executor",
+        "feeConfidence": "none",
+        "rawFeeInputs": null,
+        "estimatedFeeSats": null,
+        "estimatedFeeMicroStx": null
       },
-      "estimatedFeeSats": 91,
+      "estimatedFeeSats": null,
       "slippageBps": 30,
       "priceImpactBps": -30,
       "quoteFresh": true,
-      "blockers": [],
-      "knownBlockers": [],
-      "decision": "SKIP",
-      "decisionReason": "worst_case_profit_below_threshold",
-      "balanceSbtcSats": 16815,
-      "planStatus": "ready",
+      "blockers": [
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
+      ],
+      "knownBlockers": [
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
+      ],
+      "decision": "INCONCLUSIVE",
+      "decisionReason": "estimated_fee_unavailable",
+      "balanceSbtcSats": 9815,
+      "planStatus": "partial",
       "executionPolicy": {
-        "liveEnabled": true,
+        "liveEnabled": false,
         "approvalRequired": true,
         "maxInputSats": 10000,
         "maxSlippageBps": 300,
@@ -1279,8 +1260,8 @@
       },
       "dependencyReadiness": {
         "walletMatch": true,
-        "signerReady": true,
-        "executorPasswordReady": true,
+        "signerReady": false,
+        "executorPasswordReady": false,
         "executorAvailable": true,
         "cachedPlanAvailable": false,
         "cachedPlanCompatible": false,
@@ -1308,16 +1289,16 @@
           "maxPriceImpactBps": 50
         }
       },
-      "economicVerdict": "pass",
-      "technicallyReady": true,
+      "economicVerdict": "inconclusive",
+      "technicallyReady": false,
       "shadowExecution": {
-        "at": "2026-04-03T02:34:11.268Z",
+        "at": "2026-04-06T01:21:58.320Z",
         "pair": "sbtc-usdcx",
         "amountSats": 3000,
-        "simulatedAmountOut": 1999764,
-        "simulatedMinAmountOut": 1939771,
-        "simulatedFeeSats": 91,
-        "simulatedLatencyMs": 5287,
+        "simulatedAmountOut": 2060635,
+        "simulatedMinAmountOut": 1998816,
+        "simulatedFeeSats": null,
+        "simulatedLatencyMs": 2061,
         "simulatedPriceImpactBps": -30,
         "routePath": [
           "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
@@ -1329,21 +1310,21 @@
             "pool_id": "SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-10",
             "x_token_trait": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token",
             "y_token_trait": "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx",
-            "expected_bin_id": 10,
+            "expected_bin_id": 40,
             "function_name": "swap-x-for-y",
             "x_in": "3000",
             "y_in": "0",
             "x_out": "0",
-            "y_out": "1999764",
+            "y_out": "2060635",
             "is_empty_swap": false
           }
         ],
         "totalHops": 1,
         "quoteFresh": true,
-        "decision": "SKIP",
-        "decisionReason": "worst_case_profit_below_threshold"
+        "decision": "INCONCLUSIVE",
+        "decisionReason": "estimated_fee_unavailable"
       },
-      "edgeScore": 64,
+      "edgeScore": 48,
       "executionQualityScore": 59,
       "watchGate": {
         "eligible": false,
@@ -1362,15 +1343,19 @@
       "bridgeMode": "manual_ui",
       "bridgeRecommendation": "manual_bridge_required",
       "bridgeBlockers": [
+        "wallet_signer_material_missing",
         "btc_balance_lookup_failed",
         "btc_network_probe_failed",
         "manual_bridge_required"
       ],
       "routerStatus": "blocked",
       "routerBlockers": [
+        "wallet_signer_material_missing",
         "btc_balance_lookup_failed",
         "btc_network_probe_failed",
-        "manual_bridge_required"
+        "manual_bridge_required",
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
       ],
       "routerExecutionMode": "manual + automated",
       "pointOfManualAction": "btc_l1_to_sbtc_bridge"
@@ -1380,140 +1365,12 @@
       "achievementsUnlocked": {},
       "completedIdentitySteps": [],
       "lastHeartbeatAt": null,
-      "lastMessagingRunAt": "2026-04-03T02:32:53.630Z",
-      "lastWalletCheckAt": "2026-04-03T02:32:54.780Z",
+      "lastMessagingRunAt": "2026-04-06T01:20:50.783Z",
+      "lastWalletCheckAt": "2026-04-06T01:20:50.948Z",
       "lastDefiCheckAt": "2026-03-25T03:57:38.988Z"
     }
   },
   "routeEvaluatorHistory": [
-    {
-      "at": "2026-04-01T15:49:27.613Z",
-      "amountSats": 3000,
-      "recommendedAction": "quote_only",
-      "recommendedSkillId": "bounty_interactions",
-      "recommendedSkillReason": "prepared_bounty_candidate_ready",
-      "recommendedSkillScore": 74,
-      "loopRecommendedSkillId": "defi_quote_monitor",
-      "nextBestAction": "wait",
-      "confidence": 0.7,
-      "estimatedCostClass": "zero",
-      "reason": "defi_quote_monitoring_available",
-      "blockers": [
-        "estimated_fee_above_max_sats"
-      ],
-      "watchGateEligible": false,
-      "watchGateReason": "amount_outside_watch_band",
-      "watchGateScore": 0,
-      "edgeScore": 48,
-      "executionQualityScore": 59,
-      "championshipGateEligible": false,
-      "championshipGateBlockReason": "decision_not_pass",
-      "policySource": "default",
-      "routeOverrideActive": false,
-      "effectiveDecisionPolicy": {
-        "minOutputRatio": 0.97,
-        "maxEstimatedFeeSats": 500,
-        "maxFeePerByte": 1000,
-        "maxRouteHops": 2,
-        "minExpectedNetUsd": 0.1,
-        "minWorstCaseNetUsd": 0
-      }
-    },
-    {
-      "at": "2026-04-01T15:50:38.887Z",
-      "amountSats": 3000,
-      "recommendedAction": "quote_only",
-      "recommendedSkillId": "bounty_interactions",
-      "recommendedSkillReason": "prepared_bounty_candidate_ready",
-      "recommendedSkillScore": 74,
-      "loopRecommendedSkillId": "defi_quote_monitor",
-      "nextBestAction": "wait",
-      "confidence": 0.7,
-      "estimatedCostClass": "zero",
-      "reason": "defi_quote_monitoring_available",
-      "blockers": [],
-      "watchGateEligible": false,
-      "watchGateReason": "amount_outside_watch_band",
-      "watchGateScore": 0,
-      "edgeScore": 63,
-      "executionQualityScore": 59,
-      "championshipGateEligible": false,
-      "championshipGateBlockReason": "decision_not_pass",
-      "policySource": "default",
-      "routeOverrideActive": false,
-      "effectiveDecisionPolicy": {
-        "minOutputRatio": 0.97,
-        "maxEstimatedFeeSats": 500,
-        "maxFeePerByte": 1000,
-        "maxRouteHops": 2,
-        "minExpectedNetUsd": 0.1,
-        "minWorstCaseNetUsd": 0
-      }
-    },
-    {
-      "at": "2026-04-01T15:51:49.878Z",
-      "amountSats": 3000,
-      "recommendedAction": "quote_only",
-      "recommendedSkillId": "bounty_interactions",
-      "recommendedSkillReason": "prepared_bounty_candidate_ready",
-      "recommendedSkillScore": 74,
-      "loopRecommendedSkillId": "defi_quote_monitor",
-      "nextBestAction": "wait",
-      "confidence": 0.7,
-      "estimatedCostClass": "zero",
-      "reason": "defi_quote_monitoring_available",
-      "blockers": [],
-      "watchGateEligible": false,
-      "watchGateReason": "amount_outside_watch_band",
-      "watchGateScore": 0,
-      "edgeScore": 61,
-      "executionQualityScore": 59,
-      "championshipGateEligible": false,
-      "championshipGateBlockReason": "decision_not_pass",
-      "policySource": "default",
-      "routeOverrideActive": false,
-      "effectiveDecisionPolicy": {
-        "minOutputRatio": 0.97,
-        "maxEstimatedFeeSats": 500,
-        "maxFeePerByte": 1000,
-        "maxRouteHops": 2,
-        "minExpectedNetUsd": 0.1,
-        "minWorstCaseNetUsd": 0
-      }
-    },
-    {
-      "at": "2026-04-01T15:53:01.878Z",
-      "amountSats": 3000,
-      "recommendedAction": "quote_only",
-      "recommendedSkillId": "bounty_interactions",
-      "recommendedSkillReason": "prepared_bounty_candidate_ready",
-      "recommendedSkillScore": 74,
-      "loopRecommendedSkillId": "defi_quote_monitor",
-      "nextBestAction": "wait",
-      "confidence": 0.7,
-      "estimatedCostClass": "zero",
-      "reason": "defi_quote_monitoring_available",
-      "blockers": [
-        "estimated_fee_above_max_sats"
-      ],
-      "watchGateEligible": false,
-      "watchGateReason": "amount_outside_watch_band",
-      "watchGateScore": 0,
-      "edgeScore": 48,
-      "executionQualityScore": 59,
-      "championshipGateEligible": false,
-      "championshipGateBlockReason": "decision_not_pass",
-      "policySource": "default",
-      "routeOverrideActive": false,
-      "effectiveDecisionPolicy": {
-        "minOutputRatio": 0.97,
-        "maxEstimatedFeeSats": 500,
-        "maxFeePerByte": 1000,
-        "maxRouteHops": 2,
-        "minExpectedNetUsd": 0.1,
-        "minWorstCaseNetUsd": 0
-      }
-    },
     {
       "at": "2026-04-01T15:54:15.865Z",
       "amountSats": 3000,
@@ -2017,6 +1874,142 @@
         "minExpectedNetUsd": 0.1,
         "minWorstCaseNetUsd": 0
       }
+    },
+    {
+      "at": "2026-04-06T01:17:28.171Z",
+      "amountSats": 3000,
+      "recommendedAction": "quote_only",
+      "recommendedSkillId": "bounty_interactions",
+      "recommendedSkillReason": "prepared_bounty_candidate_ready",
+      "recommendedSkillScore": 74,
+      "loopRecommendedSkillId": "defi_quote_monitor",
+      "nextBestAction": "quote_only",
+      "confidence": 0.7,
+      "estimatedCostClass": "zero",
+      "reason": "defi_quote_monitoring_available",
+      "blockers": [
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
+      ],
+      "watchGateEligible": false,
+      "watchGateReason": "amount_outside_watch_band",
+      "watchGateScore": 0,
+      "edgeScore": 48,
+      "executionQualityScore": 59,
+      "championshipGateEligible": false,
+      "championshipGateBlockReason": "decision_not_pass",
+      "policySource": "default",
+      "routeOverrideActive": false,
+      "effectiveDecisionPolicy": {
+        "minOutputRatio": 0.97,
+        "maxEstimatedFeeSats": 500,
+        "maxFeePerByte": 1000,
+        "maxRouteHops": 2,
+        "minExpectedNetUsd": 0.1,
+        "minWorstCaseNetUsd": 0
+      }
+    },
+    {
+      "at": "2026-04-06T01:18:37.779Z",
+      "amountSats": 3000,
+      "recommendedAction": "quote_only",
+      "recommendedSkillId": "bounty_interactions",
+      "recommendedSkillReason": "prepared_bounty_candidate_ready",
+      "recommendedSkillScore": 74,
+      "loopRecommendedSkillId": "defi_quote_monitor",
+      "nextBestAction": "quote_only",
+      "confidence": 0.7,
+      "estimatedCostClass": "zero",
+      "reason": "defi_quote_monitoring_available",
+      "blockers": [
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
+      ],
+      "watchGateEligible": false,
+      "watchGateReason": "amount_outside_watch_band",
+      "watchGateScore": 0,
+      "edgeScore": 48,
+      "executionQualityScore": 59,
+      "championshipGateEligible": false,
+      "championshipGateBlockReason": "decision_not_pass",
+      "policySource": "default",
+      "routeOverrideActive": false,
+      "effectiveDecisionPolicy": {
+        "minOutputRatio": 0.97,
+        "maxEstimatedFeeSats": 500,
+        "maxFeePerByte": 1000,
+        "maxRouteHops": 2,
+        "minExpectedNetUsd": 0.1,
+        "minWorstCaseNetUsd": 0
+      }
+    },
+    {
+      "at": "2026-04-06T01:19:41.972Z",
+      "amountSats": 3000,
+      "recommendedAction": "quote_only",
+      "recommendedSkillId": "bounty_interactions",
+      "recommendedSkillReason": "prepared_bounty_candidate_ready",
+      "recommendedSkillScore": 74,
+      "loopRecommendedSkillId": "defi_quote_monitor",
+      "nextBestAction": "quote_only",
+      "confidence": 0.7,
+      "estimatedCostClass": "zero",
+      "reason": "defi_quote_monitoring_available",
+      "blockers": [
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
+      ],
+      "watchGateEligible": false,
+      "watchGateReason": "amount_outside_watch_band",
+      "watchGateScore": 0,
+      "edgeScore": 48,
+      "executionQualityScore": 59,
+      "championshipGateEligible": false,
+      "championshipGateBlockReason": "decision_not_pass",
+      "policySource": "default",
+      "routeOverrideActive": false,
+      "effectiveDecisionPolicy": {
+        "minOutputRatio": 0.97,
+        "maxEstimatedFeeSats": 500,
+        "maxFeePerByte": 1000,
+        "maxRouteHops": 2,
+        "minExpectedNetUsd": 0.1,
+        "minWorstCaseNetUsd": 0
+      }
+    },
+    {
+      "at": "2026-04-06T01:20:50.781Z",
+      "amountSats": 3000,
+      "recommendedAction": "quote_only",
+      "recommendedSkillId": "bounty_interactions",
+      "recommendedSkillReason": "prepared_bounty_candidate_ready",
+      "recommendedSkillScore": 74,
+      "loopRecommendedSkillId": "defi_quote_monitor",
+      "nextBestAction": "quote_only",
+      "confidence": 0.7,
+      "estimatedCostClass": "zero",
+      "reason": "defi_quote_monitoring_available",
+      "blockers": [
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
+      ],
+      "watchGateEligible": false,
+      "watchGateReason": "amount_outside_watch_band",
+      "watchGateScore": 0,
+      "edgeScore": 48,
+      "executionQualityScore": 59,
+      "championshipGateEligible": false,
+      "championshipGateBlockReason": "decision_not_pass",
+      "policySource": "default",
+      "routeOverrideActive": false,
+      "effectiveDecisionPolicy": {
+        "minOutputRatio": 0.97,
+        "maxEstimatedFeeSats": 500,
+        "maxFeePerByte": 1000,
+        "maxRouteHops": 2,
+        "minExpectedNetUsd": 0.1,
+        "minWorstCaseNetUsd": 0
+      }
     }
   ],
   "blsm": {
@@ -2485,7 +2478,7 @@
   },
   "skillBuilder": {
     "implemented": true,
-    "lastEvaluationAt": "2026-04-03T02:32:53.628Z",
+    "lastEvaluationAt": "2026-04-06T01:20:50.781Z",
     "lastRecommendedSkillId": "bounty_interactions",
     "lastRecommendedSkillCommand": "npm run agent:bounty:execute -- --dry-run",
     "lastLoopRecommendedAction": "quote_only",
@@ -2507,17 +2500,21 @@
       },
       {
         "skillId": "defi_quote_monitor",
-        "finalScore": 6,
+        "finalScore": 2,
         "status": "ready",
         "reason": "defi_quote_monitoring_available",
-        "blockers": [],
+        "blockers": [
+          "wallet_password_missing",
+          "estimated_fee_unavailable"
+        ],
         "scoreBreakdown": {
           "observability": 10,
           "residual_signal": 8
         },
         "penaltyBreakdown": {
           "monitor_only": 6,
-          "cooldown_active": 8
+          "cooldown_active": 8,
+          "blockers_present": 4
         }
       },
       {
@@ -2571,7 +2568,7 @@
     "skillStates": {
       "messaging_paid_outbound": {
         "id": "messaging_paid_outbound",
-        "evaluations": 2050,
+        "evaluations": 2054,
         "recommendations": 0,
         "baseScore": 0,
         "finalScore": 0,
@@ -2583,7 +2580,7 @@
         "lastReason": "no_payment_required_messages",
         "lastBlockedReason": null,
         "lastRecommendedAt": null,
-        "lastEvaluatedAt": "2026-04-03T02:32:53.628Z",
+        "lastEvaluatedAt": "2026-04-06T01:20:50.781Z",
         "lastCommand": "npm run agent:messages:pay -- --dry-run --max-payments=1",
         "lastManualCommand": "npm run agent:messages:pay -- --dry-run --max-payments=1",
         "lastTargetHash": null,
@@ -2599,7 +2596,7 @@
       },
       "messaging_safe_replies": {
         "id": "messaging_safe_replies",
-        "evaluations": 2050,
+        "evaluations": 2054,
         "recommendations": 2,
         "baseScore": 0,
         "finalScore": 0,
@@ -2611,7 +2608,7 @@
         "lastReason": "no_pending_safe_replies",
         "lastBlockedReason": null,
         "lastRecommendedAt": "2026-04-01T03:50:05.320Z",
-        "lastEvaluatedAt": "2026-04-03T02:32:53.628Z",
+        "lastEvaluatedAt": "2026-04-06T01:20:50.781Z",
         "lastCommand": "npm run agent:messages -- --live --reply-pending --max-replies-per-cycle=1",
         "lastManualCommand": "npm run agent:messages -- --live --reply-pending --max-replies-per-cycle=1",
         "lastTargetHash": null,
@@ -2627,7 +2624,7 @@
       },
       "wallet_micro_transfer": {
         "id": "wallet_micro_transfer",
-        "evaluations": 2050,
+        "evaluations": 2054,
         "recommendations": 0,
         "baseScore": 10,
         "finalScore": 0,
@@ -2643,7 +2640,7 @@
         "lastReason": "feature_disabled",
         "lastBlockedReason": "feature_disabled",
         "lastRecommendedAt": null,
-        "lastEvaluatedAt": "2026-04-03T02:32:53.628Z",
+        "lastEvaluatedAt": "2026-04-06T01:20:50.781Z",
         "lastCommand": "npm run agent:wallet:micro:live",
         "lastManualCommand": "npm run agent:wallet:micro:live",
         "lastTargetHash": "3207cd6ea6dc",
@@ -2651,16 +2648,16 @@
         "lastPreparedCandidateId": null,
         "lastUsefulSignalAt": null,
         "cooldownUntil": null,
-        "breakerOpenUntil": "2026-04-03T03:04:11.273Z",
+        "breakerOpenUntil": "2026-04-06T01:51:58.325Z",
         "breakerReason": "feature_disabled",
-        "consecutiveFailures": 2050,
+        "consecutiveFailures": 2054,
         "manualApprovalRequired": true,
         "autoExecutable": false
       },
       "bounty_interactions": {
         "id": "bounty_interactions",
-        "evaluations": 2050,
-        "recommendations": 2040,
+        "evaluations": 2054,
+        "recommendations": 2044,
         "baseScore": 54,
         "finalScore": 74,
         "strategicWeight": 20,
@@ -2674,14 +2671,14 @@
         "lastStatus": "candidate_ready_for_manual_execution",
         "lastReason": "prepared_bounty_candidate_ready",
         "lastBlockedReason": null,
-        "lastRecommendedAt": "2026-04-03T02:32:53.628Z",
-        "lastEvaluatedAt": "2026-04-03T02:32:53.628Z",
+        "lastRecommendedAt": "2026-04-06T01:20:50.781Z",
+        "lastEvaluatedAt": "2026-04-06T01:20:50.781Z",
         "lastCommand": "npm run agent:bounty:execute -- --dry-run",
         "lastManualCommand": "npm run agent:bounty:execute -- --dry-run",
         "lastTargetHash": "0dd4c53062af",
         "lastCandidateCount": 1,
         "lastPreparedCandidateId": null,
-        "lastUsefulSignalAt": "2026-04-03T02:32:53.628Z",
+        "lastUsefulSignalAt": "2026-04-06T01:20:50.781Z",
         "cooldownUntil": "2026-03-22T01:06:20.746Z",
         "breakerOpenUntil": null,
         "breakerReason": null,
@@ -2691,7 +2688,7 @@
       },
       "bounty_execute": {
         "id": "bounty_execute",
-        "evaluations": 2050,
+        "evaluations": 2054,
         "recommendations": 0,
         "baseScore": 0,
         "finalScore": 0,
@@ -2706,7 +2703,7 @@
         "lastReason": "no_operational_bounty_candidates",
         "lastBlockedReason": "no_operational_bounty_candidates",
         "lastRecommendedAt": null,
-        "lastEvaluatedAt": "2026-04-03T02:32:53.628Z",
+        "lastEvaluatedAt": "2026-04-06T01:20:50.781Z",
         "lastCommand": "npm run agent:bounty:execute -- --dry-run",
         "lastManualCommand": "npm run agent:bounty:execute -- --dry-run",
         "lastTargetHash": null,
@@ -2722,10 +2719,10 @@
       },
       "defi_quote_monitor": {
         "id": "defi_quote_monitor",
-        "evaluations": 2050,
+        "evaluations": 2054,
         "recommendations": 8,
         "baseScore": 18,
-        "finalScore": 6,
+        "finalScore": 2,
         "strategicWeight": 2,
         "scoreBreakdown": {
           "observability": 10,
@@ -2733,21 +2730,22 @@
         },
         "penaltyBreakdown": {
           "monitor_only": 6,
-          "cooldown_active": 8
+          "cooldown_active": 8,
+          "blockers_present": 4
         },
-        "penalties": 14,
+        "penalties": 18,
         "lastStatus": "ready",
         "lastReason": "defi_quote_monitoring_available",
-        "lastBlockedReason": null,
+        "lastBlockedReason": "wallet_password_missing",
         "lastRecommendedAt": "2026-03-22T00:29:20.236Z",
-        "lastEvaluatedAt": "2026-04-03T02:32:53.628Z",
+        "lastEvaluatedAt": "2026-04-06T01:20:50.781Z",
         "lastCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
         "lastManualCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
         "lastTargetHash": "1cb286cfea53",
         "lastCandidateCount": 1,
         "lastPreparedCandidateId": null,
-        "lastUsefulSignalAt": "2026-04-03T02:32:53.628Z",
-        "cooldownUntil": "2026-04-03T02:49:11.273Z",
+        "lastUsefulSignalAt": "2026-04-06T01:20:50.781Z",
+        "cooldownUntil": "2026-04-06T01:36:58.325Z",
         "breakerOpenUntil": null,
         "breakerReason": null,
         "consecutiveFailures": 0,
@@ -2788,7 +2786,8 @@
     "lastRecommendedActionAt": "2026-04-01T03:51:26.486Z"
   },
   "operationalSummary": {
-    "generatedAt": "2026-04-03T02:32:52.875Z",
+    "generatedAt": "2026-04-06T01:20:49.698Z",
+    "supervisorLine": "loop=skipped | msgs=0 unread/5 replied | cooldown=free | next=quote_only | defi=A estrategia atual permite apenas observacao de cotacao. O gate de execucao nao aprovou a oportunidade atual.",
     "loopRunning": true,
     "watchdogStale": false,
     "messaging": {
@@ -2817,19 +2816,22 @@
     "defi": {
       "recommendedAction": "quote_only",
       "gateReason": "decision_not_pass",
-      "blockers": [],
-      "decision": "SKIP",
-      "decisionReason": "worst_case_profit_below_threshold",
-      "estimatedFeeSats": 91,
+      "blockers": [
+        "wallet_password_missing",
+        "estimated_fee_unavailable"
+      ],
+      "decision": "INCONCLUSIVE",
+      "decisionReason": "estimated_fee_unavailable",
+      "estimatedFeeSats": 0,
       "maxDecisionFeeSats": 500,
       "feeOverDecisionLimit": false,
-      "feePerByte": 459.49348534201954,
+      "feePerByte": null,
       "maxFeePerByte": 1000,
       "feePerByteOverLimit": false,
       "routeHops": 1,
       "maxRouteHops": 2,
       "routeHopsOverLimit": false,
-      "outputRatio": 0.9738539548660792,
+      "outputRatio": null,
       "minOutputRatio": 0.97,
       "outputRatioBelowMin": false,
       "priceImpactBps": -30,
@@ -2844,13 +2846,12 @@
       "scannedCount": 6
     },
     "loop": {
-      "lastRunAt": "2026-04-03T02:32:52.875Z",
+      "lastRunAt": "2026-04-06T01:20:49.698Z",
       "lastAction": "skipped",
       "lastBlockReason": "dry_run_loop",
-      "cycles": 1732,
+      "cycles": 1734,
       "autoActions": 2
-    },
-    "supervisorLine": "loop=skipped | msgs=0 unread/5 replied | cooldown=free | next=quote_only | defi=A estrategia atual permite apenas observacao de cotacao. O gate de execucao nao aprovou a oportunidade atual."
+    }
   },
   "bountyExecution": {
     "preparedCandidates": [
@@ -3148,7 +3149,7 @@
       "score": 74
     },
     "autoLiveSkillId": "defi_quote_monitor",
-    "estimatedFeeSats": 91,
+    "estimatedFeeSats": 0,
     "fallbackSafeCommand": "npm run agent:status",
     "championshipGateEligible": false,
     "championshipGateBlockReason": "decision_not_pass",
@@ -3166,8 +3167,8 @@
     "preferredDefiAmountSats": 3000
   },
   "lastNextActionCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
-  "lastNextActionAt": "2026-04-03T02:32:53.624Z",
-  "lastStandardLoopRunAt": "2026-04-03T02:32:52.875Z",
+  "lastNextActionAt": "2026-04-06T01:20:50.464Z",
+  "lastStandardLoopRunAt": "2026-04-06T01:20:49.698Z",
   "lastStandardLoopAction": "skipped",
   "lastStandardLoopAuthorizedAction": null,
   "lastStandardLoopProposedCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
@@ -3188,7 +3189,7 @@
     "actionExecuted": false,
     "actionReason": "dry_run_loop"
   },
-  "standardLoopCycles": 1732,
+  "standardLoopCycles": 1734,
   "standardLoopAutoActionsCount": 2,
   "skills": {
     "heartbeat": {
@@ -3206,8 +3207,8 @@
       "enabled": true,
       "policyMode": "safe_replies_only",
       "activePolicy": "safe_replies_only",
-      "lastRunAt": "2026-04-03T02:32:53.630Z",
-      "lastSuccessAt": "2026-04-03T02:32:53.630Z",
+      "lastRunAt": "2026-04-06T01:20:50.783Z",
+      "lastSuccessAt": "2026-04-06T01:20:50.783Z",
       "lastFailureAt": null,
       "lastSkipReason": "status_only",
       "lastOutcome": "completed",
@@ -3231,18 +3232,18 @@
     },
     "btcL1ToUsdcx": {
       "enabled": false,
-      "lastRunAt": "2026-04-03T02:33:43.092Z",
+      "lastRunAt": "2026-04-06T01:21:36.006Z",
       "lastSuccessAt": null,
-      "lastFailureAt": "2026-04-03T02:33:43.092Z",
+      "lastFailureAt": "2026-04-06T01:21:36.006Z",
       "lastSkipReason": "dry_run_default",
       "lastOutcome": "planned",
       "lastAttemptMode": "dry_run",
       "lastStatusCode": 200,
-      "errorCount": 2067
+      "errorCount": 2071
     },
     "walletActions": {
       "enabled": false,
-      "lastRunAt": "2026-04-03T02:32:54.780Z",
+      "lastRunAt": "2026-04-06T01:20:50.948Z",
       "lastSuccessAt": null,
       "lastFailureAt": null,
       "lastSkipReason": "dry_run_default",
@@ -3275,8 +3276,8 @@
     },
     "routeEvaluator": {
       "enabled": true,
-      "lastRunAt": "2026-04-03T02:32:53.628Z",
-      "lastSuccessAt": "2026-04-03T02:32:53.628Z",
+      "lastRunAt": "2026-04-06T01:20:50.781Z",
+      "lastSuccessAt": "2026-04-06T01:20:50.781Z",
       "lastFailureAt": null,
       "lastSkipReason": null,
       "lastOutcome": "completed",
@@ -3308,13 +3309,13 @@
   "championshipGateEligible": false,
   "championshipGateBlockReason": "decision_not_pass",
   "lastChampionshipExecutionGate": {
-    "at": "2026-04-03T02:32:53.628Z",
+    "at": "2026-04-06T01:20:50.781Z",
     "version": "championship_execution_gate_v1",
     "championshipGateEligible": false,
     "championshipGateBlockReason": "decision_not_pass",
-    "decision": "SKIP",
-    "decisionReason": "worst_case_profit_below_threshold",
-    "estimatedFeeSats": 91,
+    "decision": "INCONCLUSIVE",
+    "decisionReason": "estimated_fee_unavailable",
+    "estimatedFeeSats": null,
     "priceImpactBps": -30,
     "quoteFresh": true,
     "policySource": "default",

@@ -16,7 +16,6 @@
  *
  * Flags:
  *   --broadcast               Envia txs na chain (default: dry-run)
- *   --wallet-password SENHA   Senha para decrypt do keystore
  *   --out-of-range-tolerance  Bins de tolerância antes de considerar out-of-range (default: 5)
  *   --min-dlp                 DLP mínimo para aceitar no re-add (default: 1)
  *   --fee                     Fee STX em uSTX (default: 50000)
@@ -26,9 +25,7 @@
  */
 
 const fs   = require('fs');
-const os   = require('os');
 const path = require('path');
-const crypto = require('crypto');
 const { loadRuntimeEnv } = require('./runtime-env.cjs');
 const { generateWallet } = require('@stacks/wallet-sdk');
 const {
@@ -125,44 +122,11 @@ function parseArgs(argv) {
 
 // ── Wallet ─────────────────────────────────────────────────────────────────────
 
-function loadWalletCatalog() {
-  const p = path.join(os.homedir(), '.aibtc', 'wallets.json');
-  return JSON.parse(fs.readFileSync(p, 'utf8'));
-}
-
-function chooseWallet(catalog, walletName, expectedAddress) {
-  const matches = catalog.wallets
-    .filter(w => !walletName || w.name === walletName)
-    .filter(w => !expectedAddress || w.address === expectedAddress)
-    .sort((a, b) => {
-      const at = new Date(a.lastUsed || a.createdAt || 0).getTime();
-      const bt = new Date(b.lastUsed || b.createdAt || 0).getTime();
-      return bt - at;
-    });
-  if (matches.length === 0) throw new Error(`No wallet matched (name=${walletName}, address=${expectedAddress})`);
-  return matches[0];
-}
-
-function decryptMnemonic(walletId, walletPassword) {
-  const p = path.join(os.homedir(), '.aibtc', 'wallets', walletId, 'keystore.json');
-  const { encrypted } = JSON.parse(fs.readFileSync(p, 'utf8'));
-  const key = crypto.scryptSync(
-    walletPassword,
-    Buffer.from(encrypted.salt, 'base64'),
-    encrypted.scryptParams.keyLen,
-    { N: encrypted.scryptParams.N, r: encrypted.scryptParams.r, p: encrypted.scryptParams.p }
-  );
-  const decipher = crypto.createDecipheriv('aes-256-gcm', key, Buffer.from(encrypted.iv, 'base64'));
-  decipher.setAuthTag(Buffer.from(encrypted.authTag, 'base64'));
-  return Buffer.concat([
-    decipher.update(Buffer.from(encrypted.ciphertext, 'base64')),
-    decipher.final(),
-  ]).toString('utf8').trim();
-}
-
-async function deriveSenderKey(mnemonic) {
+async function deriveSenderKey(mnemonic, accountIndex = 0) {
   const wallet = await generateWallet({ secretKey: mnemonic, password: 'bitflow-runtime' });
-  return wallet.accounts[0].stxPrivateKey;
+  const account = wallet.accounts[accountIndex];
+  if (!account) throw new Error(`Account index ${accountIndex} not found in derived wallet`);
+  return account.stxPrivateKey;
 }
 
 // ── On-chain reads ─────────────────────────────────────────────────────────────
@@ -335,13 +299,12 @@ async function main() {
   loadRuntimeEnv();
   const args = parseArgs(process.argv.slice(2));
 
-  const broadcast  = Boolean(args.broadcast);
-  const jsonOnly   = Boolean(args['json-only']);
-  const tolerance  = Number(args['out-of-range-tolerance'] || 5);
-  const minDlp     = args['min-dlp'] || '1';
-  const fee        = args.fee || '50000';
+  const broadcast    = Boolean(args.broadcast);
+  const jsonOnly     = Boolean(args['json-only']);
+  const tolerance    = Number(args['out-of-range-tolerance'] || 5);
+  const minDlp       = args['min-dlp'] || '1';
+  const fee          = args.fee || '50000';
   const maxDeviation = args['max-deviation'] || '5';
-  const walletPassword = args['wallet-password'] || process.env.DOG_MM_WALLET_PASSWORD || '';
 
   if (!jsonOnly) {
     log('🔄 DOG-MM Bitflow LP Reposition');
@@ -349,21 +312,22 @@ async function main() {
     log(`   Tolerância out-of-range: ±${tolerance} bins`);
   }
 
-  if (!walletPassword) {
-    throw new Error('Missing wallet password. Use --wallet-password or DOG_MM_WALLET_PASSWORD.');
+  // ── Wallet setup ──────────────────────────────────────────────────────────
+  const seedPhrase      = process.env.DOG_MM_SEED_PHRASE || '';
+  const accountIndex    = parseInt(process.env.DOG_MM_ACCOUNT_INDEX || '0', 10);
+  const expectedAddress = process.env.DOG_MM_EXPECTED_ADDRESS || '';
+
+  if (!seedPhrase) {
+    throw new Error('Missing seed phrase. Set DOG_MM_SEED_PHRASE.');
   }
 
-  // ── Wallet setup ──────────────────────────────────────────────────────────
-  const walletName     = process.env.DOG_MM_WALLET_NAME || 'dog-mm-mainnet';
-  const expectedAddress = process.env.DOG_MM_EXPECTED_ADDRESS || '';
-  const catalog        = loadWalletCatalog();
-  const wallet         = chooseWallet(catalog, walletName, expectedAddress);
-  const mnemonic       = decryptMnemonic(wallet.id, walletPassword);
-  const senderKey      = await deriveSenderKey(mnemonic);
-  const senderAddress  = getAddressFromPrivateKey(senderKey, 'mainnet');
+  const senderKey     = await deriveSenderKey(seedPhrase, accountIndex);
+  const senderAddress = getAddressFromPrivateKey(senderKey, 'mainnet');
 
   if (expectedAddress && senderAddress !== expectedAddress) {
-    throw new Error(`Address mismatch: derived ${senderAddress} ≠ expected ${expectedAddress}`);
+    throw new Error(
+      `Derived address ${senderAddress} does not match DOG_MM_EXPECTED_ADDRESS ${expectedAddress}.`
+    );
   }
 
   if (!jsonOnly) log(`   Wallet: ${senderAddress}`);

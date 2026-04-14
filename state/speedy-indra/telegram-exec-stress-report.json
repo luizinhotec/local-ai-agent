@@ -1,7 +1,7 @@
 {
   "ok": true,
   "verdict": "SAFE_FOR_SIMULATED_REMOTE_CONFIRMATION",
-  "generatedAt": "2026-03-22T18:23:03.641Z",
+  "generatedAt": "2026-04-06T01:22:38.560Z",
   "tests": [
     {
       "test": "A",
@@ -42,14 +42,14 @@
           "autoArmPair": null,
           "autoArmExecutionOutcome": null,
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:22:58.660Z",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:27.423Z",
           "lastTelegramExecCommandText": "EXEC A7K29Q",
           "lastTelegramExecDecision": "rejected_not_armed",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:22:58.656Z",
+            "recordedAt": "2026-04-06T01:22:27.418Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -57,16 +57,16 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:22:58.661Z",
+            "recordedAt": "2026-04-06T01:22:27.423Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
+            "chatId": "",
+            "fromId": "",
             "text": "EXEC A7K29Q",
             "nonce": "A7K29Q"
           },
           {
-            "recordedAt": "2026-03-22T18:22:58.661Z",
+            "recordedAt": "2026-04-06T01:22:27.423Z",
             "type": "championship_telegram_exec_rejected_not_armed",
             "text": "EXEC A7K29Q",
             "nonce": "A7K29Q"
@@ -91,9 +91,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "ZM44X6",
-          "autoArmArmedAt": "2026-03-22T18:22:58.850Z",
-          "autoArmExpiresAt": "2026-03-22T18:23:58.850Z",
+          "autoArmNonce": "YKSXRU",
+          "autoArmArmedAt": "2026-04-06T01:22:27.875Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:27.875Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -107,23 +107,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "ZM44X6",
-          "autoArmArmedAt": "2026-03-22T18:22:58.850Z",
-          "autoArmExpiresAt": "2026-03-22T18:23:58.850Z",
+          "autoArmNonce": "YKSXRU",
+          "autoArmArmedAt": "2026-04-06T01:22:27.875Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:27.875Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": null,
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:22:59.039Z",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:28.301Z",
           "lastTelegramExecCommandText": "EXEC ZZ9999",
           "lastTelegramExecDecision": "invalid_nonce",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:22:59.035Z",
+            "recordedAt": "2026-04-06T01:22:28.297Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -131,18 +131,18 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:22:59.039Z",
+            "recordedAt": "2026-04-06T01:22:28.301Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
+            "chatId": "",
+            "fromId": "",
             "text": "EXEC ZZ9999",
             "nonce": "ZZ9999"
           },
           {
-            "recordedAt": "2026-03-22T18:22:59.042Z",
+            "recordedAt": "2026-04-06T01:22:28.304Z",
             "type": "championship_telegram_exec_rejected_invalid_nonce",
-            "autoArmNonce": "ZM44X6",
+            "autoArmNonce": "YKSXRU",
             "receivedNonce": "ZZ9999"
           }
         ],
@@ -165,9 +165,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "DASHQ9",
-          "autoArmArmedAt": "2026-03-22T18:22:59.241Z",
-          "autoArmExpiresAt": "2026-03-22T18:23:59.241Z",
+          "autoArmNonce": "EH69W3",
+          "autoArmArmedAt": "2026-04-06T01:22:28.740Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:28.740Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -181,23 +181,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "DASHQ9",
-          "autoArmArmedAt": "2026-03-22T18:22:59.241Z",
-          "autoArmExpiresAt": "2026-03-22T18:23:59.241Z",
+          "autoArmNonce": "EH69W3",
+          "autoArmArmedAt": "2026-04-06T01:22:28.740Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:28.740Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": null,
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:22:59.413Z",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:29.185Z",
           "lastTelegramExecCommandText": "EXEC",
           "lastTelegramExecDecision": "invalid_format",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:22:59.408Z",
+            "recordedAt": "2026-04-06T01:22:29.180Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -205,16 +205,16 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:22:59.413Z",
+            "recordedAt": "2026-04-06T01:22:29.185Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
+            "chatId": "",
+            "fromId": "",
             "text": "EXEC",
             "nonce": null
           },
           {
-            "recordedAt": "2026-03-22T18:22:59.413Z",
+            "recordedAt": "2026-04-06T01:22:29.185Z",
             "type": "championship_telegram_exec_rejected_invalid_format",
             "text": "EXEC",
             "reason": "invalid_format"
@@ -239,9 +239,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "LF3DUZ",
-          "autoArmArmedAt": "2026-03-22T18:22:59.641Z",
-          "autoArmExpiresAt": "2026-03-22T18:21:59.653Z",
+          "autoArmNonce": "94P7GS",
+          "autoArmArmedAt": "2026-04-06T01:22:29.608Z",
+          "autoArmExpiresAt": "2026-04-06T01:21:29.621Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -255,23 +255,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "expired",
-          "autoArmNonce": "LF3DUZ",
-          "autoArmArmedAt": "2026-03-22T18:22:59.641Z",
-          "autoArmExpiresAt": "2026-03-22T18:21:59.653Z",
-          "autoArmConsumedAt": "2026-03-22T18:22:59.832Z",
+          "autoArmNonce": "94P7GS",
+          "autoArmArmedAt": "2026-04-06T01:22:29.608Z",
+          "autoArmExpiresAt": "2026-04-06T01:21:29.621Z",
+          "autoArmConsumedAt": "2026-04-06T01:22:30.054Z",
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": "expired",
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:22:59.835Z",
-          "lastTelegramExecCommandText": "EXEC LF3DUZ",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:30.058Z",
+          "lastTelegramExecCommandText": "EXEC 94P7GS",
           "lastTelegramExecDecision": "expired",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:22:59.829Z",
+            "recordedAt": "2026-04-06T01:22:30.050Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -279,26 +279,26 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:22:59.833Z",
+            "recordedAt": "2026-04-06T01:22:30.056Z",
             "type": "championship_auto_arm_expired",
-            "autoArmNonce": "LF3DUZ",
-            "autoArmArmedAt": "2026-03-22T18:22:59.641Z",
-            "autoArmExpiresAt": "2026-03-22T18:21:59.653Z"
+            "autoArmNonce": "94P7GS",
+            "autoArmArmedAt": "2026-04-06T01:22:29.608Z",
+            "autoArmExpiresAt": "2026-04-06T01:21:29.621Z"
           },
           {
-            "recordedAt": "2026-03-22T18:22:59.836Z",
+            "recordedAt": "2026-04-06T01:22:30.058Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC LF3DUZ",
-            "nonce": "LF3DUZ"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC 94P7GS",
+            "nonce": "94P7GS"
           },
           {
-            "recordedAt": "2026-03-22T18:22:59.837Z",
+            "recordedAt": "2026-04-06T01:22:30.061Z",
             "type": "championship_telegram_exec_rejected_expired",
-            "autoArmNonce": "LF3DUZ",
-            "receivedNonce": "LF3DUZ"
+            "autoArmNonce": "94P7GS",
+            "receivedNonce": "94P7GS"
           }
         ],
         "listenerExitCode": 0,
@@ -320,9 +320,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "DL9DVB",
-          "autoArmArmedAt": "2026-03-22T18:23:00.033Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:00.033Z",
+          "autoArmNonce": "N2PPGF",
+          "autoArmArmedAt": "2026-04-06T01:22:30.485Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:30.485Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -336,23 +336,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "fired",
-          "autoArmNonce": "DL9DVB",
-          "autoArmArmedAt": "2026-03-22T18:23:00.033Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:00.033Z",
-          "autoArmConsumedAt": "2026-03-22T18:23:00.226Z",
+          "autoArmNonce": "N2PPGF",
+          "autoArmArmedAt": "2026-04-06T01:22:30.485Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:30.485Z",
+          "autoArmConsumedAt": "2026-04-06T01:22:30.935Z",
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": "simulated",
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:00.272Z",
-          "lastTelegramExecCommandText": "EXEC DL9DVB",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:31.327Z",
+          "lastTelegramExecCommandText": "EXEC N2PPGF",
           "lastTelegramExecDecision": "already_consumed",
           "lastTelegramUpdateId": 2
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:00.218Z",
+            "recordedAt": "2026-04-06T01:22:30.929Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -360,32 +360,33 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:00.224Z",
+            "recordedAt": "2026-04-06T01:22:30.934Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC DL9DVB",
-            "nonce": "DL9DVB"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC N2PPGF",
+            "nonce": "N2PPGF"
           },
           {
-            "recordedAt": "2026-03-22T18:23:00.225Z",
+            "recordedAt": "2026-04-06T01:22:30.935Z",
             "type": "championship_telegram_exec_started",
-            "autoArmNonce": "DL9DVB",
+            "autoArmNonce": "N2PPGF",
             "amountSats": 2000,
             "pair": "sbtc-usdcx",
-            "dryRunExec": true
+            "dryRunExec": true,
+            "remoteExecPilotEnabled": false
           },
           {
-            "recordedAt": "2026-03-22T18:23:00.228Z",
+            "recordedAt": "2026-04-06T01:22:30.938Z",
             "type": "championship_telegram_exec_completed",
-            "autoArmNonce": "DL9DVB",
+            "autoArmNonce": "N2PPGF",
             "status": "simulated",
             "txid": null,
             "simulated": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:00.267Z",
+            "recordedAt": "2026-04-06T01:22:31.322Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -393,20 +394,20 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:00.272Z",
+            "recordedAt": "2026-04-06T01:22:31.327Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 2,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC DL9DVB",
-            "nonce": "DL9DVB"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC N2PPGF",
+            "nonce": "N2PPGF"
           },
           {
-            "recordedAt": "2026-03-22T18:23:00.273Z",
+            "recordedAt": "2026-04-06T01:22:31.328Z",
             "type": "championship_telegram_exec_rejected_already_consumed",
-            "autoArmNonce": "DL9DVB",
+            "autoArmNonce": "N2PPGF",
             "autoArmStatus": "fired",
-            "receivedNonce": "DL9DVB"
+            "receivedNonce": "N2PPGF"
           }
         ],
         "listenerExitCode": 0,
@@ -428,9 +429,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "6C66ZE",
-          "autoArmArmedAt": "2026-03-22T18:23:00.468Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:00.468Z",
+          "autoArmNonce": "2SFVU9",
+          "autoArmArmedAt": "2026-04-06T01:22:31.819Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:31.819Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -444,23 +445,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "6C66ZE",
-          "autoArmArmedAt": "2026-03-22T18:23:00.468Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:00.468Z",
+          "autoArmNonce": "2SFVU9",
+          "autoArmArmedAt": "2026-04-06T01:22:31.819Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:31.819Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": null,
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:00.693Z",
-          "lastTelegramExecCommandText": "EXEC 6C66ZE",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:32.253Z",
+          "lastTelegramExecCommandText": "EXEC 2SFVU9",
           "lastTelegramExecDecision": "rejected_chat_not_authorized",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:00.688Z",
+            "recordedAt": "2026-04-06T01:22:32.249Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -468,21 +469,21 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:00.693Z",
+            "recordedAt": "2026-04-06T01:22:32.253Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
             "chatId": "wrong-chat",
-            "fromId": "5998650775",
-            "text": "EXEC 6C66ZE",
-            "nonce": "6C66ZE"
+            "fromId": "",
+            "text": "EXEC 2SFVU9",
+            "nonce": "2SFVU9"
           },
           {
-            "recordedAt": "2026-03-22T18:23:00.693Z",
+            "recordedAt": "2026-04-06T01:22:32.254Z",
             "type": "championship_telegram_exec_rejected_unauthorized_origin",
             "reason": "chat_not_authorized",
             "chatId": "wrong-chat",
-            "authorizedChatId": "5998650775",
-            "fromId": "5998650775"
+            "authorizedChatId": "",
+            "fromId": ""
           }
         ],
         "listenerExitCode": 0,
@@ -504,9 +505,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "X6NSR4",
-          "autoArmArmedAt": "2026-03-22T18:23:00.889Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:00.889Z",
+          "autoArmNonce": "5U8PFJ",
+          "autoArmArmedAt": "2026-04-06T01:22:32.701Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:32.701Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -520,23 +521,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "consumed",
-          "autoArmNonce": "X6NSR4",
-          "autoArmArmedAt": "2026-03-22T18:23:00.889Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:00.889Z",
-          "autoArmConsumedAt": "2026-03-22T18:23:01.089Z",
+          "autoArmNonce": "5U8PFJ",
+          "autoArmArmedAt": "2026-04-06T01:22:32.701Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:32.701Z",
+          "autoArmConsumedAt": "2026-04-06T01:22:33.155Z",
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": "revalidation_failed:championship_gate_not_green",
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:01.089Z",
-          "lastTelegramExecCommandText": "EXEC X6NSR4",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:33.155Z",
+          "lastTelegramExecCommandText": "EXEC 5U8PFJ",
           "lastTelegramExecDecision": "revalidation_failed",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:01.084Z",
+            "recordedAt": "2026-04-06T01:22:33.150Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -544,18 +545,18 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:01.089Z",
+            "recordedAt": "2026-04-06T01:22:33.155Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC X6NSR4",
-            "nonce": "X6NSR4"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC 5U8PFJ",
+            "nonce": "5U8PFJ"
           },
           {
-            "recordedAt": "2026-03-22T18:23:01.092Z",
+            "recordedAt": "2026-04-06T01:22:33.158Z",
             "type": "championship_telegram_exec_rejected_revalidation_failed",
-            "autoArmNonce": "X6NSR4",
+            "autoArmNonce": "5U8PFJ",
             "reason": "championship_gate_not_green",
             "blockers": [
               "championship_gate_not_green"
@@ -581,9 +582,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "C62EXU",
-          "autoArmArmedAt": "2026-03-22T18:23:01.293Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:01.293Z",
+          "autoArmNonce": "VF5BHZ",
+          "autoArmArmedAt": "2026-04-06T01:22:33.617Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:33.617Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -597,23 +598,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "consumed",
-          "autoArmNonce": "C62EXU",
-          "autoArmArmedAt": "2026-03-22T18:23:01.293Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:01.293Z",
-          "autoArmConsumedAt": "2026-03-22T18:23:01.484Z",
+          "autoArmNonce": "VF5BHZ",
+          "autoArmArmedAt": "2026-04-06T01:22:33.617Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:33.617Z",
+          "autoArmConsumedAt": "2026-04-06T01:22:34.041Z",
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": "revalidation_failed:quote_stale",
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:01.484Z",
-          "lastTelegramExecCommandText": "EXEC C62EXU",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:34.040Z",
+          "lastTelegramExecCommandText": "EXEC VF5BHZ",
           "lastTelegramExecDecision": "revalidation_failed",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:01.479Z",
+            "recordedAt": "2026-04-06T01:22:34.036Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -621,18 +622,18 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:01.484Z",
+            "recordedAt": "2026-04-06T01:22:34.041Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC C62EXU",
-            "nonce": "C62EXU"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC VF5BHZ",
+            "nonce": "VF5BHZ"
           },
           {
-            "recordedAt": "2026-03-22T18:23:01.486Z",
+            "recordedAt": "2026-04-06T01:22:34.043Z",
             "type": "championship_telegram_exec_rejected_revalidation_failed",
-            "autoArmNonce": "C62EXU",
+            "autoArmNonce": "VF5BHZ",
             "reason": "quote_stale",
             "blockers": [
               "quote_stale"
@@ -658,9 +659,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "2FXZ7D",
-          "autoArmArmedAt": "2026-03-22T18:23:01.706Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:01.706Z",
+          "autoArmNonce": "FWLMJ5",
+          "autoArmArmedAt": "2026-04-06T01:22:34.485Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:34.485Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -674,23 +675,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "consumed",
-          "autoArmNonce": "2FXZ7D",
-          "autoArmArmedAt": "2026-03-22T18:23:01.706Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:01.706Z",
-          "autoArmConsumedAt": "2026-03-22T18:23:01.901Z",
+          "autoArmNonce": "FWLMJ5",
+          "autoArmArmedAt": "2026-04-06T01:22:34.485Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:34.485Z",
+          "autoArmConsumedAt": "2026-04-06T01:22:34.911Z",
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": "revalidation_failed:known_blocker_present",
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:01.901Z",
-          "lastTelegramExecCommandText": "EXEC 2FXZ7D",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:34.911Z",
+          "lastTelegramExecCommandText": "EXEC FWLMJ5",
           "lastTelegramExecDecision": "revalidation_failed",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:01.896Z",
+            "recordedAt": "2026-04-06T01:22:34.906Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -698,18 +699,18 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:01.901Z",
+            "recordedAt": "2026-04-06T01:22:34.911Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC 2FXZ7D",
-            "nonce": "2FXZ7D"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC FWLMJ5",
+            "nonce": "FWLMJ5"
           },
           {
-            "recordedAt": "2026-03-22T18:23:01.903Z",
+            "recordedAt": "2026-04-06T01:22:34.914Z",
             "type": "championship_telegram_exec_rejected_revalidation_failed",
-            "autoArmNonce": "2FXZ7D",
+            "autoArmNonce": "FWLMJ5",
             "reason": "known_blocker_present",
             "blockers": [
               "known_blocker_present"
@@ -735,9 +736,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "CYXXJU",
-          "autoArmArmedAt": "2026-03-22T18:23:02.094Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:02.094Z",
+          "autoArmNonce": "Y9FEC7",
+          "autoArmArmedAt": "2026-04-06T01:22:35.360Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:35.360Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -751,23 +752,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "consumed",
-          "autoArmNonce": "CYXXJU",
-          "autoArmArmedAt": "2026-03-22T18:23:02.094Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:02.094Z",
-          "autoArmConsumedAt": "2026-03-22T18:23:02.287Z",
+          "autoArmNonce": "Y9FEC7",
+          "autoArmArmedAt": "2026-04-06T01:22:35.360Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:35.360Z",
+          "autoArmConsumedAt": "2026-04-06T01:22:35.814Z",
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": "revalidation_failed:circuit_breaker_open",
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:02.287Z",
-          "lastTelegramExecCommandText": "EXEC CYXXJU",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:35.814Z",
+          "lastTelegramExecCommandText": "EXEC Y9FEC7",
           "lastTelegramExecDecision": "revalidation_failed",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:02.282Z",
+            "recordedAt": "2026-04-06T01:22:35.809Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -775,18 +776,18 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:02.287Z",
+            "recordedAt": "2026-04-06T01:22:35.814Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC CYXXJU",
-            "nonce": "CYXXJU"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC Y9FEC7",
+            "nonce": "Y9FEC7"
           },
           {
-            "recordedAt": "2026-03-22T18:23:02.289Z",
+            "recordedAt": "2026-04-06T01:22:35.816Z",
             "type": "championship_telegram_exec_rejected_revalidation_failed",
-            "autoArmNonce": "CYXXJU",
+            "autoArmNonce": "Y9FEC7",
             "reason": "circuit_breaker_open",
             "blockers": [
               "circuit_breaker_open"
@@ -812,9 +813,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "ZBHL6R",
-          "autoArmArmedAt": "2026-03-22T18:23:02.470Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:02.470Z",
+          "autoArmNonce": "CUM7F3",
+          "autoArmArmedAt": "2026-04-06T01:22:36.249Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:36.249Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -828,23 +829,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "ZBHL6R",
-          "autoArmArmedAt": "2026-03-22T18:23:02.470Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:02.470Z",
+          "autoArmNonce": "CUM7F3",
+          "autoArmArmedAt": "2026-04-06T01:22:36.249Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:36.249Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": null,
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:02.692Z",
-          "lastTelegramExecCommandText": "EXEC ZBHL6R",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:36.677Z",
+          "lastTelegramExecCommandText": "EXEC CUM7F3",
           "lastTelegramExecDecision": "locked",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:02.688Z",
+            "recordedAt": "2026-04-06T01:22:36.673Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -852,18 +853,18 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:02.692Z",
+            "recordedAt": "2026-04-06T01:22:36.677Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC ZBHL6R",
-            "nonce": "ZBHL6R"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC CUM7F3",
+            "nonce": "CUM7F3"
           },
           {
-            "recordedAt": "2026-03-22T18:23:02.693Z",
+            "recordedAt": "2026-04-06T01:22:36.678Z",
             "type": "championship_telegram_exec_locked",
-            "autoArmNonce": "ZBHL6R",
+            "autoArmNonce": "CUM7F3",
             "lockPath": "C:\\dev\\local-ai-agent\\state\\speedy-indra\\telegram-exec.lock"
           }
         ],
@@ -886,9 +887,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "7RKZAM",
-          "autoArmArmedAt": "2026-03-22T18:23:02.890Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:02.890Z",
+          "autoArmNonce": "JV7T46",
+          "autoArmArmedAt": "2026-04-06T01:22:37.134Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:37.134Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=1000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -902,23 +903,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "consumed",
-          "autoArmNonce": "7RKZAM",
-          "autoArmArmedAt": "2026-03-22T18:23:02.890Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:02.890Z",
-          "autoArmConsumedAt": "2026-03-22T18:23:03.089Z",
+          "autoArmNonce": "JV7T46",
+          "autoArmArmedAt": "2026-04-06T01:22:37.134Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:37.134Z",
+          "autoArmConsumedAt": "2026-04-06T01:22:37.590Z",
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=1000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": "execution_failed:armed_command_mismatch",
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:03.086Z",
-          "lastTelegramExecCommandText": "EXEC 7RKZAM",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:37.588Z",
+          "lastTelegramExecCommandText": "EXEC JV7T46",
           "lastTelegramExecDecision": "execution_failed",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:03.082Z",
+            "recordedAt": "2026-04-06T01:22:37.583Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -926,32 +927,33 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:03.086Z",
+            "recordedAt": "2026-04-06T01:22:37.588Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC 7RKZAM",
-            "nonce": "7RKZAM"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC JV7T46",
+            "nonce": "JV7T46"
           },
           {
-            "recordedAt": "2026-03-22T18:23:03.088Z",
+            "recordedAt": "2026-04-06T01:22:37.589Z",
             "type": "championship_telegram_exec_started",
-            "autoArmNonce": "7RKZAM",
+            "autoArmNonce": "JV7T46",
             "amountSats": 2000,
             "pair": "sbtc-usdcx",
-            "dryRunExec": true
+            "dryRunExec": true,
+            "remoteExecPilotEnabled": false
           },
           {
-            "recordedAt": "2026-03-22T18:23:03.089Z",
+            "recordedAt": "2026-04-06T01:22:37.589Z",
             "type": "championship_telegram_exec_rejected_command_mismatch",
-            "autoArmNonce": "7RKZAM",
+            "autoArmNonce": "JV7T46",
             "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=1000 --feature-override-test-v2"
           },
           {
-            "recordedAt": "2026-03-22T18:23:03.091Z",
+            "recordedAt": "2026-04-06T01:22:37.592Z",
             "type": "championship_telegram_exec_failed",
-            "autoArmNonce": "7RKZAM",
+            "autoArmNonce": "JV7T46",
             "reason": "armed_command_mismatch"
           }
         ],
@@ -974,9 +976,9 @@
       "evidence": {
         "stateBefore": {
           "autoArmStatus": "armed",
-          "autoArmNonce": "5G4AJE",
-          "autoArmArmedAt": "2026-03-22T18:23:03.282Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:03.282Z",
+          "autoArmNonce": "XP2D7Q",
+          "autoArmArmedAt": "2026-04-06T01:22:38.029Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:38.029Z",
           "autoArmConsumedAt": null,
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
@@ -990,23 +992,23 @@
         },
         "stateAfter": {
           "autoArmStatus": "fired",
-          "autoArmNonce": "5G4AJE",
-          "autoArmArmedAt": "2026-03-22T18:23:03.282Z",
-          "autoArmExpiresAt": "2026-03-22T18:24:03.282Z",
-          "autoArmConsumedAt": "2026-03-22T18:23:03.466Z",
+          "autoArmNonce": "XP2D7Q",
+          "autoArmArmedAt": "2026-04-06T01:22:38.029Z",
+          "autoArmExpiresAt": "2026-04-06T01:23:38.029Z",
+          "autoArmConsumedAt": "2026-04-06T01:22:38.489Z",
           "autoArmManualCommand": "npm run agent:defi:sbtc-usdcx -- --live --approve-live --amount-sats=2000 --feature-override-test-v2",
           "autoArmAmountSats": 2000,
           "autoArmPair": "sbtc-usdcx",
           "autoArmExecutionOutcome": "simulated",
           "autoArmExecutionTxId": null,
-          "lastTelegramExecCommandAt": "2026-03-22T18:23:03.463Z",
-          "lastTelegramExecCommandText": "EXEC 5G4AJE",
+          "lastTelegramExecCommandAt": "2026-04-06T01:22:38.487Z",
+          "lastTelegramExecCommandText": "EXEC XP2D7Q",
           "lastTelegramExecDecision": "accepted_and_fired",
           "lastTelegramUpdateId": 1
         },
         "logs": [
           {
-            "recordedAt": "2026-03-22T18:23:03.459Z",
+            "recordedAt": "2026-04-06T01:22:38.482Z",
             "type": "championship_telegram_exec_listener_started",
             "once": true,
             "pollIntervalMs": 5000,
@@ -1014,26 +1016,27 @@
             "dryRunExec": true
           },
           {
-            "recordedAt": "2026-03-22T18:23:03.464Z",
+            "recordedAt": "2026-04-06T01:22:38.487Z",
             "type": "championship_telegram_exec_command_received",
             "updateId": 1,
-            "chatId": "5998650775",
-            "fromId": "5998650775",
-            "text": "EXEC 5G4AJE",
-            "nonce": "5G4AJE"
+            "chatId": "",
+            "fromId": "",
+            "text": "EXEC XP2D7Q",
+            "nonce": "XP2D7Q"
           },
           {
-            "recordedAt": "2026-03-22T18:23:03.465Z",
+            "recordedAt": "2026-04-06T01:22:38.488Z",
             "type": "championship_telegram_exec_started",
-            "autoArmNonce": "5G4AJE",
+            "autoArmNonce": "XP2D7Q",
             "amountSats": 2000,
             "pair": "sbtc-usdcx",
-            "dryRunExec": true
+            "dryRunExec": true,
+            "remoteExecPilotEnabled": false
           },
           {
-            "recordedAt": "2026-03-22T18:23:03.468Z",
+            "recordedAt": "2026-04-06T01:22:38.491Z",
             "type": "championship_telegram_exec_completed",
-            "autoArmNonce": "5G4AJE",
+            "autoArmNonce": "XP2D7Q",
             "status": "simulated",
             "txid": null,
             "simulated": true
