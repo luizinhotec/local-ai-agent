@@ -1,0 +1,17 @@
+[Unit]
+Description=DOG-MM Bitflow LP Reposition Loop
+After=network.target
+
+[Service]
+Type=simple
+User=luiz
+WorkingDirectory=/home/luiz/projetos/local-ai-agent
+EnvironmentFile=/home/luiz/projetos/local-ai-agent/.env.local
+ExecStart=node /home/luiz/projetos/local-ai-agent/active/tools/bitflow-runtime/dog-mm-lp-reposition-loop.cjs
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
