@@ -3,6 +3,7 @@ const {
   writeLatestSnapshot,
   writeLatestOpenOrders,
   appendEvent,
+  readLatestSnapshot,
 } = require('./deribit-state-store.cjs');
 
 function normalizeOpenOrdersResult(result) {
@@ -107,6 +108,63 @@ async function probeOpenOrders(client, config) {
   };
 }
 
+function computeTakerMomentum(trades, count = 30) {
+  const sample = (trades || []).slice(0, count);
+  if (sample.length === 0) {
+    return { takerMomentum: 'neutral', takerBuyRatio: null, takerTradeCount: 0 };
+  }
+  const buyCount = sample.filter(t => t.direction === 'buy').length;
+  const takerBuyRatio = Number((buyCount / sample.length).toFixed(3));
+  const takerMomentum = takerBuyRatio >= 0.6 ? 'bullish' : takerBuyRatio <= 0.4 ? 'bearish' : 'neutral';
+  return { takerMomentum, takerBuyRatio, takerTradeCount: sample.length };
+}
+
+function computeFundingTrend(chartData) {
+  const points = Array.isArray(chartData) ? chartData : [];
+  if (points.length === 0) {
+    return { avgFunding8h: null, fundingTrend: 'neutral' };
+  }
+  const values = points.map(p => Number(p.interest_8h || 0)).filter(v => Number.isFinite(v));
+  if (values.length === 0) {
+    return { avgFunding8h: null, fundingTrend: 'neutral' };
+  }
+  const avgFunding8h = Number((values.reduce((s, v) => s + v, 0) / values.length).toFixed(8));
+  const fundingTrend = avgFunding8h > 0.00005 ? 'positive' : avgFunding8h < -0.00005 ? 'negative' : 'neutral';
+  return { avgFunding8h, fundingTrend };
+}
+
+function computeDvolRisk(volatilityData) {
+  const points = Array.isArray(volatilityData) ? volatilityData : [];
+  if (points.length === 0) {
+    return { dvolCurrent: null, dvolRisk: 'normal' };
+  }
+  const last = points[points.length - 1];
+  // API retorna [timestamp, open, high, low, close] ou objeto com .close
+  const dvolCurrent = Array.isArray(last)
+    ? (Number.isFinite(Number(last[4])) ? Number(last[4]) : null)
+    : (typeof last?.close === 'number' ? last.close : null);
+  if (!Number.isFinite(dvolCurrent)) {
+    return { dvolCurrent: null, dvolRisk: 'normal' };
+  }
+  const dvolRisk = dvolCurrent > 80 ? 'high' : dvolCurrent > 60 ? 'elevated' : 'normal';
+  return { dvolCurrent, dvolRisk };
+}
+
+function computePriceTrend(closes, currentPrice) {
+  if (!Array.isArray(closes) || closes.length === 0 || !Number.isFinite(currentPrice)) {
+    return { priceMA60: null, priceTrend: 'sideways' };
+  }
+  const values = closes.map(Number).filter(v => Number.isFinite(v));
+  if (values.length === 0) {
+    return { priceMA60: null, priceTrend: 'sideways' };
+  }
+  const priceMA60 = Number((values.reduce((s, v) => s + v, 0) / values.length).toFixed(2));
+  const priceTrend = currentPrice > priceMA60 * 1.0005 ? 'uptrend'
+    : currentPrice < priceMA60 * 0.9995 ? 'downtrend'
+    : 'sideways';
+  return { priceMA60, priceTrend };
+}
+
 async function fetchPrivateExchangeState(config, options = {}) {
   const client = await connectWithRetry({ environment: config.environment });
   try {
@@ -116,7 +174,10 @@ async function fetchPrivateExchangeState(config, options = {}) {
     const recentTradesCount =
       Number(options.recentTradesCount) > 0 ? Number(options.recentTradesCount) : 20;
 
-    const [instrumentInfo, ticker, accountSummary, position, openOrdersProbe, recentTradesResponse] = await Promise.all([
+    const prevSnapshot = readLatestSnapshot();
+    const oiPrevious = typeof prevSnapshot?.oiCurrent === 'number' ? prevSnapshot.oiCurrent : null;
+
+    const [instrumentInfo, ticker, accountSummary, position, openOrdersProbe, recentTradesResponse, publicTradesResponse, fundingChartResponse, volatilityResponse, openInterestResponse, chartResponse] = await Promise.all([
       client.getInstrument(config.instrument),
       client.getTicker(config.instrument),
       client.getAccountSummary(config.currency),
@@ -135,7 +196,22 @@ async function fetchPrivateExchangeState(config, options = {}) {
             has_more: false,
           }))
         : Promise.resolve({ trades: [], has_more: false }),
+      client.getLastTradesByInstrument(config.instrument, 30).catch(() => ({ trades: [] })),
+      client.getFundingChartData(config.instrument, '8h').catch(() => ({ data: [] })),
+      client.getVolatilityIndex(config.currency.toLowerCase()).catch(() => ({ data: [] })),
+      client.getOpenInterest(config.instrument).catch(() => []),
+      client.getTradingViewChart(config.instrument, '5', 12).catch(() => ({ close: [] })),
     ]);
+    const publicTrades = Array.isArray(publicTradesResponse?.trades) ? publicTradesResponse.trades : [];
+    const { takerMomentum, takerBuyRatio, takerTradeCount } = computeTakerMomentum(publicTrades);
+    const { avgFunding8h, fundingTrend } = computeFundingTrend(fundingChartResponse?.data);
+    const { dvolCurrent, dvolRisk } = computeDvolRisk(volatilityResponse?.data);
+    const oiCurrent = Array.isArray(openInterestResponse) && openInterestResponse.length > 0
+      ? (typeof openInterestResponse[0]?.open_interest === 'number' ? openInterestResponse[0].open_interest : null)
+      : null;
+    const oiDelta = oiCurrent !== null && oiPrevious !== null ? oiCurrent - oiPrevious : null;
+    const oiTrend = oiDelta === null ? 'stable' : oiDelta > 0 ? 'expanding' : oiDelta < 0 ? 'contracting' : 'stable';
+    const { priceMA60, priceTrend } = computePriceTrend(chartResponse?.close, ticker.mark_price ?? null);
     const openOrders = Array.isArray(openOrdersProbe?.openOrders) ? openOrdersProbe.openOrders : [];
 
     const direction = position.direction === 'zero' ? 'flat' : (position.direction || 'flat');
@@ -170,6 +246,18 @@ async function fetchPrivateExchangeState(config, options = {}) {
       positionPnl: position.total_profit_loss ?? 0,
       estimatedLiquidationPrice: position.estimated_liquidation_price ?? null,
       openOrderCount: Array.isArray(openOrders) ? openOrders.length : 0,
+      takerMomentum,
+      takerBuyRatio,
+      takerTradeCount,
+      avgFunding8h,
+      fundingTrend,
+      dvolCurrent,
+      dvolRisk,
+      oiCurrent,
+      oiDelta,
+      oiTrend,
+      priceMA60,
+      priceTrend,
     };
 
     const shouldLogOpenOrdersProbe =

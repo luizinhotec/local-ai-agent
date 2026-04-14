@@ -227,6 +227,45 @@ class DeribitWsClient {
     return this.call('public/get_instrument', { instrument_name: instrumentName });
   }
 
+  async getLastTradesByInstrument(instrumentName, count = 30, sorting = 'desc') {
+    return this.call('public/get_last_trades_by_instrument', {
+      instrument_name: instrumentName,
+      count,
+      sorting,
+    });
+  }
+
+  async getFundingChartData(instrumentName, length = '8h') {
+    return this.call('public/get_funding_chart_data', {
+      instrument_name: instrumentName,
+      length,
+    });
+  }
+
+  async getVolatilityIndex(currency = 'btc') {
+    return this.call('public/get_volatility_index_data', {
+      currency,
+      start_timestamp: Date.now() - 3600000,
+      end_timestamp: Date.now(),
+      resolution: '3600',
+    });
+  }
+
+  async getOpenInterest(instrumentName) {
+    return this.call('public/get_book_summary_by_instrument', {
+      instrument_name: instrumentName,
+    });
+  }
+
+  async getTradingViewChart(instrumentName, resolution = '5', count = 12) {
+    return this.call('public/get_tradingview_chart_data', {
+      instrument_name: instrumentName,
+      start_timestamp: Date.now() - (count * Number(resolution) * 60 * 1000),
+      end_timestamp: Date.now(),
+      resolution,
+    });
+  }
+
   async buy(params) {
     return this.call('private/buy', params);
   }

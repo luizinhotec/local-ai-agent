@@ -327,6 +327,10 @@ function decideAction(snapshot, riskResult, strategyConfig, context = {}) {
     return result;
   }
 
+  if (snapshot?.dvolRisk === 'high') {
+    warnings.push('dvol too high for entry');
+  }
+
   if (warnings.length > 0 || confidence < strategyConfig.entryConfidenceThreshold) {
     const result = {
       decidedAt: new Date().toISOString(),
@@ -347,19 +351,29 @@ function decideAction(snapshot, riskResult, strategyConfig, context = {}) {
     inputs.directionalEdgeUsd !== null &&
     inputs.directionalEdgeUsd >= strategyConfig.shortEntryPremiumUsd
   ) {
-    reasons.push('short premium threshold reached');
-    const result = {
-      decidedAt: new Date().toISOString(),
-      objective: strategyConfig.objective,
-      action: 'sell',
-      confidence: Number(confidence.toFixed(2)),
-      reasons,
-      blockers,
-      warnings,
-      executionMode: strategyConfig.makerOnlyEntry ? 'maker-only' : 'normal',
-    };
-    writeLatestDecision(result);
-    return result;
+    if (snapshot?.priceTrend === 'uptrend') {
+      warnings.push('price uptrend blocked short entry');
+    } else if (snapshot?.oiTrend === 'contracting' && snapshot?.takerMomentum === 'bullish') {
+      warnings.push('oi contraction with adverse momentum blocked entry');
+    } else if (snapshot?.takerMomentum === 'bullish') {
+      warnings.push('momentum filter blocked entry');
+    } else if (snapshot?.fundingTrend === 'positive') {
+      warnings.push('funding trend blocked entry');
+    } else {
+      reasons.push('short premium threshold reached');
+      const result = {
+        decidedAt: new Date().toISOString(),
+        objective: strategyConfig.objective,
+        action: 'sell',
+        confidence: Number(confidence.toFixed(2)),
+        reasons,
+        blockers,
+        warnings,
+        executionMode: strategyConfig.makerOnlyEntry ? 'maker-only' : 'normal',
+      };
+      writeLatestDecision(result);
+      return result;
+    }
   }
 
   if (
@@ -367,19 +381,29 @@ function decideAction(snapshot, riskResult, strategyConfig, context = {}) {
     inputs.directionalEdgeUsd !== null &&
     inputs.directionalEdgeUsd <= -Math.abs(strategyConfig.longEntryDiscountUsd)
   ) {
-    reasons.push('long discount threshold reached');
-    const result = {
-      decidedAt: new Date().toISOString(),
-      objective: strategyConfig.objective,
-      action: 'buy',
-      confidence: Number(confidence.toFixed(2)),
-      reasons,
-      blockers,
-      warnings,
-      executionMode: strategyConfig.makerOnlyEntry ? 'maker-only' : 'normal',
-    };
-    writeLatestDecision(result);
-    return result;
+    if (snapshot?.priceTrend === 'downtrend') {
+      warnings.push('price downtrend blocked long entry');
+    } else if (snapshot?.oiTrend === 'contracting' && snapshot?.takerMomentum === 'bearish') {
+      warnings.push('oi contraction with adverse momentum blocked entry');
+    } else if (snapshot?.takerMomentum === 'bearish') {
+      warnings.push('momentum filter blocked entry');
+    } else if (snapshot?.fundingTrend === 'negative') {
+      warnings.push('funding trend blocked entry');
+    } else {
+      reasons.push('long discount threshold reached');
+      const result = {
+        decidedAt: new Date().toISOString(),
+        objective: strategyConfig.objective,
+        action: 'buy',
+        confidence: Number(confidence.toFixed(2)),
+        reasons,
+        blockers,
+        warnings,
+        executionMode: strategyConfig.makerOnlyEntry ? 'maker-only' : 'normal',
+      };
+      writeLatestDecision(result);
+      return result;
+    }
   }
 
   const result = {

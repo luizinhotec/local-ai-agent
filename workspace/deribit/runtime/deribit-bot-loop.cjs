@@ -32,6 +32,14 @@ const {
   DEFAULT_STALE_LOCK_MS,
 } = require('./lib/deribit-process-lock.cjs');
 
+const { sendMessage: _tgSend } = require('../../../runtime/orion/lib/orion-telegram.cjs');
+
+let _consecutiveLosses = 0;
+
+function tgNotify(text) {
+  _tgSend(text).catch(() => {});
+}
+
 function getStaleOrders(openOrders, maxOpenOrderAgeMs) {
   const now = Date.now();
   return (openOrders || []).filter(order => {
@@ -219,12 +227,16 @@ async function maybeAutoCalibrate(config, snapshot, botConfig) {
   if (lastAppliedAt && Date.now() - lastAppliedAt < botConfig.autoCalibrateMinIntervalMs) {
     return;
   }
-  const { spawnSync } = require('child_process');
-  const result = spawnSync(process.execPath, [require('path').join(__dirname, 'deribit-auto-calibrate-strategy.cjs')], {
-    cwd: process.cwd(),
-    encoding: 'utf8',
-  });
-  if (result.status === 0 && result.stdout && result.stdout.includes('applied_patch:')) {
+  const { spawn } = require('child_process');
+  const child = spawn(
+    process.execPath,
+    [require('path').join(__dirname, 'deribit-auto-calibrate-strategy.cjs')],
+    { cwd: process.cwd(), stdio: 'pipe', windowsHide: true }
+  );
+  let stdout = '';
+  child.stdout.on('data', d => { stdout += d.toString(); });
+  await new Promise(resolve => child.on('close', resolve));
+  if (stdout.includes('applied_patch:')) {
     appendEvent({
       recordedAt: new Date().toISOString(),
       type: 'strategy_calibration_checked',
@@ -265,8 +277,28 @@ async function runCycle(config, runtimeFlags, cycleRuntime) {
   console.log(`open_orders: ${snapshot.openOrderCount}`);
   console.log(`decision: ${cycle.decision.action} (${cycle.decision.executionMode})`);
   console.log(`mode: ${Math.abs(Number(snapshot.positionSizeUsd || 0)) > 0 ? 'position-management' : 'entry'}`);
+  console.log(`momentum: ${snapshot.takerMomentum || 'unknown'} (buy_ratio=${snapshot.takerBuyRatio ?? 'n/a'}, trades=${snapshot.takerTradeCount ?? 0})`);
+  console.log(`funding: ${snapshot.fundingTrend || 'unknown'} (avg8h=${snapshot.avgFunding8h ?? 'n/a'})`);
+  console.log(`dvol: ${snapshot.dvolCurrent ?? 'n/a'} (risk=${snapshot.dvolRisk || 'unknown'})`);
+  console.log(`oi: ${snapshot.oiCurrent ?? 'n/a'} (trend=${snapshot.oiTrend || 'unknown'}, delta=${snapshot.oiDelta ?? 'n/a'})`);
+  console.log(`trend: ${snapshot.priceTrend || 'unknown'} (ma60=${snapshot.priceMA60?.toFixed(1)}, current=${snapshot.markPrice?.toFixed(1)})`);
   if (reconciliation.divergenceDetected) {
     console.log(`reconcile_divergence: ${reconciliation.divergenceType.join(', ')}`);
+    if (reconciliation.divergenceType.some(t => t === 'position_mismatch' || t === 'unexpected_position_open')) {
+      tgNotify(
+        `⚠️ Divergência detectada\n` +
+        `Posição na exchange diferente do esperado. Verificando...`
+      );
+    }
+    if (
+      reconciliation.divergenceType.includes('new_exchange_trades_detected') &&
+      typeof snapshot.positionSizeUsd === 'number' && snapshot.positionSizeUsd > 0
+    ) {
+      tgNotify(
+        `📌 Comprado $${Math.abs(snapshot.positionSizeUsd)} @ $${snapshot.markPrice ?? 'n/a'}\n` +
+        `momentum=${snapshot.takerMomentum ?? 'n/a'} | tendência=${snapshot.priceTrend ?? 'n/a'}`
+      );
+    }
   }
 
   const existingExecutionAudit = readLatestExecutionAudit();
@@ -778,6 +810,40 @@ async function runCycle(config, runtimeFlags, cycleRuntime) {
     reconciliation,
     snapshotContext: buildSnapshotContext(snapshot),
   });
+
+  const _execAction = cycle.decision.action;
+  const _execMode  = cycle.decision.executionMode;
+  const _pnlBtc    = typeof snapshot.positionPnl === 'number' ? snapshot.positionPnl : null;
+  const _price     = cycle.orderIntent.price;
+  const _amount    = cycle.orderIntent.amount;
+  const _btcPrice  = typeof snapshot.markPrice === 'number' ? snapshot.markPrice : 71000;
+
+  if (_execAction === 'reduce') {
+    const _pnlAbs = _pnlBtc !== null ? Math.abs(_pnlBtc).toFixed(8) : 'n/a';
+    const _pnlUsd = _pnlBtc !== null ? (Math.abs(_pnlBtc) * _btcPrice).toFixed(2) : 'n/a';
+    if (_execMode === 'take-profit') {
+      _consecutiveLosses = 0;
+      tgNotify(
+        `✅ Vendi com LUCRO a $${_price}\n` +
+        `💰 Ganho: +${_pnlAbs} BTC (~$${_pnlUsd})`
+      );
+    } else if (_execMode === 'loss-timeout' || (_pnlBtc !== null && _pnlBtc < 0)) {
+      _consecutiveLosses += 1;
+      tgNotify(
+        `🔴 Vendi com PREJUÍZO a $${_price}\n` +
+        `💸 Perda: -${_pnlAbs} BTC (~$${_pnlUsd})`
+      );
+      if (_consecutiveLosses >= 3) {
+        tgNotify(
+          `🛑 Bot pausado por perdas\n` +
+          `Aguarde alguns minutos antes de retomar.`
+        );
+      }
+    } else {
+      _consecutiveLosses = 0;
+    }
+  }
+
   console.log(JSON.stringify(result, null, 2));
   await maybeAutoCalibrate(config, snapshot, botConfig);
 }
@@ -890,6 +956,11 @@ async function main() {
         executed: false,
         blockers: [error.message],
       });
+      tgNotify(
+        `❌ ERRO no bot\n` +
+        `📋 Erro: ${error.message}\n` +
+        `⏰ O bot vai tentar novamente no próximo ciclo.`
+      );
       throw error;
     } finally {
       if (activeCycleRuntime && activeCycleRuntime.cycleId === cycleRuntime.cycleId) {
