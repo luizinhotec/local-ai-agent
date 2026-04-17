@@ -1,0 +1,4 @@
+sku,name,category,unit,supplier_types,allowed_brands,preferred_brands,aliases,equivalents,criticality,min_stock,notes
+MAT-0100,Tubo PVC Esgoto 50mm,hidraulica,barra,"hidraulica,distribuidor_geral",,,"cano esgoto 50,tubo esgoto 50,pvc esgoto 50,cano 50 esgoto",,alta,15,Exemplo de importacao por CSV
+MAT-0101,Fio Flexivel 2.5mm,eletrica,rolo,"eletrica,distribuidor_geral",,,"fio 2.5,cabo 2.5,fio flex 2.5,fio flexivel 2.5mm",,alta,10,Exemplo de item eletrico
+MAT-0102,Registro Esfera 3/4,hidraulica,un,"hidraulica,distribuidor_geral",,,"registro 3/4,registro esfera tres quartos,registro esfera 3/4",,media,12,Exemplo de conexao hidraulica

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "purchase-request-1776363606495",
+    "shortageId": "shortage-rir-001",
+    "item": "Cimento CP-II 50kg",
+    "unit": "saco",
+    "missingQuantity": 88,
+    "bestSupplier": "Distribuidora Serra Norte",
+    "bestUnitPrice": 34.9,
+    "bestLeadDays": 2,
+    "bestPayment": "boleto 21 dias",
+    "quotes": [
+      {
+        "id": "quote-rir-001",
+        "supplier": "Distribuidora Serra Norte",
+        "item": "Cimento CP-II 50kg",
+        "unitPrice": 34.9,
+        "quantity": 100,
+        "leadDays": 2,
+        "payment": "boleto 21 dias",
+        "source": "whatsapp",
+        "createdAt": "2026-04-16T17:26:46.488Z",
+        "score": 55.1
+      },
+      {
+        "id": "quote-rir-002",
+        "supplier": "FerroMais Ferragens",
+        "item": "Cimento CP-II 50kg",
+        "unitPrice": 35.8,
+        "quantity": 80,
+        "leadDays": 1,
+        "payment": "pix com 3% desconto",
+        "source": "whatsapp",
+        "createdAt": "2026-04-16T17:31:46.488Z",
+        "score": 34.2
+      }
+    ],
+    "status": "pending_approval",
+    "purchaseModeSnapshot": "approval_required",
+    "requireOwnerApproval": true,
+    "createdAt": "2026-04-16T18:20:06.495Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "notes": ""
+  }
+]

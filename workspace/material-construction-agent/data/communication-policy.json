@@ -1,0 +1,38 @@
+{
+  "inboundDefault": "blue_ticks_only",
+  "silentIgnoreRules": [
+    {
+      "roles": [
+        "fornecedor"
+      ],
+      "intents": [
+        "marketing",
+        "generic_followup"
+      ],
+      "reason": "Fornecedor nao recebe resposta automatica para mensagens fora do fluxo."
+    }
+  ],
+  "textReplyRules": [
+    {
+      "roles": [
+        "proprietario",
+        "gerente_geral"
+      ],
+      "intents": [
+        "approval",
+        "critical_override",
+        "access_change"
+      ],
+      "template": "Mensagem sensivel recebida e encaminhada para tratamento prioritario."
+    },
+    {
+      "roles": [
+        "comprador"
+      ],
+      "intents": [
+        "purchase_confirmation"
+      ],
+      "template": "Confirmacao recebida. O fluxo de compra sera atualizado."
+    }
+  ]
+}

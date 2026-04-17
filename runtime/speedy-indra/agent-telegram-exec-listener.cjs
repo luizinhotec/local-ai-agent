@@ -241,6 +241,7 @@ function revalidateArmament(amountSats) {
     cwd: process.cwd(),
     encoding: 'utf8',
     timeout: 180000,
+    windowsHide: true,
   });
 
   if (run.error) {
@@ -353,6 +354,7 @@ function executeArmedCommand(state, flags, config) {
     cwd: process.cwd(),
     encoding: 'utf8',
     timeout: 240000,
+    windowsHide: true,
   });
 
   if (run.error) {

@@ -1,0 +1,34 @@
+[
+  {
+    "key": "cimento",
+    "name": "Cimento e argamassa"
+  },
+  {
+    "key": "agregados",
+    "name": "Areia, brita e agregados"
+  },
+  {
+    "key": "hidraulica",
+    "name": "Hidraulica"
+  },
+  {
+    "key": "eletrica",
+    "name": "Eletrica"
+  },
+  {
+    "key": "tintas",
+    "name": "Tintas e pintura"
+  },
+  {
+    "key": "ferragens",
+    "name": "Ferragens e ferramentas"
+  },
+  {
+    "key": "seguranca",
+    "name": "EPI e seguranca"
+  },
+  {
+    "key": "distribuidor_geral",
+    "name": "Distribuidor geral"
+  }
+]

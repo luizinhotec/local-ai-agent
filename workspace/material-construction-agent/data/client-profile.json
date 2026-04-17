@@ -1,0 +1,83 @@
+{
+  "id": "rirrofer",
+  "name": "RIRROFER Materiais de Construcao",
+  "instagram": "https://www.instagram.com/rirrofer_/",
+  "city": "Carmo",
+  "state": "RJ",
+  "segment": "Loja de materiais de construcao",
+  "status": "cliente_potencial",
+  "positioning": "Demo personalizada para mostrar como o agente recebe faltas pelo WhatsApp, consolida cotacoes por fornecedor e entrega uma recomendacao de compra sem pedir acesso inicial ao banco da loja.",
+  "assumptions": [
+    "Operacao com balcao, deposito, entrega e compra com fornecedores.",
+    "Inicio seguro sem acesso ao banco, ERP ou financeiro.",
+    "Funcionarios informam faltas pelo WhatsApp e o agente consolida listas antes de cotar."
+  ],
+  "priorityModules": [
+    {
+      "name": "Faltas por WhatsApp",
+      "status": "pronto_para_demo",
+      "description": "Balconistas e deposito informam material, necessidade e saldo disponivel."
+    },
+    {
+      "name": "Cadastro por lista",
+      "status": "pronto_para_demo",
+      "description": "Entrada por CSV/JSON para montar o catalogo sem conectar no banco da loja."
+    },
+    {
+      "name": "Cotacao em lote",
+      "status": "pronto_para_demo",
+      "description": "O agente segura faltas em fila e manda listas consolidadas para fornecedores."
+    },
+    {
+      "name": "Aprovacao humana",
+      "status": "modo_seguro",
+      "description": "O agente recomenda a compra, mas comprador/proprietario decidem."
+    },
+    {
+      "name": "ERP no futuro",
+      "status": "futuro",
+      "description": "Arquitetura preparada para leitura ou escrita controlada quando houver confianca."
+    }
+  ],
+  "materialFocus": [
+    "materiais de construcao",
+    "tintas",
+    "eletrica",
+    "hidraulica",
+    "ferragens e ferramentas"
+  ],
+  "trustRoadmap": [
+    {
+      "phase": "Fase 1",
+      "title": "Sem banco da loja",
+      "description": "WhatsApp, cadastro local, planilha importada e aprovacao humana."
+    },
+    {
+      "phase": "Fase 2",
+      "title": "Planilha/ERP exportado",
+      "description": "A loja exporta lista de materiais e estoque quando quiser."
+    },
+    {
+      "phase": "Fase 3",
+      "title": "Leitura controlada",
+      "description": "Acesso somente leitura ao ERP para sugerir compras com mais precisao."
+    },
+    {
+      "phase": "Fase 4",
+      "title": "Automacao madura",
+      "description": "Compra ou financeiro apenas com contrato, logs e limites claros."
+    }
+  ],
+  "demoChecklist": [
+    "Mostrar que o dashboard ja nasce com a identidade da Rirrofer.",
+    "Simular uma falta informada por balconista ou deposito.",
+    "Mostrar a fila segurando itens para cotacao em lote.",
+    "Enviar lote mock para fornecedores certos.",
+    "Registrar respostas e gerar recomendacao de compra.",
+    "Reforcar que banco, ERP e financeiro ficam bloqueados na fase inicial."
+  ],
+  "sourceNotes": [
+    "Instagram informado pelo usuario: https://www.instagram.com/rirrofer_/",
+    "Perfil comercial usado apenas para demonstracao local."
+  ]
+}

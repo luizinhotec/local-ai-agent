@@ -190,6 +190,7 @@ function runExecutor(args, options = {}) {
     stdio: 'pipe',
     env: buildChildEnv(),
     encoding: 'utf8',
+    windowsHide: true,
   });
 
   const stdout = filterExecutorOutput(result.stdout || '');

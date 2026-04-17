@@ -569,6 +569,7 @@ function runBitflowExecutor(walletMatch, amountSats, slippageBps, broadcast, opt
       DOG_MM_WALLET_PASSWORD: walletPassword,
     },
     timeout: 120000,
+    windowsHide: true,
   });
 
   try {

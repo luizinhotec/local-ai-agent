@@ -139,6 +139,7 @@ function runJson(script, args) {
     cwd: ROOT_DIR,
     env: process.env,
     encoding: 'utf8',
+    windowsHide: true,
   });
   return JSON.parse(stdout);
 }

@@ -47,11 +47,13 @@ const {
 // ── Constantes ─────────────────────────────────────────────────────────────────
 
 const HIRO_API      = 'https://api.hiro.so';
+const BITFLOW_BFF_API = 'https://bff.bitflowapis.finance/api/app/v1';
 const POOL_CONTRACT = 'SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1';
 const ROUTER_CONTRACT = 'SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-liquidity-router-v-1-1';
 const X_TOKEN       = 'SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token';
 const Y_TOKEN       = 'SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx';
 const POOL_TOKEN_KEY = `${POOL_CONTRACT}::pool-token`;
+const BITFLOW_POOL_ID = 'dlmm_2';
 
 const STATE_DIR  = path.resolve(__dirname, '..', '..', 'state', 'dog-mm');
 const LP_PLAN    = path.resolve(STATE_DIR, 'bitflow-last-lp-add-plan.json');
@@ -59,6 +61,7 @@ const STATE_FILE = path.resolve(STATE_DIR, 'bitflow-last-lp-reposition.json');
 
 const TX_POLL_INTERVAL_MS = 8000;
 const TX_POLL_TIMEOUT_MS  = 300000; // 5 min
+const WITHDRAW_SLIPPAGE_PERCENT = 1;
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -155,6 +158,59 @@ async function getUserDlpBalance(address) {
   const ft = balances.fungible_tokens || {};
   const entry = ft[POOL_TOKEN_KEY];
   return entry ? BigInt(entry.balance) : 0n;
+}
+
+async function getUserOccupiedBins(address) {
+  const response = await getJson(`${BITFLOW_BFF_API}/users/${address}/positions/${BITFLOW_POOL_ID}/bins?fresh=true`);
+  const bins = Array.isArray(response?.bins) ? response.bins : [];
+  return bins
+    .map((bin) => ({
+      binId: Number(bin.bin_id),
+      signedBinId: Number(bin.bin_id) >= 500 ? Number(bin.bin_id) - 500 : Number(bin.bin_id),
+      amount: BigInt(bin.userLiquidity),
+    }))
+    .filter((bin) => Number.isFinite(bin.binId) && bin.amount > 0n);
+}
+
+async function getPoolBinsMap() {
+  const response = await getJson(`${BITFLOW_BFF_API.replace('/app/v1', '/quotes/v1')}/bins/${BITFLOW_POOL_ID}`);
+  const bins = Array.isArray(response?.bins) ? response.bins : [];
+  return new Map(
+    bins.map((bin) => [
+      Number(bin.bin_id),
+      {
+        reserveX: BigInt(bin.reserve_x || '0'),
+        reserveY: BigInt(bin.reserve_y || '0'),
+        liquidity: BigInt(bin.liquidity || '0'),
+      },
+    ])
+  );
+}
+
+function withWithdrawalMinimums(occupiedBins, poolBinsMap, slippagePercent = WITHDRAW_SLIPPAGE_PERCENT) {
+  const slippageNumerator = BigInt(Math.max(0, 100 - slippagePercent));
+  const slippageDenominator = 100n;
+
+  return occupiedBins.map((bin) => {
+    const poolBin = poolBinsMap.get(bin.binId);
+    if (!poolBin || poolBin.liquidity <= 0n) {
+      return {
+        ...bin,
+        minXAmount: 0n,
+        minYAmount: 0n,
+      };
+    }
+
+    const liquidityToRemove = bin.amount;
+    const minXAmount = (poolBin.reserveX * liquidityToRemove * slippageNumerator) / (poolBin.liquidity * slippageDenominator);
+    const minYAmount = (poolBin.reserveY * liquidityToRemove * slippageNumerator) / (poolBin.liquidity * slippageDenominator);
+
+    return {
+      ...bin,
+      minXAmount,
+      minYAmount,
+    };
+  });
 }
 
 async function pollTxConfirmation(txid, timeoutMs = TX_POLL_TIMEOUT_MS) {
@@ -293,6 +349,49 @@ async function buildAddLiquidityTx(options) {
   });
 }
 
+async function buildRemoveLiquidityTxFromOccupiedBins(options) {
+  const { senderKey, occupiedBins, fee, activeBinId } = options;
+
+  if (!Array.isArray(occupiedBins) || occupiedBins.length === 0) {
+    throw new Error('No occupied bins found for LP removal.');
+  }
+
+  const router = splitContract(ROUTER_CONTRACT);
+  const pool   = splitContract(POOL_CONTRACT);
+  const xTok   = splitContract(X_TOKEN);
+  const yTok   = splitContract(Y_TOKEN);
+
+  const positions = occupiedBins.map((bin) => tupleCV({
+    'active-bin-id-offset': intCV(BigInt(bin.signedBinId - activeBinId)),
+    'amount':       uintCV(bin.amount),
+    'min-x-amount': uintCV(bin.minXAmount ?? 0n),
+    'min-y-amount': uintCV(bin.minYAmount ?? 0n),
+    'pool-trait':   contractPrincipalCV(pool.address, pool.name),
+  }));
+
+  const totalMinXAmount = occupiedBins.reduce((sum, bin) => sum + (bin.minXAmount ?? 0n), 0n);
+  const totalMinYAmount = occupiedBins.reduce((sum, bin) => sum + (bin.minYAmount ?? 0n), 0n);
+
+  return makeContractCall({
+    contractAddress: router.address,
+    contractName:    router.name,
+    functionName:    'withdraw-relative-liquidity-same-multi',
+    functionArgs: [
+      listCV(positions),
+      contractPrincipalCV(xTok.address, xTok.name),
+      contractPrincipalCV(yTok.address, yTok.name),
+      uintCV(totalMinXAmount),
+      uintCV(totalMinYAmount),
+    ],
+    senderKey,
+    network:           'mainnet',
+    fee:               BigInt(fee),
+    postConditionMode: PostConditionMode.Allow,
+    postConditions:    [],
+    validateWithAbi:   true,
+  });
+}
+
 // ── Main ───────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -316,6 +415,7 @@ async function main() {
   const seedPhrase      = process.env.DOG_MM_SEED_PHRASE || '';
   const accountIndex    = parseInt(process.env.DOG_MM_ACCOUNT_INDEX || '0', 10);
   const expectedAddress = process.env.DOG_MM_EXPECTED_ADDRESS || '';
+  const walletName      = process.env.DOG_MM_WALLET_NAME || 'dog-mm-mainnet';
 
   if (!seedPhrase) {
     throw new Error('Missing seed phrase. Set DOG_MM_SEED_PHRASE.');
@@ -390,7 +490,19 @@ async function main() {
   // ── OUT-OF-RANGE: remove + re-add ─────────────────────────────────────────
   if (!jsonOnly) log('\n📤 Removendo liquidez...');
 
-  const removeTx = await buildRemoveLiquidityTx({ senderKey, dlpAmount: dlpBalance, entryBinId: entryBin, fee });
+  const occupiedBinsRaw = await getUserOccupiedBins(senderAddress);
+  const poolBinsMap = await getPoolBinsMap();
+  const occupiedBins = withWithdrawalMinimums(occupiedBinsRaw, poolBinsMap);
+  if (!jsonOnly) {
+    log(`   Occupied bins: ${occupiedBins.map((bin) => `${bin.binId}:${bin.amount.toString()}`).join(', ') || 'none'}`);
+  }
+
+  const removeTx = await buildRemoveLiquidityTxFromOccupiedBins({
+    senderKey,
+    occupiedBins,
+    fee,
+    activeBinId: poolState.activeBinId,
+  });
   const removeTxid = removeTx.txid();
 
   if (!jsonOnly) log(`   txid (remove): ${removeTxid}`);
@@ -472,9 +584,16 @@ async function main() {
     generatedAtUtc:   new Date().toISOString(),
     broadcast,
     status:           broadcast ? 'repositioned' : 'dry_run',
-    wallet:           { name: wallet.name, address: wallet.address },
+    wallet:           { name: walletName, address: senderAddress, accountIndex },
     poolContract:     POOL_CONTRACT,
     entryBin,
+    occupiedBins:     occupiedBins.map((bin) => ({
+      binId: bin.binId,
+      signedBinId: bin.signedBinId,
+      amount: bin.amount.toString(),
+      minXAmount: (bin.minXAmount ?? 0n).toString(),
+      minYAmount: (bin.minYAmount ?? 0n).toString(),
+    })),
     activeBinAtStart: poolState.activeBinId,
     activeBinAtReAdd: freshPoolState.activeBinId,
     dlpRemoved:       dlpBalance.toString(),

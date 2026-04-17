@@ -1,0 +1,58 @@
+[
+  {
+    "id": "shortage-rir-001",
+    "item": "Cimento CP-II 50kg",
+    "category": "cimento",
+    "needed": 120,
+    "available": 32,
+    "unit": "saco",
+    "priority": "alta",
+    "notes": "Giro alto no balcao e entrega programada para obra.",
+    "status": "validated",
+    "reportedBy": "Rita Deposito",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T16:36:46.488Z"
+  },
+  {
+    "id": "shortage-rir-002",
+    "item": "Tubo PVC Esgoto 40mm",
+    "category": "hidraulica",
+    "needed": 40,
+    "available": 8,
+    "unit": "barra",
+    "priority": "alta",
+    "notes": "Cliente pediu separacao para obra rural.",
+    "status": "validated",
+    "reportedBy": "Joao Balcao",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T16:51:46.488Z"
+  },
+  {
+    "id": "shortage-rir-003",
+    "item": "Tinta Acrilica Branco 18L",
+    "category": "tintas",
+    "needed": 18,
+    "available": 4,
+    "unit": "lata",
+    "priority": "media",
+    "notes": "Reposicao para fim de semana.",
+    "status": "validated",
+    "reportedBy": "Joao Balcao",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T17:01:46.488Z"
+  },
+  {
+    "id": "shortage-rir-004",
+    "item": "Cabo Flexivel 2,5mm 750V",
+    "category": "eletrica",
+    "needed": 15,
+    "available": 3,
+    "unit": "rolo",
+    "priority": "media",
+    "notes": "Entrada frequente em orcamentos de eletrica.",
+    "status": "validated",
+    "reportedBy": "Rita Deposito",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T17:06:46.488Z"
+  }
+]

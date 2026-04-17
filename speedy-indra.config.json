@@ -1,0 +1,8 @@
+﻿{
+  "apps": [{
+    "name": "speedy-indra",
+    "script": "runtime/speedy-indra/agent-standard-loop.cjs",
+    "args": "--interval-seconds=60 --amount-sats=3000 --auto-safe-actions=true",
+    "cwd": "C:/dev/local-ai-agent"
+  }]
+}

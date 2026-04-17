@@ -1,0 +1,191 @@
+[
+  {
+    "sku": "RIR-0001",
+    "name": "Cimento CP-II 50kg",
+    "category": "cimento",
+    "unit": "saco",
+    "supplierTypes": [
+      "cimento",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "cimento",
+      "cimento 50",
+      "cimento 50kg",
+      "cimento cp2",
+      "cp ii 50"
+    ],
+    "criticality": "alta",
+    "minStock": 80,
+    "active": true
+  },
+  {
+    "sku": "RIR-0002",
+    "name": "Argamassa AC-II 20kg",
+    "category": "cimento",
+    "unit": "saco",
+    "supplierTypes": [
+      "cimento",
+      "acabamento",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "argamassa ac2",
+      "ac ii 20kg",
+      "argamassa 20"
+    ],
+    "criticality": "alta",
+    "minStock": 60,
+    "active": true
+  },
+  {
+    "sku": "RIR-0003",
+    "name": "Tubo PVC Esgoto 40mm",
+    "category": "hidraulica",
+    "unit": "barra",
+    "supplierTypes": [
+      "hidraulica",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "cano esgoto 40",
+      "tubo esgoto 40",
+      "pvc esgoto 40",
+      "cano 40 esgoto"
+    ],
+    "criticality": "alta",
+    "minStock": 25,
+    "active": true
+  },
+  {
+    "sku": "RIR-0004",
+    "name": "Tubo PVC Soldavel 25mm",
+    "category": "hidraulica",
+    "unit": "barra",
+    "supplierTypes": [
+      "hidraulica",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "cano pvc 25",
+      "cano 25",
+      "tubo 25",
+      "pvc soldavel 25"
+    ],
+    "criticality": "media",
+    "minStock": 20,
+    "active": true
+  },
+  {
+    "sku": "RIR-0005",
+    "name": "Cabo Flexivel 2,5mm 750V",
+    "category": "eletrica",
+    "unit": "rolo",
+    "supplierTypes": [
+      "eletrica",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "fio 2.5",
+      "cabo 2.5",
+      "fio flex 2.5",
+      "cabo flexivel 2,5"
+    ],
+    "criticality": "alta",
+    "minStock": 12,
+    "active": true
+  },
+  {
+    "sku": "RIR-0006",
+    "name": "Disjuntor DIN 20A",
+    "category": "eletrica",
+    "unit": "un",
+    "supplierTypes": [
+      "eletrica",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "disjuntor 20",
+      "disjuntor 20a",
+      "din 20a"
+    ],
+    "criticality": "media",
+    "minStock": 18,
+    "active": true
+  },
+  {
+    "sku": "RIR-0007",
+    "name": "Tinta Acrilica Branco 18L",
+    "category": "tintas",
+    "unit": "lata",
+    "supplierTypes": [
+      "tintas",
+      "acabamento",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "tinta branca 18l",
+      "tinta acrilica 18",
+      "branco 18 litros"
+    ],
+    "criticality": "alta",
+    "minStock": 10,
+    "active": true
+  },
+  {
+    "sku": "RIR-0008",
+    "name": "Rolo de Pintura La 23cm",
+    "category": "tintas",
+    "unit": "un",
+    "supplierTypes": [
+      "tintas",
+      "ferragens",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "rolo 23",
+      "rolo pintura 23",
+      "rolo la 23cm"
+    ],
+    "criticality": "media",
+    "minStock": 24,
+    "active": true
+  },
+  {
+    "sku": "RIR-0009",
+    "name": "Parafuso Sextavado 5/16",
+    "category": "ferragens",
+    "unit": "cento",
+    "supplierTypes": [
+      "ferragens",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "parafuso 5/16",
+      "sextavado 5/16",
+      "parafuso sextavado"
+    ],
+    "criticality": "media",
+    "minStock": 8,
+    "active": true
+  },
+  {
+    "sku": "RIR-0010",
+    "name": "Luva de Seguranca Raspa",
+    "category": "seguranca",
+    "unit": "par",
+    "supplierTypes": [
+      "seguranca",
+      "ferragens",
+      "distribuidor_geral"
+    ],
+    "aliases": [
+      "luva raspa",
+      "luva seguranca",
+      "luva epi"
+    ],
+    "criticality": "media",
+    "minStock": 30,
+    "active": true
+  }
+]

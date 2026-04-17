@@ -1,0 +1,78 @@
+[
+  {
+    "id": "supplier-rir-001",
+    "name": "Distribuidora Serra Norte",
+    "contact": "Paula",
+    "phone": "5522999101001",
+    "whatsapp": "5522999101001",
+    "city": "Nova Friburgo",
+    "supplierTypes": [
+      "cimento",
+      "agregados",
+      "distribuidor_geral"
+    ],
+    "payment": "boleto 21 dias",
+    "active": true,
+    "createdAt": "2026-04-16T14:31:46.488Z"
+  },
+  {
+    "id": "supplier-rir-002",
+    "name": "HidraVale Atacado",
+    "contact": "Renato",
+    "phone": "5522999101002",
+    "whatsapp": "5522999101002",
+    "city": "Cordeiro",
+    "supplierTypes": [
+      "hidraulica",
+      "distribuidor_geral"
+    ],
+    "payment": "pix ou boleto 14 dias",
+    "active": true,
+    "createdAt": "2026-04-16T14:41:46.488Z"
+  },
+  {
+    "id": "supplier-rir-003",
+    "name": "Eletro Rio Interior",
+    "contact": "Bianca",
+    "phone": "5522999101003",
+    "whatsapp": "5522999101003",
+    "city": "Teresopolis",
+    "supplierTypes": [
+      "eletrica"
+    ],
+    "payment": "boleto 28 dias",
+    "active": true,
+    "createdAt": "2026-04-16T14:51:46.488Z"
+  },
+  {
+    "id": "supplier-rir-004",
+    "name": "Tintas Forte Atacado",
+    "contact": "Davi",
+    "phone": "5522999101004",
+    "whatsapp": "5522999101004",
+    "city": "Cantagalo",
+    "supplierTypes": [
+      "tintas",
+      "acabamento"
+    ],
+    "payment": "boleto 21/35 dias",
+    "active": true,
+    "createdAt": "2026-04-16T15:01:46.488Z"
+  },
+  {
+    "id": "supplier-rir-005",
+    "name": "FerroMais Ferragens",
+    "contact": "Nadia",
+    "phone": "5522999101005",
+    "whatsapp": "5522999101005",
+    "city": "Carmo",
+    "supplierTypes": [
+      "ferragens",
+      "seguranca",
+      "distribuidor_geral"
+    ],
+    "payment": "pix com 3% desconto",
+    "active": true,
+    "createdAt": "2026-04-16T15:11:46.488Z"
+  }
+]

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" role="img" aria-labelledby="title desc">
+  <title id="title">RIRROFER</title>
+  <desc id="desc">Logo RIRROFER com fundo azul, circulo claro, nome curvado em azul, casa rosa e sigla RRF.</desc>
+
+  <rect width="150" height="150" fill="#2f7180"/>
+  <circle cx="75" cy="75" r="72" fill="#ecebe5"/>
+
+  <g fill="#342f91" font-family="Georgia, 'Times New Roman', serif" font-size="16.8" font-weight="900" letter-spacing="1.8">
+    <text x="22" y="49" transform="rotate(-32 22 49)">R</text>
+    <text x="36" y="38" transform="rotate(-22 36 38)">I</text>
+    <text x="48" y="32" transform="rotate(-12 48 32)">R</text>
+    <text x="63" y="29" transform="rotate(-3 63 29)">R</text>
+    <text x="78" y="30" transform="rotate(7 78 30)">O</text>
+    <text x="94" y="35" transform="rotate(17 94 35)">F</text>
+    <text x="108" y="43" transform="rotate(27 108 43)">E</text>
+    <text x="122" y="55" transform="rotate(38 122 55)">R</text>
+  </g>
+
+  <g fill="none" stroke="#ee1167" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M39 86 L75 54 L112 86" stroke-width="4"/>
+    <path d="M49 83 V119 H101 V83" stroke-width="4"/>
+    <path d="M58 94 H92 V113 H58 Z" stroke-width="3.5"/>
+  </g>
+
+  <text x="75" y="111" text-anchor="middle" fill="#342f91"
+        font-family="Georgia, 'Times New Roman', serif" font-size="22"
+        font-weight="900" letter-spacing="2.2">RRF</text>
+</svg>

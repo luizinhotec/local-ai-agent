@@ -136,11 +136,13 @@ function readDogMmState() {
     const cfg = loadOrionConfig();
     const dir     = path.join(ROOT, cfg.paths.dogmmState);
     const logsDir = path.join(ROOT, cfg.paths.logsDir);
+    const lpRepositionPath = path.join(dir, 'bitflow-last-lp-reposition.json');
 
     // Primary state file — try hodlmm first (future), fall back to setup-status
     const hodlmmPath  = path.join(dir, 'dog-mm-hodlmm-status.json');
     const setupPath   = path.join(dir, 'dog-mm-setup-status.json');
     const setupStatus = readJsonSafe(hodlmmPath) || readJsonSafe(setupPath);
+    const lpReposition = readJsonSafe(lpRepositionPath);
 
     // Latest market-snapshot or auto-dryrun file
     const latestActivityFile = findLatestFile(
@@ -161,6 +163,13 @@ function readDogMmState() {
       };
     }
 
+    const lpStatus = lpReposition?.status || null;
+    const dlpBalanceRaw = lpReposition?.dlpBalance ?? null;
+    const dlpBalance = dlpBalanceRaw !== null ? Number(dlpBalanceRaw) : null;
+    const lpHealthy = lpStatus === 'in_range' || lpStatus === 'dry_run';
+    const lpHasPosition = Number.isFinite(dlpBalance) ? dlpBalance > 0 : false;
+    const lpGeneratedAt = lpReposition?.generatedAtUtc || null;
+
     return {
       bot: 'dog-mm',
       stage: setupStatus.stage || 'unknown',
@@ -173,6 +182,11 @@ function readDogMmState() {
       marketReason: latestActivity?.reason || null,
       firstCycleExecuted: setupStatus.phase0?.firstCycleExecuted || false,
       selectedPool: setupStatus.phase0?.selectedPool || null,
+      lpStatus,
+      lpDlpBalance: dlpBalanceRaw,
+      lpHasPosition,
+      lpHealthy,
+      lpGeneratedAt,
       lastLogLines: logLines,
     };
   } catch (err) {

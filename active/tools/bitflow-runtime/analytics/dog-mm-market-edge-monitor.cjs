@@ -75,6 +75,7 @@ function runScanner() {
     cwd: ROOT,
     encoding: 'utf8',
     env: { ...process.env },
+    windowsHide: true,
   });
   if (result.status !== 0) {
     throw new Error(`Failed running ${path.basename(SCANNER)}: ${result.stderr || result.stdout}`.trim());

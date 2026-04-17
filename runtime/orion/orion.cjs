@@ -116,6 +116,9 @@ let _cachedHealth = null;
 let _cachedStates = null;
 
 async function pollCommands(config) {
+  if (!config?.commands?.telegramPollingEnabled) {
+    return;
+  }
   const { ok, updates, nextUpdateId, reason } = await fetchUpdates(_lastUpdateId, config);
 
   if (!ok) {
@@ -183,6 +186,7 @@ async function main() {
 
   log('INFO', `ORION iniciado${DRY_RUN ? ' [dry-run]' : ''}${ONCE ? ' [once]' : ''}`);
   log('INFO', `loop=${config.health.loopIntervalSec}s | stale=${config.health.staleThresholdMinutes}min | cooldown=${config.health.alertCooldownMinutes}min`);
+  log('INFO', `telegram_polling=${config?.commands?.telegramPollingEnabled ? 'enabled' : 'disabled'}`);
 
   let lastCheck = 0;
   const checkIntervalMs = config.health.loopIntervalSec * 1_000;

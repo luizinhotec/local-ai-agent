@@ -1,0 +1,134 @@
+'use strict';
+
+const { getFlowPolicies, saveFlowPolicies } = require('./storage.cjs');
+
+const DEFAULT_FLOW_POLICIES = [
+  {
+    key: 'shortage_reporting',
+    name: 'Fluxo de Falta de Material',
+    purpose: 'Registrar e validar rapidamente faltas vindas da loja, balcao ou deposito.',
+    agentAutonomy: 'assistida',
+    trigger: 'Mensagem de WhatsApp, registro manual ou observacao operacional.',
+    roles: {
+      canStart: ['balconista', 'caixa', 'gerente_deposito', 'ajudante_deposito', 'gerente_geral', 'secretario'],
+      mustValidate: ['gerente_deposito', 'gerente_geral'],
+      notified: ['comprador', 'gerente_comercial']
+    },
+    steps: [
+      'Funcionario informa a falta ao agente.',
+      'Agente registra item, quantidade faltante, urgencia e origem.',
+      'Gerente do deposito ou gerente geral valida a falta quando necessario.',
+      'Agente marca o item como pronto para cotacao.'
+    ],
+    guardrails: [
+      'O agente nao altera estoque oficial em banco nesta fase.',
+      'Toda falta importante pode exigir validacao humana antes de cotar.'
+    ]
+  },
+  {
+    key: 'quote_collection',
+    name: 'Fluxo de Cotacao',
+    purpose: 'Consultar fornecedores e consolidar preco, prazo, quantidade e pagamento.',
+    agentAutonomy: 'semi_automatica',
+    trigger: 'Falta validada e item elegivel para reposicao.',
+    roles: {
+      canStart: ['comprador', 'gerente_deposito', 'gerente_geral', 'gerente_comercial'],
+      externalResponders: ['fornecedor'],
+      notified: ['proprietario', 'comprador']
+    },
+    steps: [
+      'Agente envia pedido de cotacao para fornecedores habilitados.',
+      'Fornecedores respondem com preco, prazo e disponibilidade.',
+      'Agente normaliza e compara as respostas.',
+      'Agente recomenda a melhor opcao segundo a politica ativa.'
+    ],
+    guardrails: [
+      'O agente pode pedir cotacao sozinho, mas nao fecha compra sem regra permitir.',
+      'Fornecedor nunca recebe acesso interno da loja.'
+    ]
+  },
+  {
+    key: 'purchase_approval',
+    name: 'Fluxo de Aprovacao de Compra',
+    purpose: 'Garantir que compras passem pelo nivel certo de decisao.',
+    agentAutonomy: 'assistida',
+    trigger: 'Melhor cotacao definida e solicitacao de compra aberta.',
+    roles: {
+      canPrepare: ['agente', 'comprador'],
+      canApprove: ['proprietario', 'gerente_geral'],
+      notified: ['comprador', 'financeiro', 'contador']
+    },
+    steps: [
+      'Agente monta a solicitacao de compra.',
+      'Agente envia resumo para aprovador definido pela politica.',
+      'Aprovador aceita ou rejeita a compra.',
+      'Agente registra a decisao e encaminha ao comprador.'
+    ],
+    guardrails: [
+      'Sem aprovacao, a compra nao deve ser executada no modo seguro.',
+      'Todas as aprovacoes devem ficar na trilha de auditoria.'
+    ]
+  },
+  {
+    key: 'purchase_execution',
+    name: 'Fluxo de Execucao da Compra',
+    purpose: 'Transformar uma aprovacao em compra efetiva com rastreabilidade.',
+    agentAutonomy: 'restrita',
+    trigger: 'Solicitacao aprovada.',
+    roles: {
+      canExecute: ['comprador'],
+      canMonitor: ['proprietario', 'gerente_geral', 'financeiro', 'contador']
+    },
+    steps: [
+      'Comprador confirma dados finais com fornecedor.',
+      'Agente registra fornecedor escolhido, condicoes e horario.',
+      'Compra e marcada como executada.',
+      'Financeiro e contador recebem a informacao necessaria.'
+    ],
+    guardrails: [
+      'Nesta fase, o agente nao deve pagar automaticamente.',
+      'Execucao depende de aprovacao previa quando a politica exigir.'
+    ]
+  },
+  {
+    key: 'future_auto_purchase',
+    name: 'Fluxo Futuro de Compra Automatica',
+    purpose: 'Preparar a arquitetura para compra automatica futura sem liberar isso agora.',
+    agentAutonomy: 'futura',
+    trigger: 'Somente quando o cliente liberar automacao de compra e financeiro.',
+    roles: {
+      canAuthorizeMode: ['proprietario', 'dev_responsavel'],
+      canAudit: ['auditor_interno', 'contador', 'financeiro']
+    },
+    steps: [
+      'Empresa ativa politicas de compra automatica por faixa e fornecedor.',
+      'Agente revalida limite, fornecedor homologado e condicao de pagamento.',
+      'Agente dispara compra automatica dentro dos limites aprovados.',
+      'Sistema gera auditoria completa da operacao.'
+    ],
+    guardrails: [
+      'Bloqueado por padrao.',
+      'So deve existir com banco, ERP e financeiro formalmente homologados.',
+      'Toda compra automatica precisa de limite de valor, categoria e fornecedor.'
+    ]
+  }
+];
+
+function seedFlowPolicies() {
+  saveFlowPolicies(DEFAULT_FLOW_POLICIES);
+  return DEFAULT_FLOW_POLICIES;
+}
+
+function ensureFlowPolicies() {
+  const policies = getFlowPolicies();
+  if (policies.length) {
+    return policies;
+  }
+  return seedFlowPolicies();
+}
+
+module.exports = {
+  DEFAULT_FLOW_POLICIES,
+  seedFlowPolicies,
+  ensureFlowPolicies
+};

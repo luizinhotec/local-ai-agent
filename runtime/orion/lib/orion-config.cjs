@@ -70,6 +70,9 @@ function loadOrionConfig() {
       loopIntervalSec: readInt('ORION_LOOP_INTERVAL_SEC', 60),
       alertCooldownMinutes: readInt('ORION_ALERT_COOLDOWN_MIN', 30),
     },
+    commands: {
+      telegramPollingEnabled: readBool('ORION_TELEGRAM_POLLING_ENABLED', false),
+    },
     orion: {
       stateDir: path.join(__dirname, '..', 'state'),
       root: ROOT,

@@ -4,6 +4,8 @@ const {
   appendEvent,
 } = require('./deribit-state-store.cjs');
 
+const STALE_ACTIVE_AUDIT_MS = 120000;
+
 function nowIso() {
   return new Date().toISOString();
 }
@@ -228,6 +230,23 @@ function inferAuditFromExchange(audit, reconciliation, recentTrades) {
           ? nowIso()
           : audit.partiallyFilledAt || null,
       note: 'execution lifecycle updated from exchange trades',
+    });
+  }
+
+  const activeStatuses = new Set(['sent', 'accepted', 'open', 'partially_filled']);
+  const auditUpdatedAtMs = audit?.updatedAt ? new Date(audit.updatedAt).getTime() : NaN;
+  const isStaleActiveAudit =
+    activeStatuses.has(audit?.status) &&
+    Number.isFinite(auditUpdatedAtMs) &&
+    (Date.now() - auditUpdatedAtMs) > STALE_ACTIVE_AUDIT_MS;
+  const hasExchangeEvidence =
+    Array.isArray(reconciliation?.openOrdersExchange) &&
+    reconciliation.openOrdersExchange.length > 0;
+  if (isStaleActiveAudit && !hasExchangeEvidence) {
+    return transitionExecutionAudit(audit, 'cancelled', {
+      cancelledAt: audit.cancelledAt || nowIso(),
+      lastExchangeTradeSummary: tradeSummary,
+      note: 'stale execution audit cleared after exchange showed no matching live order',
     });
   }
 

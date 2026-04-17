@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material Construction Agent</title>
+  <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <div class="brand-logo" aria-label="RIRROFER">
+        <img class="brand-image" src="/assets/rirrofer-logo-v2.jpg?v=20260416" alt="Logo RIRROFER">
+        <div>
+          <strong>RIRROFER</strong>
+          <span>Materiais de Construcao</span>
+        </div>
+      </div>
+      <p class="eyebrow">Material Construction Agent</p>
+      <h1>Central de cadastro, cotacao e fila de compras</h1>
+      <p class="subtitle">Visualize materiais, fornecedores, faltas e lotes de cotacao sem precisar abrir o banco da empresa.</p>
+    </div>
+    <div class="hero-actions">
+      <button id="demoButton" type="button">Preparar Demo Rirrofer</button>
+      <button id="refreshButton" type="button">Atualizar</button>
+    </div>
+  </header>
+
+  <main>
+    <nav class="tabs" aria-label="Paginas do dashboard">
+      <button class="tab-button active" data-tab-target="overview" type="button">Visao Geral</button>
+      <button class="tab-button" data-tab-target="people" type="button">Funcionarios</button>
+      <button class="tab-button" data-tab-target="materials" type="button">Materiais</button>
+      <button class="tab-button" data-tab-target="suppliers" type="button">Fornecedores</button>
+      <button class="tab-button" data-tab-target="shortages" type="button">Faltas</button>
+      <button class="tab-button" data-tab-target="quotes" type="button">Cotacoes</button>
+      <button class="tab-button" data-tab-target="purchases" type="button">Compras</button>
+      <button class="tab-button" data-tab-target="reports" type="button">Relatorios</button>
+    </nav>
+
+    <div class="tab-panel active" data-tab-panel="overview">
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Modulos para este cliente</h2>
+          <span>demo personalizada</span>
+        </div>
+        <div id="clientMaterialFocus" class="focus-row"></div>
+        <div id="clientModules" class="module-grid"></div>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Funil Operacional</h2>
+            <span>da falta ate aprovacao</span>
+          </div>
+          <div id="flowFunnel" class="funnel"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Pitch de Confianca</h2>
+            <span>sem banco no inicio</span>
+          </div>
+          <div id="trustRoadmap" class="trust-roadmap"></div>
+        </article>
+      </section>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="people">
+      <section class="grid two">
+        <article class="panel">
+        <div class="panel-title">
+          <h2>Cadastrar Funcionario</h2>
+          <span>quem fala com o agente</span>
+        </div>
+        <form id="userForm" class="form">
+          <input name="name" placeholder="Nome" required>
+          <input name="role" placeholder="Cargo: gerente_deposito, balconista, comprador..." required>
+          <input name="phone" placeholder="WhatsApp com DDI/DDD" required>
+          <input name="sector" placeholder="Setor">
+          <select name="canApprovePurchase">
+            <option value="false">Nao aprova compra</option>
+            <option value="true">Pode aprovar compra</option>
+          </select>
+          <select name="canExecutePurchase">
+            <option value="false">Nao executa compra</option>
+            <option value="true">Pode executar compra</option>
+          </select>
+          <button type="submit">Salvar funcionario</button>
+        </form>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Funcionarios</h2>
+            <span id="usersCount">0 funcionarios</span>
+          </div>
+          <div id="usersList" class="supplier-grid"></div>
+        </article>
+      </section>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="materials">
+      <section class="grid two">
+        <article class="panel">
+        <div class="panel-title">
+          <h2>Cadastrar Material</h2>
+          <span>catalogo mestre</span>
+        </div>
+        <form id="materialForm" class="form">
+          <input name="name" placeholder="Nome do material" required>
+          <input name="category" placeholder="Categoria" required>
+          <input name="unit" placeholder="Unidade" required>
+          <input name="supplierTypes" placeholder="Tipos de fornecedor: hidraulica,distribuidor_geral">
+          <input name="aliases" placeholder="Apelidos separados por virgula">
+          <input name="criticality" placeholder="Criticidade: baixa/media/alta">
+          <input name="minStock" placeholder="Estoque minimo" type="number" min="0">
+          <button type="submit">Salvar material</button>
+        </form>
+        </article>
+
+        <article class="panel">
+        <div class="panel-title">
+          <h2>Resolver Material</h2>
+          <span>teste de ambiguidade</span>
+        </div>
+        <form id="resolveForm" class="form inline">
+          <input name="item" placeholder="Ex: cano 40, fio 2.5, brita 1" required>
+          <button type="submit">Resolver</button>
+        </form>
+        <pre id="resolveResult" class="result">Digite um termo para testar.</pre>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+        <div class="panel-title">
+          <h2>Importar Lista</h2>
+          <span>CSV ou JSON local</span>
+        </div>
+        <form id="importForm" class="form">
+          <input name="file" placeholder="Ex: data/materials-import-example.csv" required>
+          <button type="submit">Importar materiais</button>
+        </form>
+        <p class="hint">Use CSV exportado da loja ou planilha salva localmente. O importador cria/atualiza pelo SKU ou nome.</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Materiais</h2>
+          <span id="materialsCount">0 itens</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Material</th>
+                <th>Categoria</th>
+                <th>Unidade</th>
+                <th>Fornecedores</th>
+                <th>Aliases</th>
+              </tr>
+            </thead>
+            <tbody id="materialsTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="suppliers">
+      <section class="grid two">
+        <article class="panel">
+        <div class="panel-title">
+          <h2>Cadastrar Fornecedor</h2>
+          <span>especialidades</span>
+        </div>
+        <form id="supplierForm" class="form">
+          <input name="name" placeholder="Nome do fornecedor" required>
+          <input name="contact" placeholder="Contato">
+          <input name="phone" placeholder="WhatsApp/telefone">
+          <input name="city" placeholder="Cidade">
+          <input name="supplierTypes" placeholder="Tipos: hidraulica,agregados,eletrica">
+          <input name="payment" placeholder="Pagamento">
+          <button type="submit">Salvar fornecedor</button>
+        </form>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Fornecedores</h2>
+            <span id="suppliersCount">0 fornecedores</span>
+          </div>
+          <div id="suppliersList" class="supplier-grid"></div>
+        </article>
+      </section>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="shortages">
+      <section class="grid two">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Receber Falta</h2>
+            <span>simulacao WhatsApp</span>
+          </div>
+          <form id="shortageForm" class="form">
+            <input name="phone" placeholder="WhatsApp de quem informou">
+            <input name="item" placeholder="Material informado: cano esgoto 40" required>
+            <input name="needed" placeholder="Necessario" type="number" min="0" step="0.01" required>
+            <input name="available" placeholder="Disponivel" type="number" min="0" step="0.01" required>
+            <input name="unit" placeholder="Unidade: barra, saco, un">
+            <input name="priority" placeholder="Prioridade: baixa/media/alta">
+            <input name="notes" placeholder="Observacao">
+            <button type="submit">Registrar falta</button>
+          </form>
+          <p class="hint">Se o telefone for de gerente do deposito ou gerente geral, a falta entra validada e vai para a fila de cotacao.</p>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Faltas Recentes</h2>
+            <span id="shortagesCount">0 faltas</span>
+          </div>
+          <div id="shortagesList" class="list"></div>
+        </article>
+      </section>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="quotes">
+      <section class="grid two">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Lotes de Cotacao</h2>
+            <span>listas consolidadas</span>
+          </div>
+          <form id="batchForm" class="form">
+            <input name="notes" placeholder="Observacao do lote">
+            <button type="submit">Montar lote agora</button>
+          </form>
+          <div id="quoteBatches" class="list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Fila de Cotacao</h2>
+            <span>itens aguardando lote</span>
+          </div>
+          <div id="quoteQueue" class="list"></div>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+        <div class="panel-title">
+          <h2>Registrar Cotacao</h2>
+          <span>resposta do fornecedor</span>
+        </div>
+        <form id="quoteForm" class="form">
+          <input name="supplier" placeholder="Fornecedor cadastrado" required>
+          <input name="item" placeholder="Material cotado" required>
+          <input name="unitPrice" placeholder="Preco unitario" type="number" min="0" step="0.01" required>
+          <input name="quantity" placeholder="Quantidade disponivel" type="number" min="0" step="0.01" required>
+          <input name="leadDays" placeholder="Prazo em dias" type="number" min="0" required>
+          <input name="payment" placeholder="Condicao de pagamento">
+          <button type="submit">Salvar cotacao</button>
+        </form>
+        </article>
+
+        <article class="panel">
+        <div class="panel-title">
+          <h2>Cotacoes Recentes</h2>
+          <span id="quotesCount">0 cotacoes</span>
+        </div>
+        <div id="quotesList" class="list"></div>
+        </article>
+      </section>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="purchases">
+      <section class="grid two">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Plano de Compra</h2>
+            <span>melhor cotacao</span>
+          </div>
+          <form id="purchasePlanForm" class="form inline">
+            <input name="shortageId" placeholder="ID da falta" required>
+            <button type="submit">Gerar plano</button>
+          </form>
+          <div id="purchasePlanResult" class="purchase-card muted-card">Informe o ID de uma falta com cotacao registrada.</div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Funil Operacional</h2>
+            <span>contexto de compra</span>
+          </div>
+          <div id="flowFunnelPurchases" class="funnel"></div>
+        </article>
+      </section>
+    </div>
+
+    <div class="tab-panel" data-tab-panel="reports">
+      <section class="grid two">
+        <article class="panel">
+        <div class="panel-title">
+          <h2>Relatorio para o Dono</h2>
+          <span>resumo diario</span>
+        </div>
+        <button id="dailyReportButton" type="button">Gerar relatorio diario</button>
+        <div id="dailyReportResult" class="report-preview muted-card">Clique para gerar um resumo em Markdown.</div>
+        </article>
+
+        <article class="panel">
+        <div class="panel-title">
+          <h2>WhatsApp Mock</h2>
+          <span id="messagesCount">0 mensagens</span>
+        </div>
+        <div id="messagesList" class="message-list"></div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/dashboard.js"></script>
+</body>
+</html>

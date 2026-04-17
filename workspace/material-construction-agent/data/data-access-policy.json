@@ -1,0 +1,63 @@
+{
+  "currentMode": "manual_local",
+  "allowDatabaseRead": false,
+  "allowDatabaseWrite": false,
+  "allowFinancialAccess": false,
+  "requireOwnerApprovalForModeChange": true,
+  "requireDevResponsibleApprovalForIntegration": true,
+  "auditAllExternalDataAccess": true,
+  "notes": "Comecar sem banco de dados da empresa. Evoluir por confianca, prova de valor e autorizacao formal.",
+  "modes": [
+    {
+      "key": "manual_local",
+      "name": "Manual / Local",
+      "description": "Sem acesso ao banco da empresa. O agente usa WhatsApp, JSON local, cadastros proprios e aprovacao humana.",
+      "canReadCompanyDatabase": false,
+      "canWriteCompanyDatabase": false,
+      "canAccessFinancialSystems": false,
+      "commercialRisk": "baixo",
+      "recommendedFor": "primeira implantacao e prova de valor"
+    },
+    {
+      "key": "import_export",
+      "name": "Importacao / Exportacao",
+      "description": "Empresa envia planilha, CSV ou exportacao periodica. O agente le dados offline, sem entrar no banco.",
+      "canReadCompanyDatabase": false,
+      "canWriteCompanyDatabase": false,
+      "canAccessFinancialSystems": false,
+      "commercialRisk": "baixo",
+      "recommendedFor": "cliente que quer melhorar precisao sem liberar sistema interno"
+    },
+    {
+      "key": "database_readonly",
+      "name": "Banco Somente Leitura",
+      "description": "Agente consulta produtos, estoque, fornecedores e historico, mas nao altera nada.",
+      "canReadCompanyDatabase": true,
+      "canWriteCompanyDatabase": false,
+      "canAccessFinancialSystems": false,
+      "commercialRisk": "medio",
+      "recommendedFor": "cliente que ja confia e quer integracao com ERP ou banco"
+    },
+    {
+      "key": "database_write",
+      "name": "Banco com Escrita Controlada",
+      "description": "Agente pode criar pedidos, registrar cotacoes ou atualizar status conforme escopo aprovado.",
+      "canReadCompanyDatabase": true,
+      "canWriteCompanyDatabase": true,
+      "canAccessFinancialSystems": false,
+      "commercialRisk": "alto",
+      "recommendedFor": "operacao madura com contrato, auditoria e rollback"
+    },
+    {
+      "key": "financial_enabled",
+      "name": "Financeiro Habilitado",
+      "description": "Agente pode interagir com financeiro ou pagamentos dentro de limites formais.",
+      "canReadCompanyDatabase": true,
+      "canWriteCompanyDatabase": true,
+      "canAccessFinancialSystems": true,
+      "commercialRisk": "muito_alto",
+      "recommendedFor": "fase futura, com governanca forte e autorizacao explicita"
+    }
+  ],
+  "updatedAt": "2026-04-16T04:11:56.753Z"
+}

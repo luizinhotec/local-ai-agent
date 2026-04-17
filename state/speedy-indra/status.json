@@ -1,44 +1,46 @@
 {
-  "checkedAt": "2026-04-06T01:22:07.814Z",
+  "checkedAt": "2026-04-17T22:57:36.897Z",
   "nextAction": {
-    "recommendedAction": "wait",
-    "reason": "no_safe_auto_action_available",
-    "recommendedCommand": null,
-    "commandClass": "status_only",
-    "safetyLevel": "status_only",
+    "recommendedAction": "quote_only",
+    "reason": "defi_quote_monitoring_available",
+    "recommendedCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
+    "commandClass": "read_only_quote",
+    "safetyLevel": "safe_read_only",
     "estimatedCostClass": "zero",
     "fallbackCommand": "npm run agent:status",
     "approvalRequired": false,
     "autoExecutableByStandardLoop": false,
-    "autoExecutionBlockReason": "wait_recommended",
+    "autoExecutionBlockReason": "decision_not_pass",
     "autoExecutionPolicy": "standard_loop_execution_policy_v1",
     "autoLiveEligible": false,
-    "autoLiveClass": "class_c_manual_only",
-    "autoLiveBlockReason": "wait_recommended",
+    "autoLiveClass": "class_a_safe_readonly",
+    "autoLiveBlockReason": "decision_not_pass",
     "autoLivePolicyVersion": "auto_live_policy_v1",
+    "championshipGateEligible": false,
+    "championshipGateBlockReason": "decision_not_pass",
     "manualPrioritySkill": {
-      "skillId": "bounty_execute",
-      "label": "bounty_execute",
-      "category": "general",
-      "reason": "prepared_bounty_live_reply_ready",
-      "whyNow": "prepared_bounty_live_reply_ready",
-      "command": "npm run agent:bounty:execute -- --live --approve-live",
-      "fallbackCommand": "npm run agent:status",
-      "approvalRequired": true,
+      "skillId": "bounty_interactions",
+      "label": "Bounties",
+      "category": "bounty",
+      "reason": "prepared_bounty_candidate_ready",
+      "whyNow": "prepared_bounty_candidate_ready",
+      "command": "npm run agent:bounty:execute -- --dry-run",
+      "fallbackCommand": "npm run agent:bounty:scan -- --dry-run",
+      "approvalRequired": false,
       "autoExecutable": false,
-      "score": 108
+      "score": 74
     },
-    "manualPriorityReason": "prepared_bounty_live_reply_ready",
-    "manualPriorityCommand": "npm run agent:bounty:execute -- --live --approve-live",
-    "manualPriorityScore": 108,
-    "manualPriorityWhyNow": "prepared_bounty_live_reply_ready",
-    "preferredDefiAmountSats": null,
-    "source": "state_cache"
+    "manualPriorityReason": "prepared_bounty_candidate_ready",
+    "manualPriorityCommand": "npm run agent:bounty:execute -- --dry-run",
+    "manualPriorityScore": 74,
+    "manualPriorityWhyNow": "prepared_bounty_candidate_ready",
+    "preferredDefiAmountSats": 3000,
+    "source": "fresh_evaluation"
   },
   "messaging": {
     "unreadCount": 0,
     "queueDepth": 0,
-    "lastMessagingRunAt": "2026-04-06T01:20:50.783Z",
+    "lastMessagingRunAt": "2026-04-17T22:57:30.809Z",
     "lastReplyAt": "2026-04-01T03:50:24.957Z",
     "lastReplyTargets": [
       {
@@ -72,17 +74,14 @@
         "peerDisplayName": "Graphite Elan"
       }
     ],
-    "policyMode": "safe_replies_only",
-    "activePolicy": "safe_replies_only",
+    "policyMode": "disabled",
+    "activePolicy": "disabled",
     "lastActionType": "status",
     "lastActionResult": "status_completed",
     "lastPaymentTxId": null,
     "experimental": false,
-    "replyTemplateStats": {
-      "default_ad70b41b": 1,
-      "default_b634c74a": 2
-    },
-    "replySuccessRate": 1,
+    "replyTemplateStats": {},
+    "replySuccessRate": 0,
     "detectedAchievements": [],
     "lastOutcome": "completed"
   },
@@ -102,17 +101,19 @@
     },
     "balances": {
       "btc": {
-        "ok": false,
-        "status": "degraded",
-        "reason": "btc_balance_lookup_failed",
-        "error": "fetch failed"
+        "ok": true,
+        "status": "empty",
+        "address": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
+        "balanceSats": 0,
+        "txCount": 0,
+        "hasFunds": false
       },
       "stacks": {
         "ok": true,
         "status": "ready",
         "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
-        "stxMicroStx": 76475786,
-        "sbtcSats": 9815,
+        "stxMicroStx": 30913341,
+        "sbtcSats": 62380,
         "usdcxBaseUnits": 7329062,
         "tokenKeys": {
           "sbtc": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
@@ -122,33 +123,33 @@
     },
     "network": {
       "btc": {
-        "ok": false,
-        "status": "degraded",
-        "reason": "btc_network_probe_failed",
-        "error": "fetch failed"
+        "ok": true,
+        "status": "ready",
+        "tipHeight": 945531,
+        "responseStatus": 200
       },
       "stacks": {
         "ok": true,
         "status": "ready",
-        "burnBlockHeight": 943856,
-        "stacksTipHeight": 7490267,
+        "burnBlockHeight": 945531,
+        "stacksTipHeight": 7639271,
         "responseStatus": 200
       }
     },
     "signerReadiness": {
       "ok": false,
-      "status": "locked",
-      "source": "wallet_keystore",
+      "status": "not_ready",
+      "source": null,
       "derivationPath": null,
       "address": null,
-      "reason": "wallet_password_missing"
+      "reason": "Unsupported state or unable to authenticate data"
     },
     "stacksSignerReadiness": {
       "ok": false,
-      "status": "locked",
-      "source": "wallet_keystore",
+      "status": "not_ready",
+      "source": null,
       "address": null,
-      "reason": "wallet_password_missing"
+      "reason": "Unsupported state or unable to authenticate data"
     },
     "dependencyReadiness": {
       "catalogPresent": true,
@@ -177,17 +178,19 @@
       },
       "balances": {
         "btc": {
-          "ok": false,
-          "status": "degraded",
-          "reason": "btc_balance_lookup_failed",
-          "error": "fetch failed"
+          "ok": true,
+          "status": "empty",
+          "address": "bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9",
+          "balanceSats": 0,
+          "txCount": 0,
+          "hasFunds": false
         },
         "stacks": {
           "ok": true,
           "status": "ready",
           "stxAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
-          "stxMicroStx": 76475786,
-          "sbtcSats": 9815,
+          "stxMicroStx": 30913341,
+          "sbtcSats": 62380,
           "usdcxBaseUnits": 7329062,
           "tokenKeys": {
             "sbtc": "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token::sbtc-token",
@@ -197,33 +200,33 @@
       },
       "network": {
         "btc": {
-          "ok": false,
-          "status": "degraded",
-          "reason": "btc_network_probe_failed",
-          "error": "fetch failed"
+          "ok": true,
+          "status": "ready",
+          "tipHeight": 945531,
+          "responseStatus": 200
         },
         "stacks": {
           "ok": true,
           "status": "ready",
-          "burnBlockHeight": 943856,
-          "stacksTipHeight": 7490267,
+          "burnBlockHeight": 945531,
+          "stacksTipHeight": 7639271,
           "responseStatus": 200
         }
       },
       "signerReadiness": {
         "ok": false,
-        "status": "locked",
-        "source": "wallet_keystore",
+        "status": "not_ready",
+        "source": null,
         "derivationPath": null,
         "address": null,
-        "reason": "wallet_password_missing"
+        "reason": "Unsupported state or unable to authenticate data"
       },
       "stacksSignerReadiness": {
         "ok": false,
-        "status": "locked",
-        "source": "wallet_keystore",
+        "status": "not_ready",
+        "source": null,
         "address": null,
-        "reason": "wallet_password_missing"
+        "reason": "Unsupported state or unable to authenticate data"
       },
       "dependencyReadiness": {
         "catalogPresent": true,
@@ -237,8 +240,7 @@
     },
     "knownBlockers": [
       "feature_disabled",
-      "btc_network_unavailable",
-      "wallet_password_missing",
+      "Unsupported state or unable to authenticate data",
       "btc_balance_empty_or_unavailable",
       "wallet_live_requires_approval"
     ],
@@ -248,7 +250,7 @@
       "dryRunDefault": true,
       "liveApprovalRequiredForValueTransfer": true,
       "valueTransferImplemented": true,
-      "probeMessage": "Speedy Indra wallet probe | SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT | bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9 | 2026-04-06T01:20:50.948Z",
+      "probeMessage": "Speedy Indra wallet probe | SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT | bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9 | 2026-04-17T22:57:30.983Z",
       "proofFormat": "bip322",
       "maxValueSats": 1000,
       "valueActionPlan": {
@@ -259,10 +261,10 @@
         "reason": "feature_disabled",
         "suggestedAmountMicroStx": 1000,
         "maxFeeMicroStx": 3000,
-        "targetAddress": null,
+        "targetAddress": "SP1GNF1SGP89KT980XRTRMFKZG4H5P3CDS70Y4NRF",
         "memo": "speedy-indra-micro",
         "sourceAddress": "SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT",
-        "targetSource": "missing",
+        "targetSource": "controlled_wallet_catalog",
         "amountMicroStx": 1000,
         "requestedAmountMicroStx": null,
         "dryRunDefault": true,
@@ -279,25 +281,21 @@
           "stacksSignerReady": false,
           "stacksBalanceKnown": true,
           "stacksNetworkReady": true,
-          "targetResolved": false
+          "targetResolved": true
         }
       },
       "balancesSnapshot": {
-        "stxMicroStx": 76475786,
-        "sbtcSats": 9815,
-        "btcSats": null
+        "stxMicroStx": 30913341,
+        "sbtcSats": 62380,
+        "btcSats": 0
       }
     }
   },
   "btcL1ToUsdcRouter": {
-    "status": "blocked",
+    "status": "partial",
     "route": "btc_l1_to_sbtc_to_usdcx",
     "blockers": [
-      "wallet_signer_material_missing",
-      "btc_balance_lookup_failed",
-      "btc_network_probe_failed",
       "manual_bridge_required",
-      "wallet_password_missing",
       "estimated_fee_unavailable"
     ]
   },
@@ -311,7 +309,6 @@
     "estimatedCostClass": "zero",
     "reason": "defi_quote_monitoring_available",
     "blockers": [
-      "wallet_password_missing",
       "estimated_fee_unavailable"
     ],
     "watchGateEligible": false,
@@ -349,12 +346,12 @@
     }
   },
   "standardLoop": {
-    "lastRunAt": "2026-04-06T01:20:49.698Z",
+    "lastRunAt": "2026-04-17T22:57:30.338Z",
     "lastAction": "skipped",
     "lastAuthorizedAction": null,
     "lastProposedCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
     "lastExecutedCommand": null,
-    "lastBlockReason": "dry_run_loop",
+    "lastBlockReason": "decision_not_pass",
     "lastDecision": {
       "recommendedAction": "quote_only",
       "authorizedAction": null,
@@ -365,12 +362,12 @@
       "approvalRequired": false,
       "autoLiveEligible": false,
       "autoLiveClass": "class_a_safe_readonly",
-      "autoLiveBlockReason": "dry_run_loop",
+      "autoLiveBlockReason": "decision_not_pass",
       "autoLivePolicyVersion": "auto_live_policy_v1",
       "actionExecuted": false,
-      "actionReason": "dry_run_loop"
+      "actionReason": "decision_not_pass"
     },
-    "cycles": 1734,
+    "cycles": 2620,
     "autoActions": 2,
     "autoLive": {
       "executionsToday": 0,
@@ -378,7 +375,7 @@
       "spendSatsToday": 0,
       "lastAutoExecutedSkillId": "messaging_safe_replies",
       "lastAutoExecutedAt": "2026-04-01T03:50:04.803Z",
-      "lastAutoBlockedReason": "dry_run_loop",
+      "lastAutoBlockedReason": "decision_not_pass",
       "policyVersion": "auto_live_policy_v1",
       "executionHistory": [
         {
@@ -397,12 +394,12 @@
     }
   },
   "operationalSummary": {
-    "generatedAt": "2026-04-06T01:20:49.698Z",
+    "generatedAt": "2026-04-17T22:57:30.338Z",
     "loopRunning": true,
     "watchdogStale": false,
     "messaging": {
-      "enabled": true,
-      "policyMode": "safe_replies_only",
+      "enabled": false,
+      "policyMode": "disabled",
       "unreadCount": 0,
       "repliedMessages": 5,
       "cooldown": {
@@ -427,7 +424,6 @@
       "recommendedAction": "quote_only",
       "gateReason": "decision_not_pass",
       "blockers": [
-        "wallet_password_missing",
         "estimated_fee_unavailable"
       ],
       "decision": "INCONCLUSIVE",
@@ -456,10 +452,10 @@
       "scannedCount": 6
     },
     "loop": {
-      "lastRunAt": "2026-04-06T01:20:49.698Z",
+      "lastRunAt": "2026-04-17T22:57:30.338Z",
       "lastAction": "skipped",
-      "lastBlockReason": "dry_run_loop",
-      "cycles": 1734,
+      "lastBlockReason": "decision_not_pass",
+      "cycles": 2620,
       "autoActions": 2
     },
     "supervisorLine": "loop=skipped | msgs=0 unread/5 replied | cooldown=free | next=quote_only | defi=A estrategia atual permite apenas observacao de cotacao. O gate de execucao nao aprovou a oportunidade atual."

@@ -405,6 +405,7 @@ function runCandidate(candidate, index, baselineByGroup) {
     cwd: ROOT,
     env: buildChildEnv(),
     encoding: 'utf8',
+    windowsHide: true,
   });
 
   const baselineKey = `${candidate.pairId}|${candidate.ammStrategy}|${candidate.preferredAmm || ''}`;
@@ -491,6 +492,7 @@ function buildBaselineContext(candidates) {
       cwd: ROOT,
       env: buildChildEnv(),
       encoding: 'utf8',
+      windowsHide: true,
     });
 
     try {

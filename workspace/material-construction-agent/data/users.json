@@ -1,0 +1,57 @@
+[
+  {
+    "id": "user-rir-001",
+    "name": "Carlos Rirrofer",
+    "role": "proprietario",
+    "phone": "5522999000001",
+    "sector": "direcao",
+    "canReportShortage": true,
+    "canApprovePurchase": true,
+    "canExecutePurchase": false,
+    "createdAt": "2026-04-16T15:11:46.488Z"
+  },
+  {
+    "id": "user-rir-002",
+    "name": "Marcos Compras",
+    "role": "comprador",
+    "phone": "5522999000002",
+    "sector": "compras",
+    "canReportShortage": true,
+    "canApprovePurchase": false,
+    "canExecutePurchase": true,
+    "createdAt": "2026-04-16T15:21:46.488Z"
+  },
+  {
+    "id": "user-rir-003",
+    "name": "Rita Deposito",
+    "role": "gerente_deposito",
+    "phone": "5522999000003",
+    "sector": "deposito",
+    "canReportShortage": true,
+    "canApprovePurchase": false,
+    "canExecutePurchase": false,
+    "createdAt": "2026-04-16T15:31:46.488Z"
+  },
+  {
+    "id": "user-rir-004",
+    "name": "Joao Balcao",
+    "role": "balconista",
+    "phone": "5522999000004",
+    "sector": "balcao",
+    "canReportShortage": true,
+    "canApprovePurchase": false,
+    "canExecutePurchase": false,
+    "createdAt": "2026-04-16T15:41:46.488Z"
+  },
+  {
+    "id": "user-rir-005",
+    "name": "Ana Caixa",
+    "role": "caixa",
+    "phone": "5522999000005",
+    "sector": "caixa",
+    "canReportShortage": true,
+    "canApprovePurchase": false,
+    "canExecutePurchase": false,
+    "createdAt": "2026-04-16T15:51:46.488Z"
+  }
+]

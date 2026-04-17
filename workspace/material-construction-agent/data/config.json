@@ -1,0 +1,22 @@
+{
+  "companyName": "RIRROFER Materiais de Construcao",
+  "channels": {
+    "whatsapp": {
+      "enabled": false,
+      "provider": "mock",
+      "mode": "manual-review"
+    }
+  },
+  "permissions": {
+    "purchaseMode": "approval_required",
+    "allowAutoPurchase": false,
+    "requireOwnerApproval": true,
+    "allowDatabaseAccess": false,
+    "allowFinancialAccess": false
+  },
+  "roadmap": {
+    "futureDatabaseAccess": true,
+    "futureFinancialAccess": true,
+    "futureERPAccess": true
+  }
+}

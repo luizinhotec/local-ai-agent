@@ -212,6 +212,7 @@ async function main() {
         cwd: process.cwd(),
         env: process.env,
         stdio: ['ignore', 'pipe', 'pipe'],
+        windowsHide: true,
       });
 
       let loopStdout = '';
@@ -257,6 +258,7 @@ async function main() {
         cwd: process.cwd(),
         env: process.env,
         stdio: ['ignore', 'pipe', 'pipe'],
+        windowsHide: true,
       });
       let secondStdout = '';
       let secondStderr = '';
@@ -333,6 +335,7 @@ async function main() {
           cwd: process.cwd(),
           env: process.env,
           stdio: ['ignore', 'pipe', 'pipe'],
+          windowsHide: true,
         });
         let stdout = '';
         let stderr = '';

@@ -17,6 +17,7 @@ function runNode(args) {
     cwd: process.cwd(),
     encoding: 'utf8',
     timeout: 240000,
+    windowsHide: true,
   });
   if (run.error) {
     throw run.error;

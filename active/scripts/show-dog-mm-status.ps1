@@ -9,6 +9,7 @@ $statusPath = Join-Path $stateDir "dog-mm-setup-status.json"
 $logPath = Join-Path $stateDir "dog-mm-ops-log.jsonl"
 $hodlmmSnapshotPath = Join-Path $PSScriptRoot "..\state\dog-mm-hodlmm-status.json"
 $phase0LiveScript = Join-Path $PSScriptRoot "get-dog-mm-phase0-live-status.ps1"
+$phase0PnlScript = Join-Path $PSScriptRoot "..\tools\bitflow-runtime\dog-mm-lp-live-pnl.cjs"
 $heartbeatWindowScript = Join-Path $PSScriptRoot "get-next-dog-mm-heartbeat-window.ps1"
 
 function Read-JsonFile {
@@ -47,11 +48,17 @@ $status = Read-JsonFile -Path $statusPath
 $hodlmm = Read-JsonFile -Path $hodlmmSnapshotPath
 $latestEvent = Get-LatestEvent
 $phase0Live = $null
+$phase0Pnl = $null
 $heartbeatWindow = $null
 try {
     $phase0Live = powershell -ExecutionPolicy Bypass -File $phase0LiveScript | ConvertFrom-Json
 } catch {
     $phase0Live = $null
+}
+try {
+    $phase0Pnl = node $phase0PnlScript | ConvertFrom-Json
+} catch {
+    $phase0Pnl = $null
 }
 try {
     $heartbeatWindow = powershell -ExecutionPolicy Bypass -File $heartbeatWindowScript | ConvertFrom-Json
@@ -66,6 +73,7 @@ $result = [pscustomobject]@{
     wallet = if ($status) { $status.wallet } else { $null }
     phase0 = if ($status) { $status.phase0 } else { $null }
     phase0Live = $phase0Live
+    phase0Pnl = $phase0Pnl
     phase1 = if ($status) { $status.phase1 } else { $null }
     heartbeat = if ($heartbeatWindow) {
         [pscustomobject]@{
@@ -113,6 +121,12 @@ if ($Plain) {
         Write-Host "phase0_unsigned_bin_id: $($result.phase0Live.unsignedBinId)"
         Write-Host "phase0_covers_active_bin: $($result.phase0Live.coversActiveBin)"
         Write-Host "phase0_live_value_usd: $($result.phase0Live.liquidity.totalValueUsd)"
+    }
+    if ($result.phase0Pnl) {
+        Write-Host "phase0_cost_basis_usd: $($result.phase0Pnl.costBasis.totalUsd)"
+        Write-Host "phase0_pnl_gross_usd: $($result.phase0Pnl.pnl.grossUsd)"
+        Write-Host "phase0_pnl_net_usd: $($result.phase0Pnl.pnl.netUsd)"
+        Write-Host "phase0_earned_usd: $($result.phase0Pnl.live.earnedUsd)"
     }
     if ($result.heartbeat) {
         Write-Host "heartbeat_ready_now: $($result.heartbeat.readyNow)"

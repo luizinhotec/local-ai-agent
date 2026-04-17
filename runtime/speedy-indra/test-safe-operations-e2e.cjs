@@ -20,6 +20,7 @@ function runNode(script, args = [], envOverrides = {}) {
       ...envOverrides,
     },
     encoding: 'utf8',
+    windowsHide: true,
   });
   return JSON.parse(stdout);
 }

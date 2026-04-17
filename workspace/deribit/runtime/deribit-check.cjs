@@ -7,6 +7,7 @@ function runNodeScript(scriptPath, args = []) {
   const result = spawnSync(process.execPath, [scriptPath, ...args], {
     stdio: 'inherit',
     cwd: path.join(__dirname, '..', '..', '..'),
+    windowsHide: true,
   });
 
   if (typeof result.status === 'number') {

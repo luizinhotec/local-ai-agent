@@ -105,6 +105,7 @@ function ensureHelper(config = loadAgentConfig()) {
     {
       encoding: 'utf8',
       stdio: 'pipe',
+      windowsHide: true,
     }
   );
   return {
@@ -124,6 +125,7 @@ function runHeartbeatCli(args = []) {
       AIBTC_WALLET_PASSWORD: process.env.AIBTC_WALLET_PASSWORD,
       AIBTC_WALLET_NAME: process.env.AIBTC_WALLET_NAME,
     },
+    windowsHide: true,
   });
   const parsed =
     parseJsonOutput(result.stdout) ||

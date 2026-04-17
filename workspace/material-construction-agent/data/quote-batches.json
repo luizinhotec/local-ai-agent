@@ -1,0 +1,822 @@
+[
+  {
+    "id": "quote-batch-1776363606479",
+    "mode": "demo",
+    "status": "sent",
+    "notes": "Demo Rirrofer: cotacao consolidada por fornecedor.",
+    "itemCount": 4,
+    "supplierCount": 5,
+    "groups": [
+      {
+        "supplier": {
+          "supplierId": "supplier-rir-001",
+          "name": "Distribuidora Serra Norte",
+          "phone": "5522999101001",
+          "supplierTypes": [
+            "cimento",
+            "agregados",
+            "distribuidor_geral"
+          ]
+        },
+        "items": [
+          {
+            "id": "quote-queue-1776363606459",
+            "shortageId": "shortage-rir-001",
+            "item": "Cimento CP-II 50kg",
+            "unit": "saco",
+            "missingQuantity": 88,
+            "priority": "alta",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0001",
+            "materialName": "Cimento CP-II 50kg",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.459Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606459"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606463",
+            "shortageId": "shortage-rir-002",
+            "item": "Tubo PVC Esgoto 40mm",
+            "unit": "barra",
+            "missingQuantity": 32,
+            "priority": "alta",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0003",
+            "materialName": "Tubo PVC Esgoto 40mm",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.463Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606463"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606471",
+            "shortageId": "shortage-rir-003",
+            "item": "Tinta Acrilica Branco 18L",
+            "unit": "lata",
+            "missingQuantity": 14,
+            "priority": "media",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0007",
+            "materialName": "Tinta Acrilica Branco 18L",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-004",
+                "name": "Tintas Forte Atacado",
+                "phone": "5522999101004",
+                "supplierTypes": [
+                  "tintas",
+                  "acabamento"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.471Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606471"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606476",
+            "shortageId": "shortage-rir-004",
+            "item": "Cabo Flexivel 2,5mm 750V",
+            "unit": "rolo",
+            "missingQuantity": 12,
+            "priority": "media",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0005",
+            "materialName": "Cabo Flexivel 2,5mm 750V",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-003",
+                "name": "Eletro Rio Interior",
+                "phone": "5522999101003",
+                "supplierTypes": [
+                  "eletrica"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.476Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606476"
+            ]
+          }
+        ],
+        "message": "Bom dia, poderia cotar estes itens?\n\n1. Cimento CP-II 50kg - 88 saco\n2. Tubo PVC Esgoto 40mm - 32 barra\n3. Tinta Acrilica Branco 18L - 14 lata\n4. Cabo Flexivel 2,5mm 750V - 12 rolo\n\nFavor informar:\n- preco unitario\n- disponibilidade\n- prazo de entrega\n- condicao de pagamento"
+      },
+      {
+        "supplier": {
+          "supplierId": "supplier-rir-002",
+          "name": "HidraVale Atacado",
+          "phone": "5522999101002",
+          "supplierTypes": [
+            "hidraulica",
+            "distribuidor_geral"
+          ]
+        },
+        "items": [
+          {
+            "id": "quote-queue-1776363606459",
+            "shortageId": "shortage-rir-001",
+            "item": "Cimento CP-II 50kg",
+            "unit": "saco",
+            "missingQuantity": 88,
+            "priority": "alta",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0001",
+            "materialName": "Cimento CP-II 50kg",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.459Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606459"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606463",
+            "shortageId": "shortage-rir-002",
+            "item": "Tubo PVC Esgoto 40mm",
+            "unit": "barra",
+            "missingQuantity": 32,
+            "priority": "alta",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0003",
+            "materialName": "Tubo PVC Esgoto 40mm",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.463Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606463"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606471",
+            "shortageId": "shortage-rir-003",
+            "item": "Tinta Acrilica Branco 18L",
+            "unit": "lata",
+            "missingQuantity": 14,
+            "priority": "media",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0007",
+            "materialName": "Tinta Acrilica Branco 18L",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-004",
+                "name": "Tintas Forte Atacado",
+                "phone": "5522999101004",
+                "supplierTypes": [
+                  "tintas",
+                  "acabamento"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.471Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606471"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606476",
+            "shortageId": "shortage-rir-004",
+            "item": "Cabo Flexivel 2,5mm 750V",
+            "unit": "rolo",
+            "missingQuantity": 12,
+            "priority": "media",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0005",
+            "materialName": "Cabo Flexivel 2,5mm 750V",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-003",
+                "name": "Eletro Rio Interior",
+                "phone": "5522999101003",
+                "supplierTypes": [
+                  "eletrica"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.476Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606476"
+            ]
+          }
+        ],
+        "message": "Bom dia, poderia cotar estes itens?\n\n1. Cimento CP-II 50kg - 88 saco\n2. Tubo PVC Esgoto 40mm - 32 barra\n3. Tinta Acrilica Branco 18L - 14 lata\n4. Cabo Flexivel 2,5mm 750V - 12 rolo\n\nFavor informar:\n- preco unitario\n- disponibilidade\n- prazo de entrega\n- condicao de pagamento"
+      },
+      {
+        "supplier": {
+          "supplierId": "supplier-rir-005",
+          "name": "FerroMais Ferragens",
+          "phone": "5522999101005",
+          "supplierTypes": [
+            "ferragens",
+            "seguranca",
+            "distribuidor_geral"
+          ]
+        },
+        "items": [
+          {
+            "id": "quote-queue-1776363606459",
+            "shortageId": "shortage-rir-001",
+            "item": "Cimento CP-II 50kg",
+            "unit": "saco",
+            "missingQuantity": 88,
+            "priority": "alta",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0001",
+            "materialName": "Cimento CP-II 50kg",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.459Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606459"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606463",
+            "shortageId": "shortage-rir-002",
+            "item": "Tubo PVC Esgoto 40mm",
+            "unit": "barra",
+            "missingQuantity": 32,
+            "priority": "alta",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0003",
+            "materialName": "Tubo PVC Esgoto 40mm",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.463Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606463"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606471",
+            "shortageId": "shortage-rir-003",
+            "item": "Tinta Acrilica Branco 18L",
+            "unit": "lata",
+            "missingQuantity": 14,
+            "priority": "media",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0007",
+            "materialName": "Tinta Acrilica Branco 18L",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-004",
+                "name": "Tintas Forte Atacado",
+                "phone": "5522999101004",
+                "supplierTypes": [
+                  "tintas",
+                  "acabamento"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.471Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606471"
+            ]
+          },
+          {
+            "id": "quote-queue-1776363606476",
+            "shortageId": "shortage-rir-004",
+            "item": "Cabo Flexivel 2,5mm 750V",
+            "unit": "rolo",
+            "missingQuantity": 12,
+            "priority": "media",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0005",
+            "materialName": "Cabo Flexivel 2,5mm 750V",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-003",
+                "name": "Eletro Rio Interior",
+                "phone": "5522999101003",
+                "supplierTypes": [
+                  "eletrica"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.476Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606476"
+            ]
+          }
+        ],
+        "message": "Bom dia, poderia cotar estes itens?\n\n1. Cimento CP-II 50kg - 88 saco\n2. Tubo PVC Esgoto 40mm - 32 barra\n3. Tinta Acrilica Branco 18L - 14 lata\n4. Cabo Flexivel 2,5mm 750V - 12 rolo\n\nFavor informar:\n- preco unitario\n- disponibilidade\n- prazo de entrega\n- condicao de pagamento"
+      },
+      {
+        "supplier": {
+          "supplierId": "supplier-rir-004",
+          "name": "Tintas Forte Atacado",
+          "phone": "5522999101004",
+          "supplierTypes": [
+            "tintas",
+            "acabamento"
+          ]
+        },
+        "items": [
+          {
+            "id": "quote-queue-1776363606471",
+            "shortageId": "shortage-rir-003",
+            "item": "Tinta Acrilica Branco 18L",
+            "unit": "lata",
+            "missingQuantity": 14,
+            "priority": "media",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0007",
+            "materialName": "Tinta Acrilica Branco 18L",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-004",
+                "name": "Tintas Forte Atacado",
+                "phone": "5522999101004",
+                "supplierTypes": [
+                  "tintas",
+                  "acabamento"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.471Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606471"
+            ]
+          }
+        ],
+        "message": "Bom dia, poderia cotar estes itens?\n\n1. Tinta Acrilica Branco 18L - 14 lata\n\nFavor informar:\n- preco unitario\n- disponibilidade\n- prazo de entrega\n- condicao de pagamento"
+      },
+      {
+        "supplier": {
+          "supplierId": "supplier-rir-003",
+          "name": "Eletro Rio Interior",
+          "phone": "5522999101003",
+          "supplierTypes": [
+            "eletrica"
+          ]
+        },
+        "items": [
+          {
+            "id": "quote-queue-1776363606476",
+            "shortageId": "shortage-rir-004",
+            "item": "Cabo Flexivel 2,5mm 750V",
+            "unit": "rolo",
+            "missingQuantity": 12,
+            "priority": "media",
+            "status": "ready_for_batch",
+            "materialSku": "RIR-0005",
+            "materialName": "Cabo Flexivel 2,5mm 750V",
+            "resolutionStatus": "matched",
+            "supplierCandidates": [
+              {
+                "supplierId": "supplier-rir-001",
+                "name": "Distribuidora Serra Norte",
+                "phone": "5522999101001",
+                "supplierTypes": [
+                  "cimento",
+                  "agregados",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-002",
+                "name": "HidraVale Atacado",
+                "phone": "5522999101002",
+                "supplierTypes": [
+                  "hidraulica",
+                  "distribuidor_geral"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-003",
+                "name": "Eletro Rio Interior",
+                "phone": "5522999101003",
+                "supplierTypes": [
+                  "eletrica"
+                ]
+              },
+              {
+                "supplierId": "supplier-rir-005",
+                "name": "FerroMais Ferragens",
+                "phone": "5522999101005",
+                "supplierTypes": [
+                  "ferragens",
+                  "seguranca",
+                  "distribuidor_geral"
+                ]
+              }
+            ],
+            "createdAt": "2026-04-16T18:20:06.476Z",
+            "sourceQueueIds": [
+              "quote-queue-1776363606476"
+            ]
+          }
+        ],
+        "message": "Bom dia, poderia cotar estes itens?\n\n1. Cabo Flexivel 2,5mm 750V - 12 rolo\n\nFavor informar:\n- preco unitario\n- disponibilidade\n- prazo de entrega\n- condicao de pagamento"
+      }
+    ],
+    "createdAt": "2026-04-16T18:20:06.480Z",
+    "sentAt": "2026-04-16T18:20:06.487Z"
+  },
+  {
+    "id": "quote-batch-1776368564927",
+    "mode": "manual",
+    "status": "sent",
+    "notes": "",
+    "itemCount": 0,
+    "supplierCount": 0,
+    "groups": [],
+    "createdAt": "2026-04-16T19:42:44.927Z",
+    "sentAt": "2026-04-16T19:42:47.745Z"
+  }
+]

@@ -253,6 +253,7 @@ function runScenario(index, baseAmountIn, level, sharedArgs, options = {}) {
     cwd: ROOT,
     env: buildChildEnv(),
     encoding: 'utf8',
+    windowsHide: true,
   });
 
   if (result.error) {

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "quote-rir-001",
+    "supplier": "Distribuidora Serra Norte",
+    "item": "Cimento CP-II 50kg",
+    "unitPrice": 34.9,
+    "quantity": 100,
+    "leadDays": 2,
+    "payment": "boleto 21 dias",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T17:26:46.488Z"
+  },
+  {
+    "id": "quote-rir-002",
+    "supplier": "FerroMais Ferragens",
+    "item": "Cimento CP-II 50kg",
+    "unitPrice": 35.8,
+    "quantity": 80,
+    "leadDays": 1,
+    "payment": "pix com 3% desconto",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T17:31:46.488Z"
+  },
+  {
+    "id": "quote-rir-003",
+    "supplier": "HidraVale Atacado",
+    "item": "Tubo PVC Esgoto 40mm",
+    "unitPrice": 17.4,
+    "quantity": 50,
+    "leadDays": 3,
+    "payment": "boleto 14 dias",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T17:36:46.488Z"
+  },
+  {
+    "id": "quote-rir-004",
+    "supplier": "FerroMais Ferragens",
+    "item": "Tubo PVC Esgoto 40mm",
+    "unitPrice": 18.2,
+    "quantity": 30,
+    "leadDays": 1,
+    "payment": "pix com 3% desconto",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T17:37:46.488Z"
+  },
+  {
+    "id": "quote-rir-005",
+    "supplier": "Tintas Forte Atacado",
+    "item": "Tinta Acrilica Branco 18L",
+    "unitPrice": 189.9,
+    "quantity": 20,
+    "leadDays": 2,
+    "payment": "boleto 21/35 dias",
+    "source": "whatsapp",
+    "createdAt": "2026-04-16T17:41:46.488Z"
+  }
+]

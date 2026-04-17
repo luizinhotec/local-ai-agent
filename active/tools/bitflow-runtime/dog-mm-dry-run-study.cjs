@@ -129,6 +129,7 @@ function runScenario(index, scenario, sharedArgs) {
     cwd: ROOT,
     env: buildChildEnv(),
     encoding: 'utf8',
+    windowsHide: true,
   });
 
   if (result.error) throw result.error;

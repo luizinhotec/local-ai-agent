@@ -55,6 +55,7 @@ function runScript(scriptPath) {
     env: buildChildEnv(),
     encoding: 'utf8',
     maxBuffer: 10 * 1024 * 1024,
+    windowsHide: true,
   });
   if (result.stdout) process.stdout.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);

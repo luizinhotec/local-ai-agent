@@ -1,0 +1,46 @@
+[
+  {
+    "materialCategory": "cimento",
+    "allowedSupplierTypes": [
+      "cimento",
+      "distribuidor_geral"
+    ]
+  },
+  {
+    "materialCategory": "hidraulica",
+    "allowedSupplierTypes": [
+      "hidraulica",
+      "distribuidor_geral"
+    ]
+  },
+  {
+    "materialCategory": "eletrica",
+    "allowedSupplierTypes": [
+      "eletrica",
+      "distribuidor_geral"
+    ]
+  },
+  {
+    "materialCategory": "tintas",
+    "allowedSupplierTypes": [
+      "tintas",
+      "acabamento",
+      "distribuidor_geral"
+    ]
+  },
+  {
+    "materialCategory": "ferragens",
+    "allowedSupplierTypes": [
+      "ferragens",
+      "distribuidor_geral"
+    ]
+  },
+  {
+    "materialCategory": "seguranca",
+    "allowedSupplierTypes": [
+      "seguranca",
+      "ferragens",
+      "distribuidor_geral"
+    ]
+  }
+]

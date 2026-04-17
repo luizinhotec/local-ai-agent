@@ -72,6 +72,7 @@ function runDryEvaluation(amountSats) {
     cwd: process.cwd(),
     encoding: 'utf8',
     timeout: 180000,
+    windowsHide: true,
   });
 
   if (run.error) {

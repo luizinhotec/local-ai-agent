@@ -26,6 +26,8 @@ const {
 const DEFAULTS = {
   walletName: process.env.DOG_MM_WALLET_NAME || 'dog-mm-mainnet',
   expectedAddress: process.env.DOG_MM_EXPECTED_ADDRESS || '',
+  seedPhrase: process.env.DOG_MM_SEED_PHRASE || '',
+  accountIndex: parseInt(process.env.DOG_MM_ACCOUNT_INDEX || '0', 10),
   routerContract: 'SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-liquidity-router-v-1-1',
   poolContract: 'SM1FKXGNZJWSTWDWXQZJNF7B5TV5ZB235JTCXYXKD.dlmm-pool-sbtc-usdcx-v-1-bps-1',
   xToken: 'SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token',
@@ -132,12 +134,14 @@ function decryptMnemonic(walletId, walletPassword) {
   return plaintext.toString('utf8').trim();
 }
 
-async function deriveSenderKey(mnemonic) {
+async function deriveSenderKey(mnemonic, accountIndex = 0) {
   const wallet = await generateWallet({
     secretKey: mnemonic,
     password: 'bitflow-runtime',
   });
-  return wallet.accounts[0].stxPrivateKey;
+  const account = wallet.accounts[accountIndex];
+  if (!account) throw new Error(`Account index ${accountIndex} not found in derived wallet`);
+  return account.stxPrivateKey;
 }
 
 async function postJson(url, payload) {
@@ -241,6 +245,8 @@ async function main() {
     walletId: args['wallet-id'] || '',
     expectedAddress: args['expected-address'] || DEFAULTS.expectedAddress,
     walletPassword: args['wallet-password'] || process.env.DOG_MM_WALLET_PASSWORD || '',
+    seedPhrase: args['seed-phrase'] || DEFAULTS.seedPhrase,
+    accountIndex: parseInt(args['account-index'] || String(DEFAULTS.accountIndex), 10),
     routerContract: args['router-contract'] || DEFAULTS.routerContract,
     poolContract: args['pool-contract'] || DEFAULTS.poolContract,
     xToken: args['x-token'] || DEFAULTS.xToken,
@@ -261,31 +267,52 @@ async function main() {
     summaryFile: args['summary-file'] ? path.resolve(args['summary-file']) : DEFAULTS.summaryFile,
   };
 
-  if (!options.walletPassword) {
-    throw new Error('Missing wallet password. Use --wallet-password or DOG_MM_WALLET_PASSWORD.');
-  }
+  let wallet;
+  let senderKey;
+  let senderAddress;
 
-  const walletCatalog = loadWalletCatalog();
-  const wallet = chooseWallet(
-    walletCatalog,
-    options.walletName,
-    options.expectedAddress,
-    options.walletId
-  );
-  const mnemonic = decryptMnemonic(wallet.id, options.walletPassword);
-  const senderKey = await deriveSenderKey(mnemonic);
-  const senderAddress = getAddressFromPrivateKey(senderKey, 'mainnet');
+  if (options.seedPhrase) {
+    senderKey = await deriveSenderKey(options.seedPhrase, options.accountIndex);
+    senderAddress = getAddressFromPrivateKey(senderKey, 'mainnet');
+    if (options.expectedAddress && senderAddress !== options.expectedAddress) {
+      throw new Error(
+        `Derived sender address ${senderAddress} does not match expected address ${options.expectedAddress}.`
+      );
+    }
+    wallet = {
+      id: 'direct-seed',
+      name: options.walletName || 'dog-mm-mainnet',
+      address: senderAddress,
+      btcAddress: null,
+      taprootAddress: null,
+    };
+  } else {
+    if (!options.walletPassword) {
+      throw new Error('Missing wallet password. Use --wallet-password or DOG_MM_WALLET_PASSWORD.');
+    }
 
-  if (senderAddress !== wallet.address) {
-    throw new Error(
-      `Derived sender address ${senderAddress} does not match wallet catalog address ${wallet.address}.`
+    const walletCatalog = loadWalletCatalog();
+    wallet = chooseWallet(
+      walletCatalog,
+      options.walletName,
+      options.expectedAddress,
+      options.walletId
     );
-  }
+    const mnemonic = decryptMnemonic(wallet.id, options.walletPassword);
+    senderKey = await deriveSenderKey(mnemonic, options.accountIndex);
+    senderAddress = getAddressFromPrivateKey(senderKey, 'mainnet');
 
-  if (options.expectedAddress && senderAddress !== options.expectedAddress) {
-    throw new Error(
-      `Derived sender address ${senderAddress} does not match expected address ${options.expectedAddress}.`
-    );
+    if (senderAddress !== wallet.address) {
+      throw new Error(
+        `Derived sender address ${senderAddress} does not match wallet catalog address ${wallet.address}.`
+      );
+    }
+
+    if (options.expectedAddress && senderAddress !== options.expectedAddress) {
+      throw new Error(
+        `Derived sender address ${senderAddress} does not match expected address ${options.expectedAddress}.`
+      );
+    }
   }
 
   const poolMetadata = await getPoolForAdd(options.poolContract, senderAddress);

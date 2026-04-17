@@ -708,6 +708,7 @@ function runCandidate(candidate) {
     stdio: 'pipe',
     env: buildChildEnv(),
     encoding: 'utf8',
+    windowsHide: true,
   });
   const stdout = result.stdout || '';
   const stderr = result.stderr || '';

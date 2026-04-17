@@ -272,6 +272,25 @@ function getPostExitReentryCooldownMs(botState, botConfig) {
   }
 }
 
+function hasFreshActiveExecutionAudit(latestExecutionAudit, botConfig) {
+  const activeStatuses = new Set(['intent_created', 'sent', 'accepted', 'open', 'partially_filled']);
+  if (!latestExecutionAudit || !activeStatuses.has(latestExecutionAudit.status)) {
+    return false;
+  }
+  const updatedAtMs = latestExecutionAudit.updatedAt
+    ? new Date(latestExecutionAudit.updatedAt).getTime()
+    : NaN;
+  if (!Number.isFinite(updatedAtMs)) {
+    return false;
+  }
+  const staleAfterMs = Math.max(
+    Number(botConfig?.maxOpenOrderAgeMs || 0),
+    Number(botConfig?.cancelReplaceCooldownMs || 0),
+    120000
+  );
+  return (Date.now() - updatedAtMs) <= staleAfterMs;
+}
+
 function getCancelWindowState(botState, botConfig, nowMs) {
   const windowStartMs = getLastTimestampMs(botState?.cancelReplaceWindowStartAt);
   const activeWindow =
@@ -301,7 +320,7 @@ function classifyExitResult(cycleSummary, botConfig) {
   return 'flat';
 }
 
-function buildActiveRoundContext(snapshot, openOrders, botState) {
+function buildActiveRoundContext(snapshot, openOrders, botState, botConfig = DEFAULT_BOT_CONFIG) {
   const positionDirection = snapshot?.positionDirection || 'flat';
   const positionSizeUsd = Math.abs(Number(snapshot?.positionSizeUsd || 0));
   const reduceOpenOrders = (openOrders || []).filter(order => order.reduce_only);
@@ -312,7 +331,7 @@ function buildActiveRoundContext(snapshot, openOrders, botState) {
   const auditLifecycleHint = latestExecutionAudit?.lifecycleHint || null;
   const auditActive =
     auditLifecycleHint === 'entry' &&
-    ['intent_created', 'sent', 'accepted', 'open', 'partially_filled'].includes(auditStatus);
+    hasFreshActiveExecutionAudit(latestExecutionAudit, botConfig);
 
   const hasPosition = positionDirection !== 'flat' && positionSizeUsd > 0;
   const hasReducePending = reduceOpenOrders.length > 0;
@@ -371,7 +390,7 @@ function createCyclePlan(
   const activeEntryOrderCount = entryOpenOrders.length;
   const directionalPositionUsd = Math.abs(Number(snapshot.positionSizeUsd || 0));
   const hasOpenPosition = directionalPositionUsd > 0;
-  const activeRound = buildActiveRoundContext(snapshot, openOrders, botState);
+  const activeRound = buildActiveRoundContext(snapshot, openOrders, botState, botConfig);
   const blockers = [];
   const managementActions = [];
 

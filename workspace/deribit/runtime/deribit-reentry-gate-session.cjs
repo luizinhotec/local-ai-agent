@@ -145,6 +145,7 @@ async function main() {
     cwd: ROOT_DIR,
     env: childEnv,
     stdio: ['ignore', 'pipe', 'pipe'],
+    windowsHide: true,
   });
 
   child.stdout.on('data', chunk => {

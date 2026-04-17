@@ -131,6 +131,17 @@ function evalDogMm(state, staleThresholdMin) {
     };
   }
 
+  if (state.lpHasPosition && state.lpHealthy) {
+    const stale = minutesSince(state.lpGeneratedAt || state.lastActivityAt);
+    return {
+      bot: 'dog-mm',
+      status: 'ok',
+      reason: `lp_${state.lpStatus}`,
+      minutesStale: stale,
+      alerts: [],
+    };
+  }
+
   // Wallet funded: expect regular activity
   const stale = minutesSince(state.lastActivityAt);
   const warnMin = staleThresholdMin;     // e.g. 10min

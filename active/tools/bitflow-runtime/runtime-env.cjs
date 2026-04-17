@@ -2,7 +2,10 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..', '..', '..');
-const ENV_FILE = path.join(ROOT, '.env');
+const ENV_FILES = [
+  path.join(ROOT, '.env'),
+  path.join(ROOT, '.env.local'),
+];
 
 function stripWrappingQuotes(value) {
   if (typeof value !== 'string') return value;
@@ -43,11 +46,11 @@ function applyEnvValues(values) {
 }
 
 function loadRuntimeEnv() {
-  if (!fs.existsSync(ENV_FILE)) {
-    return;
+  for (const filePath of ENV_FILES) {
+    if (!fs.existsSync(filePath)) continue;
+    const parsed = parseDotEnv(fs.readFileSync(filePath, 'utf8'));
+    applyEnvValues(parsed);
   }
-  const parsed = parseDotEnv(fs.readFileSync(ENV_FILE, 'utf8'));
-  applyEnvValues(parsed);
 }
 
 function buildChildEnv(overrides = {}) {
