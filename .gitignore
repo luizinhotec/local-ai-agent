@@ -9,7 +9,6 @@ data/notes.json
 *.local.json
 workspace/deribit/config/deribit.config.json
 workspace/deribit/config/deribit.risk.json
-workspace/deribit/config/deribit.strategy.json
 workspace/deribit/config/deribit.execution.json
 workspace/deribit/config/deribit.env.ps1
 workspace/deribit/state/
