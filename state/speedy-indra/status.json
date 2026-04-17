@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-04-17T22:57:36.897Z",
+  "checkedAt": "2026-04-17T23:01:49.060Z",
   "nextAction": {
     "recommendedAction": "quote_only",
     "reason": "defi_quote_monitoring_available",
@@ -40,7 +40,7 @@
   "messaging": {
     "unreadCount": 0,
     "queueDepth": 0,
-    "lastMessagingRunAt": "2026-04-17T22:57:30.809Z",
+    "lastMessagingRunAt": "2026-04-17T23:01:41.285Z",
     "lastReplyAt": "2026-04-01T03:50:24.957Z",
     "lastReplyTargets": [
       {
@@ -125,14 +125,14 @@
       "btc": {
         "ok": true,
         "status": "ready",
-        "tipHeight": 945531,
+        "tipHeight": 945532,
         "responseStatus": 200
       },
       "stacks": {
         "ok": true,
         "status": "ready",
-        "burnBlockHeight": 945531,
-        "stacksTipHeight": 7639271,
+        "burnBlockHeight": 945532,
+        "stacksTipHeight": 7639321,
         "responseStatus": 200
       }
     },
@@ -202,14 +202,14 @@
         "btc": {
           "ok": true,
           "status": "ready",
-          "tipHeight": 945531,
+          "tipHeight": 945532,
           "responseStatus": 200
         },
         "stacks": {
           "ok": true,
           "status": "ready",
-          "burnBlockHeight": 945531,
-          "stacksTipHeight": 7639271,
+          "burnBlockHeight": 945532,
+          "stacksTipHeight": 7639321,
           "responseStatus": 200
         }
       },
@@ -250,7 +250,7 @@
       "dryRunDefault": true,
       "liveApprovalRequiredForValueTransfer": true,
       "valueTransferImplemented": true,
-      "probeMessage": "Speedy Indra wallet probe | SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT | bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9 | 2026-04-17T22:57:30.983Z",
+      "probeMessage": "Speedy Indra wallet probe | SP1H35Z548R39KCMMNP9498QQ28SZFE07FB7Q3CBT | bc1q7maxug87p9ul7cl8yvmv6za8aqxfpfea0h6tc9 | 2026-04-17T23:01:41.465Z",
       "proofFormat": "bip322",
       "maxValueSats": 1000,
       "valueActionPlan": {
@@ -346,7 +346,7 @@
     }
   },
   "standardLoop": {
-    "lastRunAt": "2026-04-17T22:57:30.338Z",
+    "lastRunAt": "2026-04-17T23:01:40.775Z",
     "lastAction": "skipped",
     "lastAuthorizedAction": null,
     "lastProposedCommand": "npm run agent:defi:dryrun -- --pair=sbtc-usdcx --amount-sats=3000",
@@ -367,7 +367,7 @@
       "actionExecuted": false,
       "actionReason": "decision_not_pass"
     },
-    "cycles": 2620,
+    "cycles": 2624,
     "autoActions": 2,
     "autoLive": {
       "executionsToday": 0,
@@ -394,7 +394,7 @@
     }
   },
   "operationalSummary": {
-    "generatedAt": "2026-04-17T22:57:30.338Z",
+    "generatedAt": "2026-04-17T23:01:40.775Z",
     "loopRunning": true,
     "watchdogStale": false,
     "messaging": {
@@ -452,10 +452,10 @@
       "scannedCount": 6
     },
     "loop": {
-      "lastRunAt": "2026-04-17T22:57:30.338Z",
+      "lastRunAt": "2026-04-17T23:01:40.775Z",
       "lastAction": "skipped",
       "lastBlockReason": "decision_not_pass",
-      "cycles": 2620,
+      "cycles": 2624,
       "autoActions": 2
     },
     "supervisorLine": "loop=skipped | msgs=0 unread/5 replied | cooldown=free | next=quote_only | defi=A estrategia atual permite apenas observacao de cotacao. O gate de execucao nao aprovou a oportunidade atual."

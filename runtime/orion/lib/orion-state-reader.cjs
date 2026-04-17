@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { spawnSync } = require('child_process');
 const { loadOrionConfig, ROOT } = require('./orion-config.cjs');
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -57,12 +57,16 @@ function readSpeedyIndraState() {
       return { bot: 'speedy-indra', error: 'agent-status.cjs not found' };
     }
 
-    const stdout = execSync(
+    const run = spawnSync(
       `node "${scriptPath}"`,
-      { cwd: ROOT, encoding: 'utf8', timeout: 30000, stdio: ['pipe', 'pipe', 'pipe'] }
+      [],
+      { shell: true, windowsHide: true, cwd: ROOT, encoding: 'utf8', timeout: 30000 }
     );
+    if (run.error || run.status !== 0) {
+      throw run.error || new Error(run.stderr?.toString() || `exit ${run.status}`);
+    }
 
-    const payload = JSON.parse(stdout.trim());
+    const payload = JSON.parse((run.stdout?.toString() ?? '').trim());
 
     // Flatten the fields most relevant for health assessment
     const ops = payload.operationalSummary || {};
