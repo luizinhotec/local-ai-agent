@@ -1,0 +1,109 @@
+================================================================================
+         SOLICITAÇÃO DE CONTESTAÇÃO DE COBRANÇA (CHARGEBACK)
+================================================================================
+
+Data: 16 de junho de 2026
+
+DADOS DO TITULAR DO CARTÃO
+--------------------------------------------------------------------------------
+Nome:           Maria do Carmo Nogueira
+CPF:            074.284.787-07
+Cartão:         Bradesco — final 2934
+Responsável:    Luiz Carlos Nogueira Queiroz (filho — com consentimento da titular)
+E-mail:         luizinho.tec79@gmail.com
+Telefone:       +55 22 99826-7814
+
+================================================================================
+DETALHES DA COBRANÇA CONTESTADA
+================================================================================
+
+Empresa cobradora:      GoDaddy Operating Company, LLC
+Número do pedido:       4103015594
+Valor cobrado:          Aproximadamente US$ 100,00
+Data da cobrança:       10/06/2026
+Caso aberto na empresa: GPTR-376456
+
+================================================================================
+MOTIVO DA CONTESTAÇÃO
+================================================================================
+
+A titular do cartão NÃO possui conta na GoDaddy, NÃO realizou e NÃO autorizou
+esta compra. Os dados do cartão foram utilizados indevidamente por terceiros.
+
+================================================================================
+PROVIDÊNCIAS JÁ TOMADAS JUNTO À GODADDY
+================================================================================
+
+1. Atendimento via chat em 10/06/2026:
+   A própria atendente da GoDaddy confirmou que não há conta associada ao
+   nosso e-mail (luizinho.tec79@gmail.com) ou telefone (+55 22 99826-7814).
+   A atendente orientou contato com verifypayment@godaddy.com.
+
+2. Abertura do caso GPTR-376456 junto ao setor Verify Payment da GoDaddy
+   em 10/06/2026, com promessa de resposta em até 72 horas.
+
+3. Prazo de 72 horas vencido sem resolução (venceu em 13/06/2026).
+   Até a data desta carta (16/06/2026), nenhuma resposta foi recebida.
+
+4. Tentativa de login em 11/06/2026 com conta Google confirma:
+   "Nenhuma conta GoDaddy associada a essa conta do Google."
+
+================================================================================
+DOCUMENTOS COMPROBATÓRIOS (ANEXOS)
+================================================================================
+
+[ ] 1. Transcrição do atendimento por chat com a GoDaddy (10/06/2026)
+[ ] 2. E-mail de confirmação do caso GPTR-376456
+        (de: verifypayment@services.godaddy.com — 10/06/2026 às 12:45)
+[ ] 3. Print da cobrança de ~US$ 100,00 na fatura do cartão
+[ ] 4. Print da tela "Nenhuma conta GoDaddy associada" (11/06/2026)
+[ ] 5. Esta carta de contestação
+
+================================================================================
+SOLICITAÇÕES AO BANCO
+================================================================================
+
+1. ESTORNO INTEGRAL do valor de aproximadamente US$ 100,00 (chargeback)
+
+2. BLOQUEIO E SUBSTITUIÇÃO IMEDIATA do cartão final 2934 para prevenção
+   de novas cobranças indevidas
+
+================================================================================
+DECLARAÇÃO
+================================================================================
+
+Declaro, para os devidos fins, que NÃO autorizei, NÃO reconheço e NÃO me
+beneficiei da compra correspondente ao pedido nº 4103015594 da GoDaddy.
+Não possuo conta nessa empresa. Os dados do meu cartão foram utilizados
+sem o meu consentimento.
+
+
+Local: ______________________________   Data: ______ / ______ / __________
+
+
+Assinatura da titular:
+
+________________________________________
+Maria do Carmo Nogueira
+CPF: 074.284.787-07
+
+
+Ciente (filho / responsável pelo atendimento):
+
+________________________________________
+Luiz Carlos Nogueira Queiroz
+
+
+================================================================================
+USO INTERNO DO BANCO (preencher no atendimento)
+================================================================================
+
+Número de protocolo: ___________________________________
+
+Atendente responsável: _________________________________
+
+Data do atendimento: ___________________________________
+
+Prazo de resposta informado: ___________________________
+
+================================================================================

@@ -1,0 +1,70 @@
+================================================================================
+E-MAIL PARA ENVIAR À GODADDY
+================================================================================
+
+PARA:     verifypayment@godaddy.com
+ASSUNTO:  Follow-up — Case GPTR-376456 / Unauthorized Charge — Order 4103015594
+
+INSTRUÇÕES: Responda diretamente ao e-mail de confirmação que você já recebeu
+            da GoDaddy (de 10/06/2026) para manter o histórico do caso.
+================================================================================
+
+Subject: Follow-up — Case GPTR-376456 / Unauthorized Charge — Order #4103015594
+
+Dear GoDaddy Verify Payment Team,
+
+I am writing to follow up on case GPTR-376456, opened on June 10, 2026,
+regarding an unauthorized charge of approximately USD 100.00 on the credit
+card of Maria do Carmo Nogueira (last 4 digits: 2934, Bradesco Bank, Brazil),
+related to order #4103015594.
+
+Your confirmation email stated a response within 72 hours. As of today,
+June 16, 2026 — six days later — we have not received any update or resolution.
+
+---------------------------------------------------------------------------
+SUMMARY OF THE CASE
+---------------------------------------------------------------------------
+
+- The cardholder (Maria do Carmo Nogueira) does NOT have a GoDaddy account.
+- She did NOT authorize and did NOT benefit from this purchase.
+- On June 10, 2026, your support agent confirmed via chat that order
+  #4103015594 could not be validated against any account associated with
+  our email (luizinho.tec79@gmail.com) or phone (+55 22 99826-7814).
+- On June 11, 2026, a login attempt confirmed:
+  "No GoDaddy account associated with this Google account."
+- We believe the card data was used fraudulently by a third party.
+
+---------------------------------------------------------------------------
+ATTACHED EVIDENCE
+---------------------------------------------------------------------------
+
+1. Chat transcript with GoDaddy support (June 10, 2026)
+2. Confirmation email of Case GPTR-376456
+3. Screenshot of the unauthorized charge on the card statement (~USD 100.00)
+4. Screenshot: "No GoDaddy account associated" (June 11, 2026)
+
+---------------------------------------------------------------------------
+REQUEST
+---------------------------------------------------------------------------
+
+We kindly request:
+
+1. IMMEDIATE UPDATE on the status of this case
+2. FULL REFUND of USD 100.00 to the cardholder's credit card
+
+Please note: if we do not receive a resolution within 5 business days,
+we will proceed with a formal chargeback request through Bradesco Bank,
+as well as a complaint to the relevant consumer protection authorities.
+
+Best regards,
+
+Luiz Carlos Nogueira Queiroz
+(Acting on behalf of cardholder Maria do Carmo Nogueira, with her full consent)
+
+Email:  luizinho.tec79@gmail.com
+Phone:  +55 22 99826-7814
+
+Case ID:  GPTR-376456
+Order #:  4103015594
+
+================================================================================
