@@ -53,3 +53,16 @@
 3. git push automático
 4. Linux baixa via git pull (cron hourly ou manual)
 5. sudo systemctl restart local-ai-agent
+
+## VPS (structa.one)
+- Host: 185.135.137.113 | Usuário: root | Provedor: Contabo
+- Painel: https://hyvana.structa.one
+- n8n: https://n8n.structa.one
+- Serviços: nginx, n8n (via PM2 ou systemd)
+
+## MCP SSH — Acesso Claude Code à VPS
+- Pacote: mcp-ssh-manager (npx -y mcp-ssh-manager)
+- Config: C:\Users\luiz\.claude\settings.json → mcpServers.vps-structa
+- Setup inicial: executar `setup-mcp-ssh.ps1` no Windows para configurar credenciais
+- Após reiniciar Claude Code, Claude acessa a VPS diretamente via ferramentas MCP
+- Credenciais ficam apenas no settings.json local (nunca no git)

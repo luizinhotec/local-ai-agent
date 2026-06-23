@@ -5,3 +5,8 @@ Antes de qualquer modificação, verificar o estado atual dos bots:
 - O Orion monitora tudo e reporta via Telegram (@speedy_indra_alert_bot)
 - Sempre fazer git pull antes de qualquer modificação
 - Nunca commitar: .env, .env.local, .env.ps1, arquivos de state, PIDs, logs
+
+## Acesso à VPS (structa.one)
+- Se o MCP vps-structa estiver disponível, use-o diretamente para executar comandos na VPS
+- VPS: 185.135.137.113 (root) — Contabo — nginx, n8n
+- Configuração MCP: C:\Users\luiz\.claude\settings.json (apenas local, nunca no git)
