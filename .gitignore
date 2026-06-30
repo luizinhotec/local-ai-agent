@@ -35,3 +35,4 @@ active/state/dog-mm/*
 node_modules/
 .env
 .env.*
+.claude_keys/
